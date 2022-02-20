@@ -50,13 +50,14 @@ function App() {
 
   const priceConversion = (id, convertId, amount) => {
     fetch(
-      `https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=${amount}&convert_id=${convertId}&id=${id}`
+      `http://44.202.81.148/api/exchange?amount=${amount}&convert_id=${convertId}&id=${id}`
     )
       .then((response) => response.json())
-      .then((data) => {
+      .then(({ data }) => {
         const quotes = data.data?.quote;
-        if (quotes && quotes.length > 0) {
-          const price = quotes[0].price;
+        if (quotes && quotes.hasOwnProperty(convertId)) {
+          const quote = quotes[convertId];
+          const price = quote.price;
           if (price >= 1.0) {
             setConverted(price.toFixed(2));
           } else {

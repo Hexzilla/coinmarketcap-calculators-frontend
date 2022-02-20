@@ -137,7 +137,6 @@ function CurrencySelect({ cryptoCurrencies, onSelect, currentCoin }) {
   const [searchText, setSearchText] = useState(null);
 
   useEffect(() => {
-    console.log("currentCoin", currentCoin)
     if (!searchText) {
       setOptions(defaultOptions);
     }
