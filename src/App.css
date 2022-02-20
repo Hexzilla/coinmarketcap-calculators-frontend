@@ -81,6 +81,16 @@
   font-size: 20px;
 }
 
+
+.image-button {
+  cursor: pointer;
+}
+
+.image-button:hover {
+  border: 1px solid;
+  border-color: transparent;
+}
+
 .ant-input:focus,
 .ant-input-number-focused,
 .ant-input-affix-wrapper-focused,

@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
-import { Layout, Row, Col, InputNumber, Space, Select } from "antd";
+import {
+  Layout,
+  Row,
+  Col,
+  InputNumber,
+  Space,
+  Select,
+  Tooltip,
+} from "antd";
 import "./App.css";
 import background from "./img/background.png";
 import swap from "./img/swap.svg";
@@ -11,7 +19,6 @@ import CurrencySelect, {
   fiatCurrencies,
 } from "./CurrencySelect/CurrencySelect.js";
 
-const { Option } = Select;
 const { Sider, Content } = Layout;
 
 function App() {
@@ -132,21 +139,23 @@ function App() {
                 <CurrencySelect
                   cryptoCurrencies={cryptoCurrencies}
                   onSelect={onSelectInputCoin}
-                  currentCoin="Bitcoin (BTC)"
+                  currentCoin={inputCoin}
                 ></CurrencySelect>
 
-                <img
-                  src={swap}
-                  className="rotate cursor-pointer"
-                  alt="swap"
-                  width="40px"
-                  onClick={handleSwap}
-                />
+                <Tooltip title="Swap" className="image-button">
+                  <img
+                    src={swap}
+                    className="image-button rotate"
+                    alt="swap"
+                    width="40px"
+                    onClick={handleSwap}
+                  />
+                </Tooltip>
 
                 <CurrencySelect
                   cryptoCurrencies={cryptoCurrencies}
                   onSelect={onSelectOutputCoin}
-                  currentCoin='United States Dollars "$" (USD)'
+                  currentCoin={outputCoin}
                 ></CurrencySelect>
 
                 <div flex="auto" align="middle">
@@ -175,18 +184,22 @@ function App() {
         <Row style={{ marginTop: "40px" }}>
           <Col span={12} offset={6} flex="auto" align="end">
             <Space>
-              <img
-                src={refresh}
-                className="cursor-pointer"
-                alt="refresh"
-                width="40px"
-              />
-              <img
-                src={download}
-                className="cursor-pointer"
-                alt="refresh"
-                width="40px"
-              />
+              <Tooltip title="Refresh" className="image-button">
+                <img
+                  src={refresh}
+                  className="image-button"
+                  alt="refresh"
+                  width="40px"
+                />
+              </Tooltip>
+              <Tooltip title="Download" className="image-button">
+                <img
+                  src={download}
+                  className="image-button"
+                  alt="download"
+                  width="40px"
+                />
+              </Tooltip>
             </Space>
           </Col>
         </Row>

@@ -137,10 +137,11 @@ function CurrencySelect({ cryptoCurrencies, onSelect, currentCoin }) {
   const [searchText, setSearchText] = useState(null);
 
   useEffect(() => {
+    console.log("currentCoin", currentCoin)
     if (!searchText) {
       setOptions(defaultOptions);
     }
-  }, [searchText])
+  }, [searchText, currentCoin])
 
   const createOptionItems = (items, searchText) => {
     const search = searchText.toLowerCase();
@@ -210,7 +211,7 @@ function CurrencySelect({ cryptoCurrencies, onSelect, currentCoin }) {
       <AutoComplete
         dropdownClassName="certain-category-search-dropdown"
         style={{ width: 320 }}
-        defaultValue={currentCoin}
+        value={`${currentCoin.name} (${currentCoin.symbol})`}
         options={options}
         onSearch={onSearch}
         onSelect={handleSelectCoin}
