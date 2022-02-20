@@ -36,3 +36,67 @@
     transform: rotate(360deg);
   }
 }
+
+.rotate {
+  background-color: transparent;
+  transform: rotate(90deg);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.headerTitle {
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.subTitle {
+  font-size: 18px;
+}
+
+.priceTitle {
+  font-size: 38px;
+  font-weight: 800;
+  color: #440645;
+}
+
+.coinName {
+  font-size: 20px;
+}
+
+.ant-input:focus,
+.ant-input-number-focused,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused {
+  border-color: #78067a!important;
+  box-shadow: 0 0 0 2px rgba(148, 63, 165, 0.2)!important;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: #78067a!important;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+  color: #666;
+  font-weight: bold;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item {
+  padding-left: 16px;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+  text-align: center;
+  cursor: default;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu {
+  max-height: 300px;
+}
