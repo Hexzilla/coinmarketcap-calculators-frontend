@@ -37,6 +37,16 @@
   }
 }
 
+.sidebar {
+  background-color: #440645;
+  height: 100%;
+}
+
+.content {
+  background-color: #fdda5a;
+  height: 100vh;
+}
+
 .rotate {
   background-color: transparent;
   transform: rotate(90deg);
@@ -46,13 +56,19 @@
   cursor: pointer;
 }
 
+.background-wrapper {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
+
 .headerTitle {
   font-size: 38px;
   font-weight: 800;
 }
 
 .subTitle {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .priceTitle {

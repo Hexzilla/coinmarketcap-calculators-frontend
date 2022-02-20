@@ -92,36 +92,32 @@ function App() {
   return (
     <Layout>
       <Sider>
-        <div
-          style={{
-            backgroundColor: "#440645",
-            height: "100%",
-          }}
-        />
+        <div className="sidebar" />
       </Sider>
-      <Content
-        style={{
-          backgroundColor: "#fdda5a",
-          height: "100vh",
-        }}
-      >
-        <div style={{
-          background: `url(${background}) no-repeat center center fixed`,
-          backgroundSize: 'cover'
-          }}>
-          <Row style={{ paddingTop: "5%" }}>
-            <Col span={12} offset={6} flex="auto" align="middle">
+      <Content className="content">
+        <Row style={{ paddingTop: "3%" }}>
+          <Col span={10} offset={7} flex="auto" align="middle">
+            <Space direction="vertical" size={15}>
+              <div className="headerTitle">
+                Convert{" "}
+                <span style={titleBold}>{inputCoin?.symbol || "BTC"}</span> to{" "}
+                <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
+              </div>
+              <p className="subTitle">
+                Convert any cryptocurrency or token price into your perferred
+                fiat currency, such as BCH to USD. The live BCH to USD price
+                will be shown.
+              </p>
+            </Space>
+          </Col>
+        </Row>
+        <div
+          className="background-wrapper"
+          style={{ backgroundImage: `url(${background})` }}
+        >
+          <Row style={{ padding: "2%", marginTop: "20px" }}>
+            <Col span={16} offset={4} flex="auto" align="middle">
               <Space direction="vertical" size={15}>
-                <div className="headerTitle">
-                  Convert{" "}
-                  <span style={titleBold}>{inputCoin?.symbol || "BTC"}</span> to{" "}
-                  <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
-                </div>
-                <p className="subTitle">
-                  Convert any cryptocurrency or token price into your perferred
-                  fiat currency, such as BCH to USD. The live BCH to USD price
-                  will be shown.
-                </p>
                 <InputNumber
                   min={1}
                   placeholder="Enter Amount to Convert"
@@ -175,25 +171,25 @@ function App() {
               </Space>
             </Col>
           </Row>
-          <Row style={{ marginTop: "40px" }}>
-            <Col span={12} offset={6} flex="auto" align="end">
-              <Space>
-                <img
-                  src={refresh}
-                  className="cursor-pointer"
-                  alt="refresh"
-                  width="40px"
-                />
-                <img
-                  src={download}
-                  className="cursor-pointer"
-                  alt="refresh"
-                  width="40px"
-                />
-              </Space>
-            </Col>
-          </Row>
         </div>
+        <Row style={{ marginTop: "40px" }}>
+          <Col span={12} offset={6} flex="auto" align="end">
+            <Space>
+              <img
+                src={refresh}
+                className="cursor-pointer"
+                alt="refresh"
+                width="40px"
+              />
+              <img
+                src={download}
+                className="cursor-pointer"
+                alt="refresh"
+                width="40px"
+              />
+            </Space>
+          </Col>
+        </Row>
       </Content>
     </Layout>
   );
