@@ -1,21 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  Layout,
-  Row,
-  Col,
-  InputNumber,
-  Space,
-  Tooltip,
-} from "antd";
+import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
 import "./calculator.css";
-import background from "../../img/background.png";
-import swap from "../../img/swap.svg";
-import equal from "../../img/equal.svg";
-import refresh from "../../img/refresh.svg";
-import download from "../../img/download.svg";
-import CurrencySelect, {
-  fiatCurrencies,
-} from "./CurrencySelect/index.js";
+import CurrencySelect, { fiatCurrencies } from "./CurrencySelect/index.js";
 
 const { Sider, Content } = Layout;
 
@@ -119,7 +105,7 @@ function Calculator() {
         </Row>
         <div
           className="background-wrapper"
-          style={{ backgroundImage: `url(${background})` }}
+          style={{ backgroundImage: `url(/images/background.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "20px" }}>
             <Col span={16} offset={4} flex="auto" align="middle">
@@ -143,7 +129,7 @@ function Calculator() {
 
                 <Tooltip title="Swap" className="image-button">
                   <img
-                    src={swap}
+                    src="/images/swap.svg"
                     className="image-button rotate"
                     alt="swap"
                     width="40px"
@@ -166,7 +152,7 @@ function Calculator() {
                   )}
                 </div>
 
-                <img src={equal} alt="equal" width="50px" />
+                <img src="/images/equal.svg" alt="equal" width="50px" />
 
                 <div flex="auto" align="middle">
                   <div className="priceTitle">{converted}</div>
@@ -185,7 +171,7 @@ function Calculator() {
             <Space>
               <Tooltip title="Refresh" className="image-button">
                 <img
-                  src={refresh}
+                  src="/images/refresh.svg"
                   className="image-button"
                   alt="refresh"
                   width="40px"
@@ -193,7 +179,7 @@ function Calculator() {
               </Tooltip>
               <Tooltip title="Download" className="image-button">
                 <img
-                  src={download}
+                  src="/images/download.svg"
                   className="image-button"
                   alt="download"
                   width="40px"
