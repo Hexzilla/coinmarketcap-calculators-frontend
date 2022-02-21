@@ -83,9 +83,6 @@ function Calculator() {
 
   return (
     <Layout>
-      <Sider>
-        <div className="sidebar" />
-      </Sider>
       <Content className="content">
         <Row style={{ paddingTop: "3%" }}>
           <Col span={10} offset={7} flex="auto" align="middle">

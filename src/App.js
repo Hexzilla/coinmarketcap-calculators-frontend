@@ -3,6 +3,7 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import history from './routerHistory'
 import Menu from './components/Menu'
 import Calculator from "./views/Calculator"
+import Signup from "./views/Signup"
 
 const Home = lazy(() => import('./views/Home'))
 
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path="/calculator">
             <Calculator />
+          </Route>
+          <Route path="/signup">
+            <Signup />
           </Route>
         </Switch>
       </Menu>
