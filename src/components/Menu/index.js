@@ -38,11 +38,13 @@ const MainLayout = ({ children }) => {
             <Menu.Item key="connect">
               <div className="text-uppercase">Connect with us</div>
             </Menu.Item>
-            <Menu.Item key="singin">
-              <div className="text-uppercase">Sign In</div>
+            <Menu.Item key="login">
+              <NavLink to="/login">
+                <div className="text-uppercase">Sign In</div>
+              </NavLink>
             </Menu.Item>
             <Menu.Item key="singup">
-              <NavLink to="/signup">
+              <NavLink to="/register">
                 <div className="text-uppercase">Sign up</div>
               </NavLink>
             </Menu.Item>
