@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import "./menu.css";
 
-const { Header, Footer, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 const MainLayout = ({ children }) => {
   const [current, setCurrent] = useState("analytics");
