@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "antd/dist/antd.css";
-import { Layout, Row, Col, InputNumber, Space, Select } from "antd";
-import "./App.css";
-import background from "./img/background.png";
-import swap from "./img/swap.svg";
-import equal from "./img/equal.svg";
-import refresh from "./img/refresh.svg";
-import download from "./img/download.svg";
-import CurrencySelect, {
-  fiatCurrencies,
-} from "./CurrencySelect/CurrencySelect.js";
+import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
+import "./calculator.css";
+import CurrencySelect, { fiatCurrencies } from "./CurrencySelect/index.js";
+import Menu from '../../components/Menu'
 
-const { Option } = Select;
 const { Sider, Content } = Layout;
 
-function App() {
+function Calculator() {
   const [loading, setLoading] = useState(false);
   const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
   const [amount, setAmount] = useState(1);
@@ -43,13 +35,14 @@ function App() {
 
   const priceConversion = (id, convertId, amount) => {
     fetch(
-      `https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=${amount}&convert_id=${convertId}&id=${id}`
+      `http://44.202.81.148/api/exchange?amount=${amount}&convert_id=${convertId}&id=${id}`
     )
       .then((response) => response.json())
-      .then((data) => {
+      .then(({ data }) => {
         const quotes = data.data?.quote;
-        if (quotes && quotes.length > 0) {
-          const price = quotes[0].price;
+        if (quotes && quotes.hasOwnProperty(convertId)) {
+          const quote = quotes[convertId];
+          const price = quote.price;
           if (price >= 1.0) {
             setConverted(price.toFixed(2));
           } else {
@@ -91,37 +84,36 @@ function App() {
 
   return (
     <Layout>
+      
       <Sider>
-        <div
-          style={{
-            backgroundColor: "#440645",
-            height: "100%",
-          }}
-        />
+        <div className="sidebar"/>
       </Sider>
-      <Content
-        style={{
-          backgroundColor: "#fdda5a",
-          height: "100vh",
-        }}
-      >
-        <div style={{
-          background: `url(${background}) no-repeat center center fixed`,
-          backgroundSize: 'cover'
-          }}>
-          <Row style={{ paddingTop: "5%" }}>
-            <Col span={12} offset={6} flex="auto" align="middle">
+      
+      <Content className="content">
+      <Menu></Menu>
+        <Row style={{ paddingTop: "3%" }}>
+          <Col span={10} offset={7} flex="auto" align="middle">
+            <Space direction="vertical" size={15}>
+              <div className="headerTitle">
+                Convert{" "}
+                <span style={titleBold}>{inputCoin?.symbol || "BTC"}</span> to{" "}
+                <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
+              </div>
+              <p className="subTitle">
+                Convert any cryptocurrency or token price into your perferred
+                fiat currency, such as BCH to USD. The live BCH to USD price
+                will be shown.
+              </p>
+            </Space>
+          </Col>
+        </Row>
+        <div
+          className="background-wrapper"
+          style={{ backgroundImage: `url(/images/background.png)` }}
+        >
+          <Row style={{ padding: "2%", marginTop: "20px" }}>
+            <Col span={16} offset={4} flex="auto" align="middle">
               <Space direction="vertical" size={15}>
-                <div className="headerTitle">
-                  Convert{" "}
-                  <span style={titleBold}>{inputCoin?.symbol || "BTC"}</span> to{" "}
-                  <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
-                </div>
-                <p className="subTitle">
-                  Convert any cryptocurrency or token price into your perferred
-                  fiat currency, such as BCH to USD. The live BCH to USD price
-                  will be shown.
-                </p>
                 <InputNumber
                   min={1}
                   placeholder="Enter Amount to Convert"
@@ -136,21 +128,23 @@ function App() {
                 <CurrencySelect
                   cryptoCurrencies={cryptoCurrencies}
                   onSelect={onSelectInputCoin}
-                  currentCoin="Bitcoin (BTC)"
+                  currentCoin={inputCoin}
                 ></CurrencySelect>
 
-                <img
-                  src={swap}
-                  className="rotate cursor-pointer"
-                  alt="swap"
-                  width="40px"
-                  onClick={handleSwap}
-                />
+                <Tooltip title="Swap" className="image-button">
+                  <img
+                    src="/images/swap.svg"
+                    className="image-button rotate"
+                    alt="swap"
+                    width="40px"
+                    onClick={handleSwap}
+                  />
+                </Tooltip>
 
                 <CurrencySelect
                   cryptoCurrencies={cryptoCurrencies}
                   onSelect={onSelectOutputCoin}
-                  currentCoin='United States Dollars "$" (USD)'
+                  currentCoin={outputCoin}
                 ></CurrencySelect>
 
                 <div flex="auto" align="middle">
@@ -162,7 +156,7 @@ function App() {
                   )}
                 </div>
 
-                <img src={equal} alt="equal" width="50px" />
+                <img src="/images/equal.svg" alt="equal" width="50px" />
 
                 <div flex="auto" align="middle">
                   <div className="priceTitle">{converted}</div>
@@ -175,28 +169,32 @@ function App() {
               </Space>
             </Col>
           </Row>
-          <Row style={{ marginTop: "40px" }}>
-            <Col span={12} offset={6} flex="auto" align="end">
-              <Space>
-                <img
-                  src={refresh}
-                  className="cursor-pointer"
-                  alt="refresh"
-                  width="40px"
-                />
-                <img
-                  src={download}
-                  className="cursor-pointer"
-                  alt="refresh"
-                  width="40px"
-                />
-              </Space>
-            </Col>
-          </Row>
         </div>
+        <Row style={{ marginTop: "40px" }}>
+          <Col span={12} offset={6} flex="auto" align="end">
+            <Space>
+              <Tooltip title="Refresh" className="image-button">
+                <img
+                  src="/images/refresh.svg"
+                  className="image-button"
+                  alt="refresh"
+                  width="40px"
+                />
+              </Tooltip>
+              <Tooltip title="Download" className="image-button">
+                <img
+                  src="/images/download.svg"
+                  className="image-button"
+                  alt="download"
+                  width="40px"
+                />
+              </Tooltip>
+            </Space>
+          </Col>
+        </Row>
       </Content>
     </Layout>
   );
 }
 
-export default App;
+export default Calculator;

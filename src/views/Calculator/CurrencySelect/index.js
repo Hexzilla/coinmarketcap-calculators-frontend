@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Input, AutoComplete } from 'antd';
-import './CurrencySelect.css';
+import './currencySelect.css';
 import { DownOutlined } from '@ant-design/icons';
 
 export const fiatCurrencies = [

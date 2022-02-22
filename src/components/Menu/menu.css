@@ -1,0 +1,36 @@
+.sidebar {
+  background-color: #440645;
+  height: 100%;
+  /* border-style: none dashed none none;
+  border-color: white;
+  border-width: thick; */
+  background-image: linear-gradient(to bottom, #440645 50%, White 50%);
+  background-position: right;
+  background-size: 8px 50px;
+  background-repeat: repeat-y;
+}
+
+.text-uppercase {
+  /* text-transform: uppercase; */
+  color: #191816;
+  font-family: "Segoe";
+}
+
+.ant-layout-header {
+  height: 54px;
+  line-height: 54px;
+  background-color: #FFFFFF;
+}
+
+.ant-menu-dark .ant-menu-item-selected::after {
+  border-right: 0;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: inherit;
+  border-bottom: 2px solid #FBD23A;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: #E3D3EF;
+}
