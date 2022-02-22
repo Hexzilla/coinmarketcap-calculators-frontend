@@ -84,11 +84,9 @@ function Calculator() {
 
   return (
     <Layout>
-      
       <Sider>
         <div className="sidebar"/>
       </Sider>
-      
       <Content className="content">
       <Menu></Menu>
         <Row style={{ paddingTop: "3%" }}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Form, Input, Button, Checkbox } from "antd";
+import { Card, Form, Input, Button } from "antd";
 import "./signup.css";
 
 const Signup = (props) => {
