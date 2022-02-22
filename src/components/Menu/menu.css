@@ -14,6 +14,8 @@
   /* text-transform: uppercase; */
   color: #191816;
   font-family: "Segoe";
+  font-weight: bold;
+  font-size: large;
 }
 
 .ant-layout-header {
