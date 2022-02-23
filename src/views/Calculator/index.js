@@ -84,13 +84,12 @@ function Calculator() {
 
   return (
     <Layout>
-      
       <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>
         <div className="sidebar"/>
       </Sider>
       
       <Content className="content">
-      <Menu></Menu>
+        <Menu></Menu>
         <Row style={{ paddingTop: "3%" }}>
           <Col xl={{span: 10, offset: 7}} lg={{span: 20, offset: 2}} flex="auto" align="middle">
             <Space direction="vertical">

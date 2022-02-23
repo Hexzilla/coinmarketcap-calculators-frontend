@@ -1,6 +1,5 @@
 .content {
   background-color: #fdda5a;
-  height: 100vh;
 }
 
 .rotate {
@@ -89,6 +88,7 @@
 
 .sidebar {
   background-color: #440645;
+    min-height: 100%;
     height: 100vh;
     /* border-style: none dashed none none;
     border-color: white;
