@@ -169,7 +169,7 @@ function Calculator() {
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "40px" }}>
+        <Row style={{ marginTop: "40px", marginBottom: "20px"}}>
           <Col span={12} offset={6} flex="auto" align="end">
             <Space>
               <Tooltip title="Refresh" className="image-button">
