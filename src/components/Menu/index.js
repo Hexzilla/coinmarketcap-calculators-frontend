@@ -27,15 +27,15 @@ const MainLayout = ({ children }) => {
           >
             <Menu.Item key="analytics">
               <NavLink to="/calculator">
-                <div className="text-uppercase">Calculator</div>
+                <div className="text-uppercase">calculator</div>
               </NavLink>
             </Menu.Item>
             {/* <Menu.Item key="features">
               <div className="text-uppercase">Features</div>
             </Menu.Item> */}
-            <Menu.Item key="connect">
-              <div className="text-uppercase">Connect with us</div>
-            </Menu.Item>
+            {/* <Menu.Item key="connect">
+              <div className="text-uppercase">connect with us</div>
+            </Menu.Item> */}
             {/* <Menu.Item key="login">
               <NavLink to="/login">
                 <div className="text-uppercase">Sign In</div>
