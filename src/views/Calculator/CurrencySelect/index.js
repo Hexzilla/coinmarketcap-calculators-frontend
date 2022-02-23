@@ -6,11 +6,21 @@ import { DownOutlined } from '@ant-design/icons';
 export const fiatCurrencies = [
   { id: 2781, name: 'United States Dollars "$"', symbol: 'USD' },
   { id: 2781, name: 'Albanian Lek "L"', symbol: 'ALL' },
+  { id: 2781, name: 'Algerian Dinar "د.ج"', symbol: 'DZD' },
+  { id: 2781, name: 'Argentine Peso "ARS"', symbol: 'ARS' },
+  { id: 2781, name: 'Armenian Dram "֏"', symbol: 'AMD' },
+  { id: 2781, name: 'Australian Dollar "$"', symbol: 'AUD' },
+  { id: 2781, name: 'Azerbaijani Manat "₼"', symbol: 'AZN' },
+  { id: 2781, name: 'Bahraini Dinar ".د.ب"', symbol: 'BHD' },
+  { id: 2781, name: 'Bangladeshi Taka "BDT"', symbol: 'BDT' },
+  { id: 2781, name: 'Belarusian Ruble "Br"', symbol: 'BYN' },
 ]
 
 const preciousMetals = [
   { id: 2781, name: 'Gold Troy Ounce', symbol: 'XAU', },
   { id: 2781, name: 'Silver Troy Ounce', symbol: 'XAG', },
+  { id: 2781, name: 'Platinum Ounce', symbol: 'XPT', },
+  { id: 2781, name: 'Palladium Ounce', symbol: 'XPD', },
 ]
 
 const defaultCryptoCurrencies = [
