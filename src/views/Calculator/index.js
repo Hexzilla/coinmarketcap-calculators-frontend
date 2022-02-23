@@ -74,9 +74,8 @@ function Calculator() {
 
   const handleSwap = () => {
     if (inputCoin && outputCoin) {
-      const tempCoin = inputCoin;
-      setInputCoin(outputCoin);
-      setOutputCoin(tempCoin);
+      setInputCoin({...outputCoin});
+      setOutputCoin({...inputCoin});
     }
   };
 
