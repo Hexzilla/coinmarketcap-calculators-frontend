@@ -1,4 +1,5 @@
 import React from "react";
+//import axios from 'axios';
 import { NavLink } from "react-router-dom";
 import { Card, Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -7,14 +8,24 @@ import "./login.css";
 const Login = (props) => {
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
-    const loginCredentials = {
-      email: values.username,
-      password: values.password
-    }
+    // const loginCredentials = {
+    //   email: values.username,
+    //   password: values.password
+    // }
 
-    window.axios.post('/api/login', loginCredentials).then((response) => {
-        console.log('Logged successfully!')
-    })
+    // axios.post('http://127.0.0.1:8000/api/login', loginCredentials).then((response) => {
+    //     console.log('Logged successfully!')
+    // })
+
+    // axios.defaults.withCredentials = true;
+    // const response = axios.get(apiUrl('sanctum/csrf-cookie','backend-non-api-route')).then(response => {
+    //     return axios.post(apiUrl('user/login','backend-non-api-route'),loginCredentials,{ 
+    //         xsrfHeaderName: "X-XSRF-TOKEN", // change the name of the header to "X-XSRF-TOKEN" and it should works
+    //         withCredentials: true
+    //       });
+    // })
+
+    //return response;
   };
 
   return (

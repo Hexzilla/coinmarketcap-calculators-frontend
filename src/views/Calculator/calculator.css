@@ -62,7 +62,7 @@
 }
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: #b20eb4!important;;
+  background-color: #E3D3EF!important;;
 }
 
 .certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
@@ -85,4 +85,16 @@
 
 .certain-category-search-dropdown .ant-select-dropdown-menu {
   max-height: 300px;
+}
+
+.sidebar {
+  background-color: #440645;
+    height: 100vh;
+    /* border-style: none dashed none none;
+    border-color: white;
+    border-width: thick; */
+    background-image: linear-gradient(to bottom, #440645 50%, White 50%);
+    background-position: right;
+    background-size: 8px 50px;
+    background-repeat: repeat-y;
 }
