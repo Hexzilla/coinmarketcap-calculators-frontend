@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
 import "./calculator.css";
 import CurrencySelect, { fiatCurrencies } from "./CurrencySelect/index.js";
-import { ConsoleSqlOutlined } from "@ant-design/icons";
+//import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const { Content } = Layout;
 
@@ -40,7 +40,7 @@ function Calculator() {
       .then((response) => response.json())
       .then(({ data }) => {
         const quotes = data?.quote;
-        if (quotes) {
+        if (quotes && quotes.length > 0) {
           const quote = quotes[0];
           const price = quote.price;
           if (price >= 1.0) {
