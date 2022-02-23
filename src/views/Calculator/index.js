@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
 import "./calculator.css";
-import CurrencySelect, { fiatCurrencies } from "./CurrencySelect/index.js";
-//import { ConsoleSqlOutlined } from "@ant-design/icons";
+import CurrencySelect, {
+  fiatCurrencies,
+  defaultCryptoCurrencies,
+} from "./CurrencySelect/index.js";
 
 const { Content } = Layout;
 
@@ -10,8 +12,8 @@ function Calculator() {
   const [loading, setLoading] = useState(false);
   const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
   const [amount, setAmount] = useState(1);
-  const [inputCoin, setInputCoin] = useState(0);
-  const [outputCoin, setOutputCoin] = useState(0);
+  const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
+  const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
   const [requestId, setRequestId] = useState(null);
   const [converted, setConverted] = useState("0");
 
@@ -91,11 +93,14 @@ function Calculator() {
   const onDownload = () => {
     var filename = `${inputCoin.symbol}-${outputCoin.symbol}.txt`;
     var contents = `${amount} ${inputCoin.name} (${inputCoin.symbol}) = ${converted} ${outputCoin.name} (${outputCoin.symbol})`;
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contents));
-    element.setAttribute('download', filename);
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(contents)
+    );
+    element.setAttribute("download", filename);
 
-    element.style.display = 'none';
+    element.style.display = "none";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);

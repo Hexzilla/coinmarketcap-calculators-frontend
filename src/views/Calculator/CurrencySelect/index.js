@@ -5,25 +5,25 @@ import { DownOutlined } from '@ant-design/icons';
 
 export const fiatCurrencies = [
   { id: 2781, name: 'United States Dollars "$"', symbol: 'USD' },
-  { id: 2781, name: 'Albanian Lek "L"', symbol: 'ALL' },
-  { id: 2781, name: 'Algerian Dinar "د.ج"', symbol: 'DZD' },
-  { id: 2781, name: 'Argentine Peso "ARS"', symbol: 'ARS' },
-  { id: 2781, name: 'Armenian Dram "֏"', symbol: 'AMD' },
-  { id: 2781, name: 'Australian Dollar "$"', symbol: 'AUD' },
-  { id: 2781, name: 'Azerbaijani Manat "₼"', symbol: 'AZN' },
-  { id: 2781, name: 'Bahraini Dinar ".د.ب"', symbol: 'BHD' },
-  { id: 2781, name: 'Bangladeshi Taka "BDT"', symbol: 'BDT' },
-  { id: 2781, name: 'Belarusian Ruble "Br"', symbol: 'BYN' },
+  { id: 3526, name: 'Albanian Lek "L"', symbol: 'ALL' },
+  { id: 3537, name: 'Algerian Dinar "د.ج"', symbol: 'DZD' },
+  { id: 2821, name: 'Argentine Peso "ARS"', symbol: 'ARS' },
+  { id: 3527, name: 'Armenian Dram "֏"', symbol: 'AMD' },
+  { id: 2782, name: 'Australian Dollar "$"', symbol: 'AUD' },
+  { id: 3528, name: 'Azerbaijani Manat "₼"', symbol: 'AZN' },
+  { id: 3531, name: 'Bahraini Dinar ".د.ب"', symbol: 'BHD' },
+  { id: 3530, name: 'Bangladeshi Taka "BDT"', symbol: 'BDT' },
+  { id: 3533, name: 'Belarusian Ruble "Br"', symbol: 'BYN' },
 ]
 
 const preciousMetals = [
-  { id: 2781, name: 'Gold Troy Ounce', symbol: 'XAU', },
-  { id: 2781, name: 'Silver Troy Ounce', symbol: 'XAG', },
-  { id: 2781, name: 'Platinum Ounce', symbol: 'XPT', },
-  { id: 2781, name: 'Palladium Ounce', symbol: 'XPD', },
+  { id: 3575, name: 'Gold Troy Ounce', symbol: 'XAU', },
+  { id: 3574, name: 'Silver Troy Ounce', symbol: 'XAG', },
+  { id: 3577, name: 'Platinum Ounce', symbol: 'XPT', },
+  { id: 3576, name: 'Palladium Ounce', symbol: 'XPD', },
 ]
 
-const defaultCryptoCurrencies = [
+export const defaultCryptoCurrencies = [
   {
     "id": 1,
     "name": "Bitcoin",
@@ -220,7 +220,8 @@ function CurrencySelect({ cryptoCurrencies, onSelect, currentCoin }) {
       <AutoComplete
         dropdownClassName="certain-category-search-dropdown"
         style={{ width: 320 }}
-        value={`${currentCoin.name} (${currentCoin.symbol})`}
+        defaultActiveFirstOption={true}
+        defaultValue={`${currentCoin.name} (${currentCoin.symbol})`}
         options={options}
         onSearch={onSearch}
         onSelect={handleSelectCoin}
