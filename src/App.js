@@ -2,7 +2,7 @@
 import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import history from './routerHistory'
-//import Menu from './components/Menu'
+import Menu from './components/Menu'
 import Calculator from "./views/Calculator"
 import Login from "./views/Login"
 import Signup from "./views/Signup"
@@ -12,6 +12,7 @@ import Signup from "./views/Signup"
 function App() {
   return (
     <Router history={history}>
+      <Menu>
         <Switch>
           <Route path="/" exact>
             <Calculator />
@@ -26,6 +27,7 @@ function App() {
             <Signup />
           </Route>
         </Switch>
+      </Menu>
     </Router>
   );
 }

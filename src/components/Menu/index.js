@@ -3,13 +3,16 @@ import { NavLink } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import "./menu.css";
 
-const { Header, Content } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const MainLayout = ({ children }) => {
   const [current, setCurrent] = useState("analytics");
 
   return (
     <Layout>
+      <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>
+        <div className="sidebar"/>
+      </Sider>
       <Layout>
         <Header style={{ display: "flex" }}>
           <img src="/images/Kryptos logo.svg" alt="logo" width={42} />

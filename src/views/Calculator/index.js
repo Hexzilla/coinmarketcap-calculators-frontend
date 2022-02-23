@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
 import "./calculator.css";
 import CurrencySelect, { fiatCurrencies } from "./CurrencySelect/index.js";
-import Menu from '../../components/Menu'
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
 function Calculator() {
   const [loading, setLoading] = useState(false);
@@ -35,13 +35,13 @@ function Calculator() {
 
   const priceConversion = (id, convertId, amount) => {
     fetch(
-      `http://44.202.81.148/api/exchange?amount=${amount}&convert_id=${convertId}&id=${id}`
+      `https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=${amount}&convert_id=${convertId}&id=${id}`
     )
       .then((response) => response.json())
       .then(({ data }) => {
-        const quotes = data.data?.quote;
-        if (quotes && quotes.hasOwnProperty(convertId)) {
-          const quote = quotes[convertId];
+        const quotes = data?.quote;
+        if (quotes) {
+          const quote = quotes[0];
           const price = quote.price;
           if (price >= 1.0) {
             setConverted(price.toFixed(2));
@@ -82,16 +82,35 @@ function Calculator() {
     color: "#440645",
   };
 
+  const onRefresh = () => {
+    if (inputCoin && outputCoin && amount !== 0) {
+      priceConversion(inputCoin.id, outputCoin.id, amount);
+    }
+  };
+
+  const onDownload = () => {
+    var filename = `${inputCoin.symbol}-${outputCoin.symbol}.txt`;
+    var contents = `${amount} ${inputCoin.name} (${inputCoin.symbol}) = ${converted} ${outputCoin.name} (${outputCoin.symbol})`;
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contents));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
   return (
-    <Layout>
-      <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>
-        <div className="sidebar"/>
-      </Sider>
-      
+    <Layout className="mainLayout">
       <Content className="content">
-        <Menu></Menu>
         <Row style={{ paddingTop: "3%" }}>
-          <Col xl={{span: 10, offset: 7}} lg={{span: 20, offset: 2}} flex="auto" align="middle">
+          <Col
+            xl={{ span: 10, offset: 7 }}
+            lg={{ span: 20, offset: 2 }}
+            flex="auto"
+            align="middle"
+          >
             <Space direction="vertical">
               <div className="headerTitle">
                 Convert{" "}
@@ -111,7 +130,7 @@ function Calculator() {
           style={{ backgroundImage: `url(/images/background.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "20px" }}>
-            <Col xl={{span: 16, offset: 4}} flex="auto" align="middle">
+            <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
               <Space direction="vertical">
                 <InputNumber
                   min={1}
@@ -169,7 +188,7 @@ function Calculator() {
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "40px", marginBottom: "20px"}}>
+        <Row style={{ marginTop: "40px", marginBottom: "20px" }}>
           <Col span={12} offset={6} flex="auto" align="end">
             <Space>
               <Tooltip title="Refresh" className="image-button">
@@ -178,6 +197,7 @@ function Calculator() {
                   className="image-button"
                   alt="refresh"
                   width="40px"
+                  onClick={() => onRefresh()}
                 />
               </Tooltip>
               <Tooltip title="Download" className="image-button">
@@ -186,6 +206,7 @@ function Calculator() {
                   className="image-button"
                   alt="download"
                   width="40px"
+                  onClick={() => onDownload()}
                 />
               </Tooltip>
             </Space>
