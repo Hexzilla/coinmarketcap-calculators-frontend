@@ -93,7 +93,7 @@ function Calculator() {
   const onDownload = () => {
     var filename = `${inputCoin.symbol}-${outputCoin.symbol}.png`;
     var wrapper = document.getElementById('background-wrapper');
-    domtoimage.toPng(wrapper)
+    domtoimage.toPng(wrapper, {height: 500})
     .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = filename;
