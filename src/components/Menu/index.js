@@ -15,7 +15,7 @@ const MainLayout = ({ children }) => {
       </Sider>
       <Layout>
         <Header style={{ display: "flex" }}>
-          <img src="/images/Kryptos logo.svg" alt="logo" width={42} />
+          
           <Menu
             onClick={(e) => setCurrent(e.key)}
             selectedKeys={[current]}
@@ -30,7 +30,7 @@ const MainLayout = ({ children }) => {
           >
             <Menu.Item key="analytics">
               <NavLink to="/calculator">
-                <div className="text-uppercase">calculator</div>
+                <div className="text-uppercase">Cryptocurrency Conversion Calculator</div>
               </NavLink>
             </Menu.Item>
             {/* <Menu.Item key="features">

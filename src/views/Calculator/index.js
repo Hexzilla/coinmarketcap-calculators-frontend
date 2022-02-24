@@ -5,13 +5,14 @@ import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CurrencySelect/index.js";
+import html2canvas from "html2canvas";
 
 const { Content } = Layout;
 
 function Calculator() {
   const [loading, setLoading] = useState(false);
   const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(0);
   const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
   const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
   const [requestId, setRequestId] = useState(null);
@@ -89,25 +90,32 @@ function Calculator() {
     }
   };
 
-  const onDownload = () => {
-    var filename = `${inputCoin.symbol}-${outputCoin.symbol}.txt`;
-    var contents = `${amount} ${inputCoin.name} (${inputCoin.symbol}) = ${converted} ${outputCoin.name} (${outputCoin.symbol})`;
-    var element = document.createElement("a");
-    element.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(contents)
-    );
-    element.setAttribute("download", filename);
+  const exportRef = React.useRef();
 
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+  const onDownload = () => {
+    var filename = `${inputCoin.symbol}-${outputCoin.symbol}.png`;
+    
+    var wrapper = document.getElementById('background-wrapper');
+    html2canvas(wrapper).then(canvas => {
+      let croppedCanvas = document.createElement("canvas");
+      let croppedCanvasContext = croppedCanvas.getContext("2d");
+
+      //croppedCanvas.width = 1400;
+      //croppedCanvas.height = 1400;
+
+      croppedCanvasContext.drawImage(canvas, 0, 0);
+
+      const a = document.createElement("a");
+      a.href = canvas.toDataURL();
+      a.download = filename;
+      a.click();
+    });
   };
 
   return (
     <Layout className="mainLayout">
       <Content className="content">
+      <img src="/images/Kryptos logo.svg" alt="logo" width={42} style={{marginLeft: "10px"}} />
         <Row style={{ paddingTop: "3%" }}>
           <Col
             xl={{ span: 10, offset: 7 }}
@@ -130,12 +138,13 @@ function Calculator() {
           </Col>
         </Row>
         <div
-          className="background-wrapper"
+          className="background-wrapper" id="background-wrapper"
           style={{ backgroundImage: `url(/images/background.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "20px" }}>
             <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
-              <Space direction="vertical">
+              <Space direction="vertical" >
+                
                 <InputNumber
                   min={1}
                   placeholder="Enter Amount to Convert"
