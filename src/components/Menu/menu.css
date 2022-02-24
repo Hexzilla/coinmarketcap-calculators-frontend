@@ -36,3 +36,10 @@
     background-size: 8px 50px;
     background-repeat: repeat-y;
 }
+
+.warrior-img {
+  position: absolute;
+  bottom: 40px;
+  left: 100px;
+  width: 100%;
+}

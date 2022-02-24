@@ -11,11 +11,16 @@ const MainLayout = ({ children }) => {
   return (
     <Layout>
       <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>
-        <div className="sidebar"/>
+        <div className="sidebar" />
+        <img
+          className="warrior-img"
+          src="/images/Kryftos Warrior.png"
+          alt="warrior"
+        />
       </Sider>
       <Layout>
         <Header style={{ display: "flex" }}>
-          
+          <img src="/images/New Elafaki logo.svg" alt="logo" width={200} />
           <Menu
             onClick={(e) => setCurrent(e.key)}
             selectedKeys={[current]}
@@ -30,7 +35,9 @@ const MainLayout = ({ children }) => {
           >
             <Menu.Item key="analytics">
               <NavLink to="/calculator">
-                <div className="text-uppercase">Cryptocurrency Conversion Calculator</div>
+                <div className="text-uppercase">
+                  Cryptocurrency Conversion Calculator
+                </div>
               </NavLink>
             </Menu.Item>
             {/* <Menu.Item key="features">
