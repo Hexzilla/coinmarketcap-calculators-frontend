@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./calculator.css";
+import "./profitloss.css";
 import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
@@ -9,7 +9,7 @@ import domtoimage from 'dom-to-image';
 
 const { Content } = Layout;
 
-function Calculator() {
+function ProfitLoss() {
   const [loading, setLoading] = useState(false);
   const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
   const [amount, setAmount] = useState(1);
@@ -128,7 +128,7 @@ function Calculator() {
         </Row>
         <div
           className="background-wrapper" id="background-wrapper"
-          style={{ backgroundImage: `url(/images/background.png)` }}
+          style={{ backgroundImage: `url(/images/Peach_Background.jpg)` }}
         >
           <Row style={{ padding: "2%", marginTop: "20px" }}>
             <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
