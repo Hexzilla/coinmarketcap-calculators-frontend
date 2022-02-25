@@ -20,9 +20,14 @@ const MainLayout = ({ children }) => {
       </Sider>
       <Layout>
         <Header style={{ display: "flex" }}>
-        <a href="/">
-          <img src="/images/Elafaki Cryptocurrency Analytics.png" alt="logo" width={230} style={{ marginLeft: "-30px" }} />
-          </a>
+          <NavLink to="/">
+            <img
+              src="/images/Elafaki Cryptocurrency Analytics.png"
+              alt="logo"
+              width={230}
+              style={{ marginLeft: "-30px" }}
+            />
+          </NavLink>
           <Menu
             onClick={(e) => setCurrent(e.key)}
             selectedKeys={[current]}
@@ -37,11 +42,11 @@ const MainLayout = ({ children }) => {
             }}
           >
             <Menu.Item key="analytics">
-              <a href="/cryptocurrencycalculator">
+              <NavLink to="/cryptocurrencycalculator">
                 <div className="text-uppercase">
                   Cryptocurrency Conversion Calculator
                 </div>
-              </a>
+              </NavLink>
             </Menu.Item>
             {/* <Menu.Item key="features">
               <div className="text-uppercase">Features</div>
