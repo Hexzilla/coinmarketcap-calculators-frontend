@@ -1,0 +1,31 @@
+.mt-2 {
+  margin-top: 2px;
+}
+
+.mb-2 {
+  margin-bottom: 2px;
+}
+
+.ant-input-number {
+  border-right: 0;
+}
+
+.ant-input-number-group-addon {
+  padding: 1px 7px;
+  background-color: white;
+  border-left: 0;
+}
+
+.ant-input:focus,
+.ant-input-number-focused,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused {
+  border-color: #78067a!important;
+  box-shadow: 0 0 0 2px rgba(148, 63, 165, 0.2)!important;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: #78067a!important;
+}

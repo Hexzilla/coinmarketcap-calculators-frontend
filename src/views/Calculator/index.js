@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
+import { Layout, Row, Col, Space, Tooltip } from "antd";
 import "./calculator.css";
+import InputNumber from "components/InputNumber";
 import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
@@ -127,13 +128,13 @@ function Calculator() {
           </Col>
         </Row>
         <div
-          className="background-wrapper" id="background-wrapper"
+          className="background-wrapper"
+          id="background-wrapper"
           style={{ backgroundImage: `url(/images/background.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "20px" }}>
             <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
-              <Space direction="vertical" >
-                
+              <Space direction="vertical">
                 <InputNumber
                   min={1}
                   placeholder="Enter Amount to Convert"
@@ -168,7 +169,7 @@ function Calculator() {
                 ></CurrencySelect>
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? amount : '-'}</div>
+                  <div className="priceTitle">{amount ? amount : "-"}</div>
                   {inputCoin ? (
                     <div className="coinName">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
                   ) : (
@@ -179,7 +180,7 @@ function Calculator() {
                 <img src="/images/equal.svg" alt="equal" width="50px" />
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? converted : '-'}</div>
+                  <div className="priceTitle">{amount ? converted : "-"}</div>
                   {outputCoin ? (
                     <div className="coinName">{`${outputCoin.name} (${outputCoin.symbol})`}</div>
                   ) : (
