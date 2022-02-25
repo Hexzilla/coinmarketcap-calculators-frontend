@@ -35,7 +35,7 @@ const MainLayout = ({ children }) => {
             }}
           >
             <Menu.Item key="analytics">
-              <NavLink to="/calculator">
+              <NavLink to="/cryptocurrencycalculator">
                 <div className="text-uppercase">
                   Cryptocurrency Conversion Calculator
                 </div>
