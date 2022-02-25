@@ -4,6 +4,7 @@ import { Router, Route, Switch } from 'react-router-dom'
 import history from './routerHistory'
 import Menu from './components/Menu'
 import Calculator from "./views/Calculator"
+import ProfitLoss from "./views/ProfitLoss"
 import Login from "./views/Login"
 import Signup from "./views/Signup"
 
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route path="/calculator">
             <Calculator />
+          </Route>
+          <Route path="/profitloss">
+            <ProfitLoss />
           </Route>
           <Route path="/login">
             <Login />
