@@ -2,6 +2,8 @@
   min-height: 100%;
 }
 .content {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .rotate {
@@ -19,25 +21,42 @@
   background-size: auto 100%;
 }
 
-.headerTitle {
-  font-size: 38px;
-  font-weight: 800;
+.background-values {
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
-.subTitle {
+.profitLossHeaderTitle {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.profitLossSubTitle {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.profitLossValue {
   font-size: 20px;
-}
-
-.priceTitle {
-  font-size: 28px;
   font-weight: 800;
   color: #2fd83d;
 }
 
-.coinName {
+.feeValue {
   font-size: 20px;
+  font-weight: 800;
+  color: #000000;
 }
 
+.descStr {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.inputNum{
+  width: 100%;
+}
 
 .image-button {
   cursor: pointer;

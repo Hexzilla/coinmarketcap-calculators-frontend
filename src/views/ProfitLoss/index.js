@@ -117,10 +117,10 @@ function ProfitLoss() {
             align="middle"
           >
             <Space direction="vertical">
-              <div className="headerTitle">
+              <div className="profitLossHeaderTitle">
                 Crypto <span style={titleBold}>Profit Loss</span> Calculator
               </div>
-              <p className="subTitle">
+              <p className="profitLossSubTitle">
                 Calculate your crypto profit and loss using our calculator
                 below.
               </p>
@@ -145,18 +145,16 @@ function ProfitLoss() {
         <div
           className="background-wrapper"
           id="background-wrapper"
-          style={{ backgroundImage: `url(/images/arrow-right.png)` }}
+          style={{ backgroundImage: `url(/images/arrow-line.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "10px" }}>
-            <Col xl={{ span: 6, offset: 6 }} flex="auto" align="middle">
-              <Space direction="vertical" size={35}>
+            <Col xl={{ span: 5, offset: 7 }} flex="auto" align="middle">
+              <Space direction="vertical" size={42}>
                 <Space direction="horizontal">
                   <img src="/images/dollar.svg" alt="dollar" width="30px" />
                   <InputNumber
+                    className="inputNum"
                     placeholder="Investment"
-                    style={{
-                      width: 320,
-                    }}
                     size="large"
                     onChange={(value) => setAmount(value)}
                   />
@@ -164,10 +162,8 @@ function ProfitLoss() {
                 <Space direction="horizontal">
                   <img src="/images/dollar.svg" alt="dollar" width="30px" />
                   <InputNumber
+                    className="inputNum"
                     placeholder="Initial Coin Price"
-                    style={{
-                      width: 320,
-                    }}
                     size="large"
                     onChange={(value) => setAmount(value)}
                   />
@@ -175,10 +171,8 @@ function ProfitLoss() {
                 <Space direction="horizontal">
                   <img src="/images/dollar.svg" alt="dollar" width="30px" />
                   <InputNumber
+                    className="inputNum"
                     placeholder="Selling Coin Price"
-                    style={{
-                      width: 320,
-                    }}
                     size="large"
                     onChange={(value) => setAmount(value)}
                   />
@@ -186,10 +180,8 @@ function ProfitLoss() {
                 <Space direction="horizontal">
                   <img src="/images/percent.svg" alt="dollar" width="30px" />
                   <InputNumber
+                    className="inputNum"
                     placeholder="Investment Fee"
-                    style={{
-                      width: 320,
-                    }}
                     size="large"
                     onChange={(value) => setAmount(value)}
                   />
@@ -197,28 +189,40 @@ function ProfitLoss() {
                 <Space direction="horizontal">
                   <img src="/images/percent.svg" alt="dollar" width="30px" />
                   <InputNumber
+                    className="inputNum"
                     placeholder="Exit Fee"
-                    style={{
-                      width: 320,
-                    }}
                     size="large"
                     onChange={(value) => setAmount(value)}
                   />
                 </Space>
               </Space>
             </Col>
-            <Col xl={{ span: 5 }} flex="auto" align="middle">
-              <div style={{backgroundColor: `white`}}>
-              <Space direction="vertical">
-                  <div className="priceTitle">+$1,518.62</div>
-                  <div className="priceTitle">(+45.56%)</div>
-                  <div className="coinName">Total Investment Fee</div>
-                  <div className="priceTitle">$49.66</div>
-                  <div className="coinName">Total Exit Fee</div>
-                  <div className="priceTitle">$73.38</div>
-                  <div className="coinName">Total</div>
-                  <div className="priceTitle">$4,851.62</div>
-              </Space>
+            <Col xl={{ span: 4 }} flex="auto" align="middle">
+              <div
+                class="background-values"
+                style={{
+                  backgroundColor: `white`,
+                  backgroundImage: `url(/images/arrow-triangle.png)`,
+                }}
+              >
+                <Space direction="vertical" size={25}>
+                  <div style={{marginTop: `30px`, lineHeight: `normal`}}>
+                    <div className="profitLossValue">+$1,518.62</div>
+                    <div className="profitLossValue">(+45.56%)</div>
+                  </div>
+                  <div style={{lineHeight: `normal`}}>
+                    <div className="descStr">Total Investment Fee</div>
+                    <div className="feeValue">$49.66</div>
+                  </div>
+                  <div style={{lineHeight: `normal`}}>
+                    <div className="descStr">Total Exit Fee</div>
+                    <div className="feeValue">$73.38</div>
+                  </div>
+                  <div  style={{marginBottom: `50px`, lineHeight: `normal`}}>
+                    <div className="descStr">Total</div>
+                    <div className="feeValue">$4,851.62</div>
+                  </div>
+                </Space>
               </div>
             </Col>
           </Row>
