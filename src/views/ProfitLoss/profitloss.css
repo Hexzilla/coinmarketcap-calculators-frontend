@@ -2,7 +2,6 @@
   min-height: 100%;
 }
 .content {
-  background-image: "url(/images/Peach_Background.jpg)"
 }
 
 .rotate {
@@ -30,9 +29,9 @@
 }
 
 .priceTitle {
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 800;
-  color: #440645;
+  color: #2fd83d;
 }
 
 .coinName {

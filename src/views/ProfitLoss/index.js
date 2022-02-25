@@ -5,7 +5,7 @@ import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CurrencySelect/index.js";
-import domtoimage from 'dom-to-image';
+import domtoimage from "dom-to-image";
 
 const { Content } = Layout;
 
@@ -75,8 +75,8 @@ function ProfitLoss() {
 
   const handleSwap = () => {
     if (inputCoin && outputCoin) {
-      setInputCoin({...outputCoin});
-      setOutputCoin({...inputCoin});
+      setInputCoin({ ...outputCoin });
+      setOutputCoin({ ...inputCoin });
     }
   };
 
@@ -92,19 +92,23 @@ function ProfitLoss() {
 
   const onDownload = () => {
     var filename = `${inputCoin.symbol}-${outputCoin.symbol}.JPG`;
-    var wrapper = document.getElementById('background-wrapper');
-    domtoimage.toJpeg(wrapper, {height: 500, bgcolor: "#FFFFFF"})
-    .then(function (dataUrl) {
-        var link = document.createElement('a');
+    var wrapper = document.getElementById("background-wrapper");
+    domtoimage
+      .toJpeg(wrapper, { height: 500, bgcolor: "#FFFFFF" })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
         link.download = filename;
         link.href = dataUrl;
         link.click();
-    });
+      });
   };
 
   return (
     <Layout className="mainLayout">
-      <Content className="content">
+      <Content
+        className="content"
+        style={{ backgroundImage: `url(/images/Peach_Background.jpg)` }}
+      >
         <Row style={{ paddingTop: "3%" }}>
           <Col
             xl={{ span: 10, offset: 7 }}
@@ -114,79 +118,108 @@ function ProfitLoss() {
           >
             <Space direction="vertical">
               <div className="headerTitle">
-                Convert{" "}
-                <span style={titleBold}>{inputCoin?.symbol || "BTC"}</span> to{" "}
-                <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
+                Crypto <span style={titleBold}>Profit Loss</span> Calculator
               </div>
               <p className="subTitle">
-                Convert any cryptocurrency or token price into your perferred
-                fiat currency, such as BCH to USD. The live BCH to USD price
-                will be shown.
+                Calculate your crypto profit and loss using our calculator
+                below.
               </p>
             </Space>
           </Col>
         </Row>
-        <div
-          className="background-wrapper" id="background-wrapper"
-          style={{ backgroundImage: `url(/images/Peach_Background.jpg)` }}
-        >
-          <Row style={{ padding: "2%", marginTop: "20px" }}>
-            <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
-              <Space direction="vertical" >
-                
-                <InputNumber
-                  min={1}
-                  placeholder="Enter Amount to Convert"
-                  style={{
-                    width: 320,
-                  }}
-                  size="large"
-                  defaultValue={amount}
-                  onChange={(value) => setAmount(value)}
+        <Row>
+          <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
+            <Space direction="vertical">
+              <Tooltip title="coins" className="image-button">
+                <img
+                  src="/images/bitcoin-logo.svg"
+                  className="image-button"
+                  alt="coins"
+                  width="100px"
+                  onClick={handleSwap}
                 />
-
-                <CurrencySelect
-                  cryptoCurrencies={cryptoCurrencies}
-                  onSelect={onSelectInputCoin}
-                  currentCoin={inputCoin}
-                ></CurrencySelect>
-
-                <Tooltip title="Swap" className="image-button">
-                  <img
-                    src="/images/swap.svg"
-                    className="image-button rotate"
-                    alt="swap"
-                    width="40px"
-                    onClick={handleSwap}
+              </Tooltip>
+            </Space>
+          </Col>
+        </Row>
+        <div
+          className="background-wrapper"
+          id="background-wrapper"
+          style={{ backgroundImage: `url(/images/arrow-right.png)` }}
+        >
+          <Row style={{ padding: "2%", marginTop: "10px" }}>
+            <Col xl={{ span: 6, offset: 6 }} flex="auto" align="middle">
+              <Space direction="vertical" size={35}>
+                <Space direction="horizontal">
+                  <img src="/images/dollar.svg" alt="dollar" width="30px" />
+                  <InputNumber
+                    placeholder="Investment"
+                    style={{
+                      width: 320,
+                    }}
+                    size="large"
+                    onChange={(value) => setAmount(value)}
                   />
-                </Tooltip>
-
-                <CurrencySelect
-                  cryptoCurrencies={cryptoCurrencies}
-                  onSelect={onSelectOutputCoin}
-                  currentCoin={outputCoin}
-                ></CurrencySelect>
-
-                <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? amount : '-'}</div>
-                  {inputCoin ? (
-                    <div className="coinName">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-
-                <img src="/images/equal.svg" alt="equal" width="50px" />
-
-                <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? converted : '-'}</div>
-                  {outputCoin ? (
-                    <div className="coinName">{`${outputCoin.name} (${outputCoin.symbol})`}</div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
+                </Space>
+                <Space direction="horizontal">
+                  <img src="/images/dollar.svg" alt="dollar" width="30px" />
+                  <InputNumber
+                    placeholder="Initial Coin Price"
+                    style={{
+                      width: 320,
+                    }}
+                    size="large"
+                    onChange={(value) => setAmount(value)}
+                  />
+                </Space>
+                <Space direction="horizontal">
+                  <img src="/images/dollar.svg" alt="dollar" width="30px" />
+                  <InputNumber
+                    placeholder="Selling Coin Price"
+                    style={{
+                      width: 320,
+                    }}
+                    size="large"
+                    onChange={(value) => setAmount(value)}
+                  />
+                </Space>
+                <Space direction="horizontal">
+                  <img src="/images/percent.svg" alt="dollar" width="30px" />
+                  <InputNumber
+                    placeholder="Investment Fee"
+                    style={{
+                      width: 320,
+                    }}
+                    size="large"
+                    onChange={(value) => setAmount(value)}
+                  />
+                </Space>
+                <Space direction="horizontal">
+                  <img src="/images/percent.svg" alt="dollar" width="30px" />
+                  <InputNumber
+                    placeholder="Exit Fee"
+                    style={{
+                      width: 320,
+                    }}
+                    size="large"
+                    onChange={(value) => setAmount(value)}
+                  />
+                </Space>
               </Space>
+            </Col>
+            <Col xl={{ span: 5 }} flex="auto" align="middle">
+              <div style={{backgroundColor: `white`}}>
+              <Space direction="vertical">
+                  <div className="priceTitle">+$1,518.62</div>
+                  <div className="priceTitle">(+45.56%)</div>
+                  <div className="coinName">Total Investment Fee</div>
+                  <div className="priceTitle">$49.66</div>
+                  <div className="coinName">Total Exit Fee</div>
+                  <div className="priceTitle">$73.38</div>
+                  <div className="coinName">Total</div>
+                  <div className="priceTitle">$4,851.62</div>
+              </Space>
+              </div>
             </Col>
           </Row>
         </div>
