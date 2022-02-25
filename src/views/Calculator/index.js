@@ -91,9 +91,9 @@ function Calculator() {
   };
 
   const onDownload = () => {
-    var filename = `${inputCoin.symbol}-${outputCoin.symbol}.png`;
+    var filename = `${inputCoin.symbol}-${outputCoin.symbol}.JPG`;
     var wrapper = document.getElementById('background-wrapper');
-    domtoimage.toPng(wrapper, {height: 500})
+    domtoimage.toJpeg(wrapper, {height: 500, bgcolor: "#FFFFFF"})
     .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = filename;
@@ -168,7 +168,7 @@ function Calculator() {
                 ></CurrencySelect>
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount}</div>
+                  <div className="priceTitle">{amount ? amount : '-'}</div>
                   {inputCoin ? (
                     <div className="coinName">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
                   ) : (
@@ -179,7 +179,7 @@ function Calculator() {
                 <img src="/images/equal.svg" alt="equal" width="50px" />
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{converted}</div>
+                  <div className="priceTitle">{amount ? converted : '-'}</div>
                   {outputCoin ? (
                     <div className="coinName">{`${outputCoin.name} (${outputCoin.symbol})`}</div>
                   ) : (
