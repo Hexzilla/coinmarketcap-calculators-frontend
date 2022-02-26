@@ -224,7 +224,7 @@ function CurrencySelect({ cryptoCurrencies, onSelect, currentCoin }) {
     <div>
       <AutoComplete
         dropdownClassName="certain-category-search-dropdown"
-        style={{ width: 320 }}
+        style={{ width: '100%' }}
         value={searchValue}
         options={options}
         onSearch={onSearch}

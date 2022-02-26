@@ -1,6 +1,7 @@
 .mainLayout{
   min-height: 100%;
 }
+
 .content {
   background-color: #fdda5a;
 }
@@ -21,12 +22,14 @@
 }
 
 .headerTitle {
+  margin-top: 3.2em;
   font-size: 38px;
   font-weight: 800;
 }
 
 .subTitle {
   font-size: 20px;
+  padding: 0 40px;
 }
 
 .priceTitle {
@@ -35,10 +38,13 @@
   color: #440645;
 }
 
+.main-row {
+  padding: 3%;
+}
+
 .coinName {
   font-size: 20px;
 }
-
 
 .image-button {
   cursor: pointer;
@@ -97,7 +103,29 @@
   }
 
   .subTitle {
-    padding: 0 20px;
     font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .headerTitle {
+    font-size: 60px;
+    padding: 0 20px;
+    font-weight: 800;
+  }
+
+  .subTitle {
+    font-size: 28px;
+    margin: 30px 0;
+  }
+
+  .ant-input-number-lg {
+    font-size: 24px;
+  }
+  .ant-input-lg {
+    font-size: 20px;
+  }
+  .ant-select-item {
+    font-size: 18px;
   }
 }

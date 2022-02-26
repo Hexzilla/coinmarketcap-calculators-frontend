@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import domtoimage from "dom-to-image";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./calculator.css";
+import "./index.css";
 import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CurrencySelect/index.js";
-import domtoimage from 'dom-to-image';
 
 const { Content } = Layout;
 
@@ -75,8 +75,8 @@ function Calculator() {
 
   const handleSwap = () => {
     if (inputCoin && outputCoin) {
-      setInputCoin({...outputCoin});
-      setOutputCoin({...inputCoin});
+      setInputCoin({ ...outputCoin });
+      setOutputCoin({ ...inputCoin });
     }
   };
 
@@ -92,20 +92,21 @@ function Calculator() {
 
   const onDownload = () => {
     var filename = `${inputCoin.symbol}-${outputCoin.symbol}.JPG`;
-    var wrapper = document.getElementById('background-wrapper');
-    domtoimage.toJpeg(wrapper, {height: 500, bgcolor: "#FFFFFF"})
-    .then(function (dataUrl) {
-        var link = document.createElement('a');
+    var wrapper = document.getElementById("background-wrapper");
+    domtoimage
+      .toJpeg(wrapper, { height: 500, bgcolor: "#FFFFFF" })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
         link.download = filename;
         link.href = dataUrl;
         link.click();
-    });
+      });
   };
 
   return (
     <Layout className="mainLayout">
       <Content className="content">
-        <Row style={{ paddingTop: "3%" }}>
+        <Row>
           <Col
             xl={{ span: 10, offset: 7 }}
             lg={{ span: 20, offset: 2 }}
@@ -127,19 +128,24 @@ function Calculator() {
           </Col>
         </Row>
         <div
-          className="background-wrapper" id="background-wrapper"
+          className="background-wrapper"
+          id="background-wrapper"
           style={{ backgroundImage: `url(/images/background.png)` }}
         >
-          <Row style={{ padding: "2%", marginTop: "20px" }}>
-            <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
-              <Space direction="vertical" >
-                
+          <Row className="main-row">
+            <Col
+              flex="auto" align="middle"
+              sm={{ span: 18, offset: 3 }}
+              md={{ span: 12, offset: 6 }}
+              lg={{ span: 8, offset: 8 }}
+              xl={{ span: 8, offset: 8 }}
+              xxl={{ span: 6, offset: 9 }}
+            >
+              <Space direction="vertical" size="middle" style={{ width: "100%" }}>
                 <InputNumber
                   min={1}
                   placeholder="Enter Amount to Convert"
-                  style={{
-                    width: 320,
-                  }}
+                  style={{ width: "100%" }}
                   size="large"
                   defaultValue={amount}
                   onChange={(value) => setAmount(value)}
@@ -168,7 +174,7 @@ function Calculator() {
                 ></CurrencySelect>
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? amount : '-'}</div>
+                  <div className="priceTitle">{amount ? amount : "-"}</div>
                   {inputCoin ? (
                     <div className="coinName">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
                   ) : (
@@ -179,7 +185,7 @@ function Calculator() {
                 <img src="/images/equal.svg" alt="equal" width="50px" />
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? converted : '-'}</div>
+                  <div className="priceTitle">{amount ? converted : "-"}</div>
                   {outputCoin ? (
                     <div className="coinName">{`${outputCoin.name} (${outputCoin.symbol})`}</div>
                   ) : (
