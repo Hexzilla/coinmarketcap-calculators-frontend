@@ -11,10 +11,6 @@
   transform: rotate(90deg);
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .background-wrapper {
   background-position: center;
   background-repeat: no-repeat;
@@ -28,8 +24,10 @@
 }
 
 .subTitle {
-  font-size: 20px;
-  padding: 0 40px;
+  font-size: 22px;
+  line-height: 1.3;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .priceTitle {
@@ -38,12 +36,9 @@
   color: #440645;
 }
 
-.main-row {
-  padding: 3%;
-}
-
 .coinName {
-  font-size: 20px;
+  margin-top: -12px;
+  font-size: 18px;
 }
 
 .image-button {
@@ -98,7 +93,7 @@
 @media only screen and (max-width: 600px) {
   .headerTitle {
     font-size: 32px;
-    padding: 0 20px;
+    padding: 0;
     font-weight: 800;
   }
 
@@ -107,25 +102,14 @@
   }
 }
 
-@media only screen and (min-width: 2000px) {
-  .headerTitle {
-    font-size: 60px;
-    padding: 0 20px;
-    font-weight: 800;
-  }
+.content-row {
+  padding-left: 10%;
+  padding-right: 10%;
+} 
 
-  .subTitle {
-    font-size: 28px;
-    margin: 30px 0;
-  }
-
-  .ant-input-number-lg {
-    font-size: 24px;
-  }
-  .ant-input-lg {
-    font-size: 20px;
-  }
-  .ant-select-item {
-    font-size: 18px;
-  }
+@media only screen and (min-width: 1920px) {
+  .content-row {
+    padding-left: 14%;
+    padding-right: 14%;
+  }  
 }

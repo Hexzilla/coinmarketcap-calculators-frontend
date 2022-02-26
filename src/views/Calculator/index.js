@@ -106,10 +106,11 @@ function Calculator() {
   return (
     <Layout className="mainLayout">
       <Content className="content">
-        <Row>
+        <Row className="px-3">
           <Col
-            xl={{ span: 10, offset: 7 }}
             lg={{ span: 20, offset: 2 }}
+            xl={{ span: 16, offset: 4 }}
+            xxl={{ span: 12, offset: 6 }}
             flex="auto"
             align="middle"
           >
@@ -132,16 +133,21 @@ function Calculator() {
           id="background-wrapper"
           style={{ backgroundImage: `url(/images/background.png)` }}
         >
-          <Row className="main-row">
+          <Row className="px-1 py-2 content-row">
             <Col
-              flex="auto" align="middle"
+              flex="auto"
+              align="middle"
               sm={{ span: 18, offset: 3 }}
               md={{ span: 12, offset: 6 }}
               lg={{ span: 8, offset: 8 }}
               xl={{ span: 8, offset: 8 }}
               xxl={{ span: 6, offset: 9 }}
             >
-              <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+              <Space
+                direction="vertical"
+                size="middle"
+                style={{ width: "100%" }}
+              >
                 <InputNumber
                   min={1}
                   placeholder="Enter Amount to Convert"
@@ -172,7 +178,8 @@ function Calculator() {
                   onSelect={onSelectOutputCoin}
                   currentCoin={outputCoin}
                 ></CurrencySelect>
-
+              </Space>
+              <Space direction="vertical" size="small">
                 <div flex="auto" align="middle">
                   <div className="priceTitle">{amount ? amount : "-"}</div>
                   {inputCoin ? (
@@ -196,9 +203,19 @@ function Calculator() {
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "40px", marginBottom: "20px" }}>
-          <Col span={12} offset={6} flex="auto" align="end">
-            <Space>
+        <Row className="my-2 pt-2">
+          <Col
+            flex="auto"
+            align="end"
+            span={6}
+            offset={15}
+            sm={{ offset: 2 }}
+            md={{ offset: 17 }}
+            lg={{ offset: 16 }}
+            xl={{ offset: 14 }}
+            xxl={{ offset: 13 }}
+          >
+            <Space size="middle">
               <Tooltip title="Refresh" className="image-button">
                 <img
                   src="/images/refresh.svg"
