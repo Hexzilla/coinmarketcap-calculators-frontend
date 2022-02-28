@@ -22,7 +22,7 @@ const MainLayout = ({ children }) => {
         <Menu
           onClick={(e) => setCurrent(e.key)}
           selectedKeys={[current]}
-          breakpoint="sm"
+          breakpoint="md"
           mode="horizontal"
           theme="dark"
           style={{
