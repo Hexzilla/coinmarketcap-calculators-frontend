@@ -15,7 +15,7 @@ const MainLayout = ({ children }) => {
           <img
             src="/images/Elafaki Cryptocurrency Analytics.png"
             alt="logo"
-            width={230}
+            width={190}
             style={{ marginLeft: "-30px" }}
           />
         </NavLink>
@@ -34,7 +34,7 @@ const MainLayout = ({ children }) => {
         >
           <Menu.Item key="analytics">
             <NavLink to="/cryptocurrencycalculator">
-              <div className="text-uppercase">
+              <div className="text-uppercase" style={{marginTop: '4px'}}>
                 Cryptocurrency Conversion Calculator
               </div>
             </NavLink>
