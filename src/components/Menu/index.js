@@ -22,15 +22,9 @@ const MainLayout = ({ children }) => {
         <Menu
           onClick={(e) => setCurrent(e.key)}
           selectedKeys={[current]}
-          breakpoint="md"
           mode="horizontal"
           theme="dark"
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-            background: "#FFFFFF",
-          }}
+          className="main-menu"
         >
           <Menu.Item key="analytics">
             <NavLink to="/cryptocurrencycalculator">
