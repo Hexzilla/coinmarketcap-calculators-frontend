@@ -15,7 +15,7 @@ const MainLayout = ({ children }) => {
           <img
             src="/images/Elafaki Cryptocurrency Analytics.png"
             alt="logo"
-            width={190}
+            width={180}
             style={{ marginLeft: "-30px" }}
           />
         </NavLink>
