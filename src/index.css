@@ -1,6 +1,11 @@
+@font-face {
+  font-family: "MySegoeUI";
+  src: local("SegoeUI"), url("./fonts/Segoe UI.ttf") format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: "Segoe UI";
+  font-family: "MySegoeUI";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
