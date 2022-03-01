@@ -121,7 +121,7 @@ function Calculator() {
                 <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
               </div>
               <p className="subTitle">
-                Convert any cryptocurrency or token price into your perferred
+                Convert any cryptocurrency or token price into your preferred
                 fiat currency, such as BCH to USD. The live BCH to USD price
                 will be shown.
               </p>
