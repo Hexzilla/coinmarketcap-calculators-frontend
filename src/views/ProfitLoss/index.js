@@ -12,11 +12,20 @@ const { Content } = Layout;
 function ProfitLoss() {
   const [loading, setLoading] = useState(false);
   const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
+  const [investPrice, setInvestPrice] = useState(1000);
+  const [initPrice, setInitPrice] = useState(0);
+  const [sellPrice, setSellPrice] = useState(0);
+  const [investFee, setInvestFee] = useState(1.49);
+  const [exitFee, setExitFee] = useState(1.49);
   const [amount, setAmount] = useState(1);
+  const [totalInvestFee, setTotalInvestFee] = useState('$49.66');
+  const [totalExitFee, setTotalExitFee] = useState('$73.38');
+  const [total, setTotal] = useState('$4,851.62');
+  const [profitPrice, setProfitPrice] = useState('+$1,518.62');
+  const [profitPercent, setProfitPercent] = useState('(+45.56%)');
   const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
   const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
   const [requestId, setRequestId] = useState(null);
-  const [converted, setConverted] = useState("0");
 
   useEffect(() => {
     if (!loading) {
@@ -30,8 +39,6 @@ function ProfitLoss() {
             (i) => i.is_active === 1
           );
           setCryptoCurrencies(currencies);
-          setInputCoin(currencies.find((it) => it.symbol === "BTC"));
-          setOutputCoin(fiatCurrencies.find((it) => it.symbol === "USD"));
         });
     }
   }, [loading]);
@@ -46,10 +53,13 @@ function ProfitLoss() {
         if (quotes && quotes.length > 0) {
           const quote = quotes[0];
           const price = quote.price;
+
           if (price >= 1.0) {
-            setConverted(price.toFixed(2));
+            setInitPrice(price.toFixed(2));
+            setSellPrice(price.toFixed(2));
           } else {
-            setConverted(price.toFixed(8));
+            setInitPrice(price.toFixed(8));
+            setSellPrice(price.toFixed(8));
           }
         }
       });
@@ -65,24 +75,15 @@ function ProfitLoss() {
     }
   }, [requestId, inputCoin, outputCoin, amount]);
 
-  const onSelectInputCoin = (currency) => {
-    setInputCoin(currency);
-  };
-
-  const onSelectOutputCoin = (currency) => {
-    setOutputCoin(currency);
-  };
-
-  const handleSwap = () => {
-    if (inputCoin && outputCoin) {
-      setInputCoin({ ...outputCoin });
-      setOutputCoin({ ...inputCoin });
-    }
-  };
+  useEffect(() => {
+    
+  }, [investPrice, initPrice, sellPrice, investFee, exitFee]);
 
   const titleBold = {
     color: "#440645",
   };
+
+  const onSelectCoin = () => {};
 
   const onRefresh = () => {
     if (inputCoin && outputCoin && amount !== 0) {
@@ -136,7 +137,7 @@ function ProfitLoss() {
                   className="image-button"
                   alt="coins"
                   width="100px"
-                  onClick={handleSwap}
+                  onClick={onSelectCoin}
                 />
               </Tooltip>
             </Space>
@@ -156,7 +157,8 @@ function ProfitLoss() {
                     className="inputNum"
                     placeholder="Investment"
                     size="large"
-                    onChange={(value) => setAmount(value)}
+                    value={investPrice}
+                    onChange={(value) => setInvestPrice(value)}
                   />
                 </Space>
                 <Space direction="horizontal">
@@ -165,7 +167,8 @@ function ProfitLoss() {
                     className="inputNum"
                     placeholder="Initial Coin Price"
                     size="large"
-                    onChange={(value) => setAmount(value)}
+                    value={initPrice}
+                    onChange={(value) => setInitPrice(value)}
                   />
                 </Space>
                 <Space direction="horizontal">
@@ -174,7 +177,8 @@ function ProfitLoss() {
                     className="inputNum"
                     placeholder="Selling Coin Price"
                     size="large"
-                    onChange={(value) => setAmount(value)}
+                    value={sellPrice}
+                    onChange={(value) => setSellPrice(value)}
                   />
                 </Space>
                 <Space direction="horizontal">
@@ -183,7 +187,8 @@ function ProfitLoss() {
                     className="inputNum"
                     placeholder="Investment Fee"
                     size="large"
-                    onChange={(value) => setAmount(value)}
+                    value={investFee}
+                    onChange={(value) => setInvestFee(value)}
                   />
                 </Space>
                 <Space direction="horizontal">
@@ -192,35 +197,36 @@ function ProfitLoss() {
                     className="inputNum"
                     placeholder="Exit Fee"
                     size="large"
-                    onChange={(value) => setAmount(value)}
+                    value={exitFee}
+                    onChange={(value) => setExitFee(value)}
                   />
                 </Space>
               </Space>
             </Col>
             <Col xl={{ span: 4 }} flex="auto" align="middle">
               <div
-                class="background-values"
+                className="background-values"
                 style={{
                   backgroundColor: `white`,
                   backgroundImage: `url(/images/arrow-triangle.png)`,
                 }}
               >
                 <Space direction="vertical" size={25}>
-                  <div style={{marginTop: `30px`, lineHeight: `normal`}}>
-                    <div className="profitLossValue">+$1,518.62</div>
-                    <div className="profitLossValue">(+45.56%)</div>
+                  <div style={{ marginTop: `30px`, lineHeight: `normal` }}>
+                    <div className="profitLossValue">{profitPrice}</div>
+                    <div className="profitLossValue">{profitPercent}</div>
                   </div>
-                  <div style={{lineHeight: `normal`}}>
+                  <div style={{ lineHeight: `normal` }}>
                     <div className="descStr">Total Investment Fee</div>
-                    <div className="feeValue">$49.66</div>
+                    <div className="feeValue">{totalInvestFee}</div>
                   </div>
-                  <div style={{lineHeight: `normal`}}>
+                  <div style={{ lineHeight: `normal` }}>
                     <div className="descStr">Total Exit Fee</div>
-                    <div className="feeValue">$73.38</div>
+                    <div className="feeValue">{totalExitFee}</div>
                   </div>
-                  <div  style={{marginBottom: `50px`, lineHeight: `normal`}}>
+                  <div style={{ marginBottom: `50px`, lineHeight: `normal` }}>
                     <div className="descStr">Total</div>
-                    <div className="feeValue">$4,851.62</div>
+                    <div className="feeValue">{total}</div>
                   </div>
                 </Space>
               </div>
