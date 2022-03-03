@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
 import "./profitloss.css";
-import CurrencySelect, {
+import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
-} from "./CurrencySelect/index.js";
+} from "./CryptoSelect/index.js";
 import domtoimage from "dom-to-image";
 
 const { Content } = Layout;
@@ -18,11 +18,11 @@ function ProfitLoss() {
   const [investFee, setInvestFee] = useState(1.49);
   const [exitFee, setExitFee] = useState(1.49);
   const [amount, setAmount] = useState(1);
-  const [totalInvestFee, setTotalInvestFee] = useState('$49.66');
-  const [totalExitFee, setTotalExitFee] = useState('$73.38');
-  const [total, setTotal] = useState('$4,851.62');
-  const [profitPrice, setProfitPrice] = useState('+$1,518.62');
-  const [profitPercent, setProfitPercent] = useState('(+45.56%)');
+  const [totalInvestFee, setTotalInvestFee] = useState("$49.66");
+  const [totalExitFee, setTotalExitFee] = useState("$73.38");
+  const [total, setTotal] = useState("$4,851.62");
+  const [profitPrice, setProfitPrice] = useState("+$1,518.62");
+  const [profitPercent, setProfitPercent] = useState("(+45.56%)");
   const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
   const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
   const [requestId, setRequestId] = useState(null);
@@ -76,24 +76,33 @@ function ProfitLoss() {
   }, [requestId, inputCoin, outputCoin, amount]);
 
   useEffect(() => {
-    const investFeePrice = (investPrice * investFee / 100).toFixed(2)
-    setTotalInvestFee('$' + investFeePrice)
-    const curTotal = ((investPrice - investFeePrice) * sellPrice / initPrice).toFixed(2);
-    const exitFeePrice = (curTotal * exitFee / 100).toFixed(2)
-    setTotalExitFee('$' + exitFeePrice)
-    setTotal('$' + (curTotal - exitFeePrice).toFixed(2))
-    const profit = (curTotal - exitFeePrice - investPrice).toFixed(2)
-    const percent = (profit / investPrice * 100).toFixed(2)
+    const investFeePrice = ((investPrice * investFee) / 100).toFixed(2);
+    setTotalInvestFee("$" + investFeePrice);
+    const curTotal = (
+      ((investPrice - investFeePrice) * sellPrice) /
+      initPrice
+    ).toFixed(2);
+    const exitFeePrice = ((curTotal * exitFee) / 100).toFixed(2);
+    setTotalExitFee("$" + exitFeePrice);
+    setTotal("$" + (curTotal - exitFeePrice).toFixed(2));
+    const profit = (curTotal - exitFeePrice - investPrice).toFixed(2);
+    const percent = ((profit / investPrice) * 100).toFixed(2);
 
-    setProfitPrice(profit > 0 ? '+$' + profit : '-$' + Math.abs(profit))
-    setProfitPercent(profit > 0 ? '+' + percent + '%' : '-' + Math.abs(percent) + '%')
-  }, [investPrice, initPrice, sellPrice, investFee, exitFee]);
+    setProfitPrice(profit > 0 ? "+$" + profit : "-$" + Math.abs(profit));
+    setProfitPercent(
+      profit > 0 ? "+" + percent + "%" : "-" + Math.abs(percent) + "%"
+    );
+  }, [investPrice, initPrice, sellPrice, investFee, exitFee, inputCoin]);
 
   const titleBold = {
     color: "#440645",
   };
 
   const onSelectCoin = () => {};
+
+  const onSelectInputCoin = (currency) => {
+    setInputCoin(currency);
+  };
 
   const onRefresh = () => {
     if (inputCoin && outputCoin && amount !== 0) {
@@ -139,17 +148,18 @@ function ProfitLoss() {
           </Col>
         </Row>
         <Row>
-          <Col xxl={{ span: 15, offset: 4 }} xl={{ span: 15, offset: 4 }} flex="auto" align="middle">
+          <Col
+            xxl={{ span: 15, offset: 4 }}
+            xl={{ span: 15, offset: 4 }}
+            flex="auto"
+            align="middle"
+          >
             <Space direction="vertical">
-              <Tooltip title="coins" className="image-button">
-                <img
-                  src="/images/bitcoin-logo.svg"
-                  className="image-button"
-                  alt="coins"
-                  width="100px"
-                  onClick={onSelectCoin}
-                />
-              </Tooltip>
+              <CryptoSelect
+                cryptoCurrencies={cryptoCurrencies}
+                onSelect={onSelectInputCoin}
+                currentCoin={inputCoin}
+              ></CryptoSelect>
             </Space>
           </Col>
         </Row>
@@ -159,7 +169,14 @@ function ProfitLoss() {
           style={{ backgroundImage: `url(/images/arrow-line.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "10px" }}>
-            <Col xxl={{ span: 6, offset: 6 }} xl={{ span: 6, offset: 6 }} lg={{ span: 5, offset: 6 }} md={{ span: 6, offset: 5 }} flex="auto" align="middle">
+            <Col
+              xxl={{ span: 6, offset: 6 }}
+              xl={{ span: 6, offset: 6 }}
+              lg={{ span: 5, offset: 6 }}
+              md={{ span: 6, offset: 5 }}
+              flex="auto"
+              align="middle"
+            >
               <Space direction="vertical" size={42}>
                 <Space direction="horizontal">
                   <img src="/images/dollar.svg" alt="dollar" width="30px" />
@@ -213,7 +230,14 @@ function ProfitLoss() {
                 </Space>
               </Space>
             </Col>
-            <Col xxl={{ span: 4, offset: 0 }} xl={{span: 5, offset: 0 }} lg={{span: 6, offset: 1 }} md={{span: 6, offset: 1 }} flex="auto" align="middle">
+            <Col
+              xxl={{ span: 4, offset: 0 }}
+              xl={{ span: 5, offset: 0 }}
+              lg={{ span: 6, offset: 1 }}
+              md={{ span: 6, offset: 1 }}
+              flex="auto"
+              align="middle"
+            >
               <div
                 className="background-values"
                 style={{
@@ -260,7 +284,7 @@ function ProfitLoss() {
                   src="/images/download.svg"
                   className="image-button"
                   alt="download"
-                  width="40px"                                
+                  width="40px"
                   onClick={() => onDownload()}
                 />
               </Tooltip>

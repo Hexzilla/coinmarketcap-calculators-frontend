@@ -21,7 +21,7 @@ function App() {
           <Route path="/cryptocurrencycalculator">
             <Calculator />
           </Route>
-          <Route path="/profitloss">
+          <Route path="/profitlosscalculator">
             <ProfitLoss />
           </Route>
           <Route path="/login">

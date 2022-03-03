@@ -48,6 +48,13 @@ const MainLayout = ({ children }) => {
                 </div>
               </NavLink>
             </Menu.Item>
+            <Menu.Item key="profitloss">
+              <NavLink to="/profitlosscalculator">
+                <div className="text-uppercase">
+                  Profit Loss Calculator
+                </div>
+              </NavLink>
+            </Menu.Item>
             {/* <Menu.Item key="features">
               <div className="text-uppercase">Features</div>
             </Menu.Item> */}
