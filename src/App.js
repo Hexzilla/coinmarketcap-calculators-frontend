@@ -16,7 +16,7 @@ function App() {
       <Menu>
         <Switch>
           <Route path="/" exact>
-            <Calculator />
+            <ProfitLoss />
           </Route>
           <Route path="/cryptocurrencycalculator">
             <Calculator />

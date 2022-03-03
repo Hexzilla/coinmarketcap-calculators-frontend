@@ -41,13 +41,6 @@ const MainLayout = ({ children }) => {
               background: "#FFFFFF",
             }}
           >
-            <Menu.Item key="analytics">
-              <NavLink to="/cryptocurrencycalculator">
-                <div className="text-uppercase">
-                  Cryptocurrency Conversion Calculator
-                </div>
-              </NavLink>
-            </Menu.Item>
             <Menu.Item key="profitloss">
               <NavLink to="/profitlosscalculator">
                 <div className="text-uppercase">
