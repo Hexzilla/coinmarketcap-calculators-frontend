@@ -76,7 +76,17 @@ function ProfitLoss() {
   }, [requestId, inputCoin, outputCoin, amount]);
 
   useEffect(() => {
-    
+    const investFeePrice = (investPrice * investFee / 100).toFixed(2)
+    setTotalInvestFee('$' + investFeePrice)
+    const curTotal = ((investPrice - investFeePrice) * sellPrice / initPrice).toFixed(2);
+    const exitFeePrice = (curTotal * exitFee / 100).toFixed(2)
+    setTotalExitFee('$' + exitFeePrice)
+    setTotal('$' + (curTotal - exitFeePrice).toFixed(2))
+    const profit = (curTotal - exitFeePrice - investPrice).toFixed(2)
+    const percent = (profit / investPrice * 100).toFixed(2)
+
+    setProfitPrice(profit > 0 ? '+$' + profit : '-$' + Math.abs(profit))
+    setProfitPercent(profit > 0 ? '+' + percent + '%' : '-' + Math.abs(percent) + '%')
   }, [investPrice, initPrice, sellPrice, investFee, exitFee]);
 
   const titleBold = {
@@ -129,7 +139,7 @@ function ProfitLoss() {
           </Col>
         </Row>
         <Row>
-          <Col xl={{ span: 16, offset: 4 }} flex="auto" align="middle">
+          <Col xxl={{ span: 15, offset: 4 }} xl={{ span: 15, offset: 4 }} flex="auto" align="middle">
             <Space direction="vertical">
               <Tooltip title="coins" className="image-button">
                 <img
@@ -149,7 +159,7 @@ function ProfitLoss() {
           style={{ backgroundImage: `url(/images/arrow-line.png)` }}
         >
           <Row style={{ padding: "2%", marginTop: "10px" }}>
-            <Col xl={{ span: 5, offset: 7 }} flex="auto" align="middle">
+            <Col xxl={{ span: 6, offset: 6 }} xl={{ span: 6, offset: 6 }} lg={{ span: 5, offset: 6 }} md={{ span: 6, offset: 5 }} flex="auto" align="middle">
               <Space direction="vertical" size={42}>
                 <Space direction="horizontal">
                   <img src="/images/dollar.svg" alt="dollar" width="30px" />
@@ -203,7 +213,7 @@ function ProfitLoss() {
                 </Space>
               </Space>
             </Col>
-            <Col xl={{ span: 4 }} flex="auto" align="middle">
+            <Col xxl={{ span: 4, offset: 0 }} xl={{span: 5, offset: 0 }} lg={{span: 6, offset: 1 }} md={{span: 6, offset: 1 }} flex="auto" align="middle">
               <div
                 className="background-values"
                 style={{
@@ -250,7 +260,7 @@ function ProfitLoss() {
                   src="/images/download.svg"
                   className="image-button"
                   alt="download"
-                  width="40px"
+                  width="40px"                                
                   onClick={() => onDownload()}
                 />
               </Tooltip>
