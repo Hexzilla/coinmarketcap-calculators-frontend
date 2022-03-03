@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Input, AutoComplete, Tooltip, Space, Dropdown, Menu } from "antd";
+import React from "react";
+import { Tooltip, Space, Dropdown, Menu } from "antd";
 import "./cryptoSelect.css";
-import { DownOutlined } from "@ant-design/icons";
 
 export const fiatCurrencies = [
   { id: 2781, name: 'United States Dollars "$"', symbol: "USD" },
@@ -14,13 +13,6 @@ export const fiatCurrencies = [
   { id: 3531, name: 'Bahraini Dinar ".د.ب"', symbol: "BHD" },
   { id: 3530, name: 'Bangladeshi Taka "BDT"', symbol: "BDT" },
   { id: 3533, name: 'Belarusian Ruble "Br"', symbol: "BYN" },
-];
-
-const preciousMetals = [
-  { id: 3575, name: "Gold Troy Ounce", symbol: "XAU" },
-  { id: 3574, name: "Silver Troy Ounce", symbol: "XAG" },
-  { id: 3577, name: "Platinum Ounce", symbol: "XPT" },
-  { id: 3576, name: "Palladium Ounce", symbol: "XPD" },
 ];
 
 export const defaultCryptoCurrencies = [
@@ -122,13 +114,6 @@ const renderItem = (item) => ({
     </div>
   ),
 });
-
-const defaultOptions = [
-  {
-    label: renderTitle("Cryptocurrencies"),
-    options: defaultCryptoCurrencies.map((item) => renderItem(item)),
-  },
-];
 
 function CryptoSelect({ cryptoCurrencies, onSelect, currentCoin }) {
   const findCurrency = (id) => {
