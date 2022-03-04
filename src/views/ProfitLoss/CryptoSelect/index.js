@@ -1,5 +1,5 @@
 import React from "react";
-import { Tooltip, Space, Dropdown, Menu } from "antd";
+import { Space, Dropdown, Menu } from "antd";
 import "./cryptoSelect.css";
 
 export const fiatCurrencies = [
