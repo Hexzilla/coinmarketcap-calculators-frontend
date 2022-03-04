@@ -30,16 +30,16 @@ function ProfitLoss() {
   useEffect(() => {
     if (!loading) {
       setLoading(true);
-      fetch(
-        "https://api.coinmarketcap.com/data-api/v3/map/all?cryptoAux=is_active,status&exchangeAux=is_active,status&limit=10000&listing_status=active,untracked&start=1"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          const currencies = data.data.cryptoCurrencyMap.filter(
-            (i) => i.is_active === 1
-          );
-          //setCryptoCurrencies(currencies);
-        });
+      // fetch(
+      //   "https://api.coinmarketcap.com/data-api/v3/map/all?cryptoAux=is_active,status&exchangeAux=is_active,status&limit=10000&listing_status=active,untracked&start=1"
+      // )
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     const currencies = data.data.cryptoCurrencyMap.filter(
+      //       (i) => i.is_active === 1
+      //     );
+      //     //setCryptoCurrencies(currencies);
+      //   });
     }
     setAmount(1)
     setOutputCoin(fiatCurrencies[0])
