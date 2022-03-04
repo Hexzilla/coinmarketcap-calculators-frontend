@@ -142,7 +142,7 @@ function CryptoSelect({ cryptoCurrencies, onSelect, currentCoin }) {
   return (
     <div>
       <Dropdown overlay={menu}>
-        <Tooltip title="coins">
+        <div>
           <Space direction="vertical">
             <img
               src="/images/img-dropdown.png"
@@ -153,7 +153,7 @@ function CryptoSelect({ cryptoCurrencies, onSelect, currentCoin }) {
             <p className="coin-symbol">{currentCoin.symbol}</p>
             <img src="/images/arrow-dropdown.png" alt="arrow" width="45px" />
           </Space>
-        </Tooltip>
+        </div>
       </Dropdown>
     </div>
   );
