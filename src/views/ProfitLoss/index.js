@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import domtoimage from "dom-to-image";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./profitloss.css";
+import "./index.css";
 import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CryptoSelect/index.js";
-import domtoimage from "dom-to-image";
 
 const { Content } = Layout;
 
@@ -41,7 +41,9 @@ function ProfitLoss() {
           setCryptoCurrencies(currencies);
         });
     }
-  }, [loading]);
+    setAmount(1)
+    setOutputCoin(fiatCurrencies[0])
+  }, [loading, setAmount]);
 
   const priceConversion = (id, convertId, amount) => {
     fetch(
@@ -98,7 +100,7 @@ function ProfitLoss() {
     color: "#440645",
   };
 
-  const onSelectCoin = () => {};
+  //const onSelectCoin = () => {};
 
   const onSelectInputCoin = (currency) => {
     setInputCoin(currency);
@@ -129,18 +131,18 @@ function ProfitLoss() {
         className="content"
         style={{ backgroundImage: `url(/images/Peach_Background.jpg)` }}
       >
-        <Row style={{ paddingTop: "3%" }}>
+        <Row className="px-3">
           <Col
-            xl={{ span: 10, offset: 7 }}
+            xl={{ span: 13, offset: 5 }}
             lg={{ span: 20, offset: 2 }}
             flex="auto"
             align="middle"
           >
             <Space direction="vertical">
-              <div className="profitLossHeaderTitle">
+              <div className="headerTitle">
                 Crypto <span style={titleBold}>Profit Loss</span> Calculator
               </div>
-              <p className="profitLossSubTitle">
+              <p className="subTitle">
                 Calculate your crypto profit and loss using our calculator
                 below.
               </p>
@@ -233,7 +235,7 @@ function ProfitLoss() {
               xxl={{ span: 4, offset: 0 }}
               xl={{ span: 5, offset: 0 }}
               lg={{ span: 6, offset: 1 }}
-              md={{ span: 6, offset: 1 }}
+              md={{ span: 7, offset: 1 }}
               flex="auto"
               align="middle"
             >
@@ -266,9 +268,19 @@ function ProfitLoss() {
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "40px", marginBottom: "20px" }}>
-          <Col span={12} offset={6} flex="auto" align="end">
-            <Space>
+        <Row className="my-2 pt-2">
+          <Col
+            flex="auto"
+            align="end"
+            span={6}
+            offset={15}
+            sm={{ offset: 2 }}
+            md={{ offset: 17 }}
+            lg={{ offset: 16 }}
+            xl={{ offset: 14 }}
+            xxl={{ offset: 13 }}
+          >
+            <Space size="middle">
               <Tooltip title="Refresh" className="image-button">
                 <img
                   src="/images/refresh.svg"

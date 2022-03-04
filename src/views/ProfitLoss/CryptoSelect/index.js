@@ -1,5 +1,5 @@
 import React from "react";
-import { Tooltip, Space, Dropdown, Menu } from "antd";
+import { Space, Dropdown, Menu } from "antd";
 import "./cryptoSelect.css";
 
 export const fiatCurrencies = [
@@ -111,7 +111,6 @@ function CryptoSelect({ onSelect, currentCoin }) {
 
   const onMenuClick = (key) => {
     const currency = findCurrency(key);
-    console.log(currency);
     if (currency) {
       onSelect(currency);
     }
@@ -126,8 +125,8 @@ function CryptoSelect({ onSelect, currentCoin }) {
   return (
     <div>
       <Dropdown overlay={menu}>
-        <Tooltip title="coins">
-          <Space direction="vertical" style={{position: "relative"}}>
+        <div>
+          <Space direction="vertical" style={{ position: "relative" }}>
             <img
               src="/images/img-dropdown.png"
               className="image-dropdown-button"
@@ -137,7 +136,7 @@ function CryptoSelect({ onSelect, currentCoin }) {
             <p className="coin-symbol">{currentCoin.symbol}</p>
             <img src="/images/arrow-dropdown.png" alt="arrow" width="45px" />
           </Space>
-        </Tooltip>
+        </div>
       </Dropdown>
     </div>
   );
