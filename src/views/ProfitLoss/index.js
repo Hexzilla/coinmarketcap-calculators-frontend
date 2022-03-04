@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./profitloss.css";
+import "./index.css";
 import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
