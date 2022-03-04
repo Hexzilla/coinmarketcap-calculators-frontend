@@ -26,10 +26,17 @@ const MainLayout = ({ children }) => {
           theme="dark"
           className="main-menu"
         >
-          <Menu.Item key="analytics">
+          <Menu.Item key="cryptocurrencycalculator">
             <NavLink to="/cryptocurrencycalculator">
               <div className="text-uppercase" style={{marginTop: '4px'}}>
                 Cryptocurrency Conversion Calculator
+              </div>
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key="profitloss">
+            <NavLink to="/profitlosscalculator">
+              <div className="text-uppercase" style={{marginTop: '4px'}}>
+                Profit Loss Calculator
               </div>
             </NavLink>
           </Menu.Item>
