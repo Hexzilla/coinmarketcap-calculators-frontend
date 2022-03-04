@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import domtoimage from "dom-to-image";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
 import "./index.css";
 import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CryptoSelect/index.js";
-import domtoimage from "dom-to-image";
 
 const { Content } = Layout;
 
@@ -131,7 +131,7 @@ function ProfitLoss() {
         className="content"
         style={{ backgroundImage: `url(/images/Peach_Background.jpg)` }}
       >
-        <Row style={{ paddingTop: "3%" }}>
+        <Row className="px-3">
           <Col
             xl={{ span: 10, offset: 7 }}
             lg={{ span: 20, offset: 2 }}
@@ -139,10 +139,10 @@ function ProfitLoss() {
             align="middle"
           >
             <Space direction="vertical">
-              <div className="profitLossHeaderTitle">
+              <div className="headerTitle">
                 Crypto <span style={titleBold}>Profit Loss</span> Calculator
               </div>
-              <p className="profitLossSubTitle">
+              <p className="subTitle">
                 Calculate your crypto profit and loss using our calculator
                 below.
               </p>
@@ -269,9 +269,19 @@ function ProfitLoss() {
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "40px", marginBottom: "20px" }}>
-          <Col span={12} offset={6} flex="auto" align="end">
-            <Space>
+        <Row className="my-2 pt-2">
+          <Col
+            flex="auto"
+            align="end"
+            span={6}
+            offset={15}
+            sm={{ offset: 2 }}
+            md={{ offset: 17 }}
+            lg={{ offset: 16 }}
+            xl={{ offset: 14 }}
+            xxl={{ offset: 13 }}
+          >
+            <Space size="middle">
               <Tooltip title="Refresh" className="image-button">
                 <img
                   src="/images/refresh.svg"
