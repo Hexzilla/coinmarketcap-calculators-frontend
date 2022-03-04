@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import "./menu.css";
+import "./index.css";
 
 const { Header, Content, Sider } = Layout;
 
@@ -10,62 +10,40 @@ const MainLayout = ({ children }) => {
 
   return (
     <Layout>
-      <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>
-        <div className="sidebar" />
-        <img
-          className="warrior-img"
-          src="/images/Kryftos Warrior.png"
-          alt="warrior"
-        />
-      </Sider>
+      <Header>
+        <NavLink to="/" className="logo">
+          <img
+            src="/images/Elafaki Cryptocurrency Analytics.png"
+            alt="logo"
+            width={180}
+            style={{ marginLeft: "-30px" }}
+          />
+        </NavLink>
+        <Menu
+          onClick={(e) => setCurrent(e.key)}
+          selectedKeys={[current]}
+          mode="horizontal"
+          theme="dark"
+          className="main-menu"
+        >
+          <Menu.Item key="profitloss">
+            <NavLink to="/profitlosscalculator">
+              <div className="text-uppercase" style={{marginTop: '4px'}}>
+                Profit Loss Calculator
+              </div>
+            </NavLink>
+          </Menu.Item>
+        </Menu>
+      </Header>
       <Layout>
-        <Header style={{ display: "flex" }}>
-          <NavLink to="/">
-            <img
-              src="/images/Elafaki Cryptocurrency Analytics.png"
-              alt="logo"
-              width={230}
-              style={{ marginLeft: "-30px" }}
-            />
-          </NavLink>
-          <Menu
-            onClick={(e) => setCurrent(e.key)}
-            selectedKeys={[current]}
-            breakpoint="sm"
-            mode="horizontal"
-            theme="dark"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "flex-end",
-              background: "#FFFFFF",
-            }}
-          >
-            <Menu.Item key="profitloss">
-              <NavLink to="/profitlosscalculator">
-                <div className="text-uppercase">
-                  Profit Loss Calculator
-                </div>
-              </NavLink>
-            </Menu.Item>
-            {/* <Menu.Item key="features">
-              <div className="text-uppercase">Features</div>
-            </Menu.Item> */}
-            {/* <Menu.Item key="connect">
-              <div className="text-uppercase">connect with us</div>
-            </Menu.Item> */}
-            {/* <Menu.Item key="login">
-              <NavLink to="/login">
-                <div className="text-uppercase">Sign In</div>
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item key="singup">
-              <NavLink to="/register">
-                <div className="text-uppercase">Sign up</div>
-              </NavLink>
-            </Menu.Item> */}
-          </Menu>
-        </Header>
+        <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>
+          <div className="sidebar" />
+          <img
+            className="warrior-img"
+            src="/images/Kryftos Warrior.png"
+            alt="warrior"
+          />
+        </Sider>
         <Content>{children}</Content>
       </Layout>
     </Layout>
