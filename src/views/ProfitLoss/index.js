@@ -41,7 +41,9 @@ function ProfitLoss() {
           setCryptoCurrencies(currencies);
         });
     }
-  }, [loading]);
+    setAmount(1)
+    setOutputCoin(fiatCurrencies[0])
+  }, [loading, setAmount]);
 
   const priceConversion = (id, convertId, amount) => {
     fetch(
@@ -98,7 +100,7 @@ function ProfitLoss() {
     color: "#440645",
   };
 
-  const onSelectCoin = () => {};
+  //const onSelectCoin = () => {};
 
   const onSelectInputCoin = (currency) => {
     setInputCoin(currency);

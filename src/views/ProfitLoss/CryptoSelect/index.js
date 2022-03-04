@@ -99,7 +99,7 @@ export const defaultCryptoCurrencies = [
   },
 ];
 
-const renderTitle = (title) => <span>{title}</span>;
+/*const renderTitle = (title) => <span>{title}</span>;
 
 const renderItem = (item) => ({
   value: `${item.name} (${item.symbol})`,
@@ -113,7 +113,7 @@ const renderItem = (item) => ({
       {`${item.name} (${item.symbol})`}
     </div>
   ),
-});
+});*/
 
 function CryptoSelect({ cryptoCurrencies, onSelect, currentCoin }) {
   const findCurrency = (id) => {
