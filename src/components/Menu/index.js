@@ -1,12 +1,34 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Dropdown } from "antd";
 import "./index.css";
 
 const { Header, Content, Sider } = Layout;
 
 const MainLayout = ({ children }) => {
   const [current, setCurrent] = useState("analytics");
+
+  const menu = (
+    <Menu
+      onClick={(e) => setCurrent(e.key)}
+      selectedKeys={[current]}
+    >
+      <Menu.Item key="cryptocurrencycalculator">
+        <NavLink to="/cryptocurrencycalculator">
+          <div className="menuItem">
+            Cryptocurrency Conversion Calculator
+          </div>
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item key="profitloss">
+        <NavLink to="/profitlosscalculator">
+          <div className="menuItem">
+            Profit Loss Calculator
+          </div>
+        </NavLink>
+      </Menu.Item>
+    </Menu>
+  )
 
   return (
     <Layout>
@@ -19,28 +41,13 @@ const MainLayout = ({ children }) => {
             style={{ marginLeft: "-30px" }}
           />
         </NavLink>
-        <Menu
-          onClick={(e) => setCurrent(e.key)}
-          selectedKeys={[current]}
-          mode="horizontal"
-          theme="dark"
-          className="main-menu"
-        >
-          <Menu.Item key="cryptocurrencycalculator">
-            <NavLink to="/cryptocurrencycalculator">
-              <div className="text-uppercase" style={{marginTop: '4px'}}>
-                Cryptocurrency Conversion Calculator
-              </div>
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="profitloss">
-            <NavLink to="/profitlosscalculator">
-              <div className="text-uppercase" style={{marginTop: '4px'}}>
-                Profit Loss Calculator
-              </div>
-            </NavLink>
-          </Menu.Item>
-        </Menu>
+        <div className="main-menu">
+          <Dropdown overlay={menu}>
+            <div className="ant-dropdown-link cursor-pointer menuItem" onClick={e => e.preventDefault()}>
+              Cryptocurrency Calculators
+            </div>
+          </Dropdown>
+        </div>
       </Header>
       <Layout>
         <Sider breakpoint="xl" collapsedWidth="0" trigger={null}>

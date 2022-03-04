@@ -78,22 +78,53 @@ function ProfitLoss() {
   }, [requestId, inputCoin, outputCoin, amount]);
 
   useEffect(() => {
+    if (!initPrice || isNaN(initPrice)) {
+      setTotalInvestFee('-');
+      setTotalExitFee('-');
+      setTotal('-');
+      setProfitPrice('-');
+      setProfitPercent('-');
+      return;
+    }
+
     const investFeePrice = ((investPrice * investFee) / 100).toFixed(2);
-    setTotalInvestFee("$" + investFeePrice);
-    const curTotal = (
-      ((investPrice - investFeePrice) * sellPrice) /
-      initPrice
-    ).toFixed(2);
+    if (isNaN(investFeePrice)) {
+      setTotalInvestFee('-');  
+    } else {
+      setTotalInvestFee("$" + investFeePrice);
+    }
+
+    const curTotal = (((investPrice - investFeePrice) * sellPrice) / initPrice).toFixed(2);
+
     const exitFeePrice = ((curTotal * exitFee) / 100).toFixed(2);
-    setTotalExitFee("$" + exitFeePrice);
-    setTotal("$" + (curTotal - exitFeePrice).toFixed(2));
-    const profit = (curTotal - exitFeePrice - investPrice).toFixed(2);
+    if (isNaN(exitFeePrice)) {
+      setTotalExitFee('-')  
+    } else {
+      setTotalExitFee("$" + exitFeePrice);
+    }
+
+    const total = curTotal - exitFeePrice;
+    if (isNaN(total)) {
+      setTotal('-');
+    } else {
+      setTotal("$" + total.toFixed(2));
+    }
+
+    const profit = (total - investPrice).toFixed(2);
     const percent = ((profit / investPrice) * 100).toFixed(2);
 
-    setProfitPrice(profit > 0 ? "+$" + profit : "-$" + Math.abs(profit));
-    setProfitPercent(
-      profit > 0 ? "+" + percent + "%" : "-" + Math.abs(percent) + "%"
-    );
+    if (isNaN(profit)) {
+      setProfitPrice('-');
+    } else {
+      setProfitPrice(profit > 0 ? "+$" + profit : "-$" + Math.abs(profit));
+    }
+
+    if (isNaN(profit) || isNaN(percent)) {
+      setProfitPercent('-');
+    } else {
+      setProfitPercent(profit > 0 ? "+" + percent + "%" : "-" + Math.abs(percent) + "%");
+    }
+    
   }, [investPrice, initPrice, sellPrice, investFee, exitFee, inputCoin]);
 
   const titleBold = {
@@ -172,7 +203,7 @@ function ProfitLoss() {
           <Row style={{ padding: "2%", marginTop: "10px" }}>
             <Col
               xxl={{ span: 6, offset: 6 }}
-              xl={{ span: 6, offset: 6 }}
+              xl={{ span: 8, offset: 4 }}
               lg={{ span: 5, offset: 6 }}
               md={{ span: 6, offset: 5 }}
               flex="auto"
@@ -268,7 +299,7 @@ function ProfitLoss() {
             </Col>
           </Row>
         </div>
-        <Row className="my-2 pt-2">
+        <Row className="mb-2 pt-0">
           <Col
             flex="auto"
             align="end"

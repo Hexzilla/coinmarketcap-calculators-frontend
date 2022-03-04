@@ -1,7 +1,6 @@
-.text-uppercase {
-  /* text-transform: uppercase; */
+.menuItem {
   color: #191816;
-  font-family: "Segoe UI";
+  font-family: "MySegoeUI";
   font-size: medium;
 }
 
@@ -28,6 +27,11 @@
   background-color: #F7F8F8;
 }
 
+.ant-dropdown-menu-item-selected, .ant-dropdown-menu-submenu-title-selected {
+  color: black!important;
+  background-color: #E3D3EF!important;
+}
+
 .sidebar {
   background-color: #440645;
   min-height: 100%;
@@ -52,6 +56,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-top: 4px;
   background: #FFF!important;
 }
 
