@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 function ProfitLoss() {
   const [loading, setLoading] = useState(false);
-  const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
+  //const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
   const [investPrice, setInvestPrice] = useState(1000);
   const [initPrice, setInitPrice] = useState(0);
   const [sellPrice, setSellPrice] = useState(0);
@@ -38,7 +38,7 @@ function ProfitLoss() {
           const currencies = data.data.cryptoCurrencyMap.filter(
             (i) => i.is_active === 1
           );
-          setCryptoCurrencies(currencies);
+          //setCryptoCurrencies(currencies);
         });
     }
     setAmount(1)
