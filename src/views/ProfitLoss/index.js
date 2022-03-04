@@ -156,7 +156,6 @@ function ProfitLoss() {
           >
             <Space direction="vertical">
               <CryptoSelect
-                cryptoCurrencies={cryptoCurrencies}
                 onSelect={onSelectInputCoin}
                 currentCoin={inputCoin}
               ></CryptoSelect>

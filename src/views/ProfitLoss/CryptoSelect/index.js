@@ -99,23 +99,7 @@ export const defaultCryptoCurrencies = [
   },
 ];
 
-const renderTitle = (title) => <span>{title}</span>;
-
-const renderItem = (item) => ({
-  value: `${item.name} (${item.symbol})`,
-  label: (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
-      {`${item.name} (${item.symbol})`}
-    </div>
-  ),
-});
-
-function CryptoSelect({ cryptoCurrencies, onSelect, currentCoin }) {
+function CryptoSelect({ onSelect, currentCoin }) {
   const findCurrency = (id) => {
     const item = defaultCryptoCurrencies.find(
       (it) => it.id.toString() === id.key
@@ -143,7 +127,7 @@ function CryptoSelect({ cryptoCurrencies, onSelect, currentCoin }) {
     <div>
       <Dropdown overlay={menu}>
         <Tooltip title="coins">
-          <Space direction="vertical">
+          <Space direction="vertical" style={{position: "relative"}}>
             <img
               src="/images/img-dropdown.png"
               className="image-dropdown-button"
