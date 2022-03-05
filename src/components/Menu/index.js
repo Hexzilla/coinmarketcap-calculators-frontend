@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Layout, Menu, Dropdown } from "antd";
+import { DownOutlined } from '@ant-design/icons';
 import "./index.css";
 
 const { Header, Content, Sider } = Layout;
@@ -15,14 +16,14 @@ const MainLayout = ({ children }) => {
     >
       <Menu.Item key="cryptocurrencycalculator">
         <NavLink to="/cryptocurrencycalculator">
-          <div className="menuItem">
+          <div className="menuItem submenu">
             Cryptocurrency Conversion Calculator
           </div>
         </NavLink>
       </Menu.Item>
       <Menu.Item key="profitloss">
         <NavLink to="/profitlosscalculator">
-          <div className="menuItem">
+          <div className="menuItem submenu">
             Profit Loss Calculator
           </div>
         </NavLink>
@@ -44,7 +45,7 @@ const MainLayout = ({ children }) => {
         <div className="main-menu">
           <Dropdown overlay={menu}>
             <div className="ant-dropdown-link cursor-pointer menuItem" onClick={e => e.preventDefault()}>
-              Cryptocurrency Calculators
+              Cryptocurrency Calculators <DownOutlined />
             </div>
           </Dropdown>
         </div>
