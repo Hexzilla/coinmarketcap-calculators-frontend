@@ -1,0 +1,33 @@
+a {
+  color: white;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.elafki {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.features-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.features-link {
+  color: #979797;
+}
+
+@media only screen and (max-width: 768px) {
+  #features {
+    display: none;
+  }
+
+  #elafaki-logo {
+    display: none;
+  }
+}

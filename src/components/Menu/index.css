@@ -85,6 +85,11 @@
   background: #FFF!important;
 }
 
+.ant-layout-footer {
+  background-color: #1b1c1a;
+  color: white;
+}
+
 @media only screen and (max-width: 640px) {
   .main-menu {
     display: none;

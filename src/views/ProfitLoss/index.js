@@ -12,17 +12,17 @@ const { Content } = Layout;
 function ProfitLoss() {
   const [loading, setLoading] = useState(false);
   //const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
-  const [investPrice, setInvestPrice] = useState(1000);
-  const [initPrice, setInitPrice] = useState(0);
-  const [sellPrice, setSellPrice] = useState(0);
-  const [investFee, setInvestFee] = useState(1.49);
-  const [exitFee, setExitFee] = useState(1.49);
-  const [amount, setAmount] = useState(1);
-  const [totalInvestFee, setTotalInvestFee] = useState("$49.66");
-  const [totalExitFee, setTotalExitFee] = useState("$73.38");
-  const [total, setTotal] = useState("$4,851.62");
-  const [profitPrice, setProfitPrice] = useState("+$1,518.62");
-  const [profitPercent, setProfitPercent] = useState("(+45.56%)");
+  const [investPrice, setInvestPrice] = useState(undefined);
+  const [initPrice, setInitPrice] = useState(undefined);
+  const [sellPrice, setSellPrice] = useState(undefined);
+  const [investFee, setInvestFee] = useState(undefined);
+  const [exitFee, setExitFee] = useState(undefined);
+  const [amount, setAmount] = useState(undefined);
+  const [totalInvestFee, setTotalInvestFee] = useState(undefined);
+  const [totalExitFee, setTotalExitFee] = useState(undefined);
+  const [total, setTotal] = useState(undefined);
+  const [profitPrice, setProfitPrice] = useState(undefined);
+  const [profitPercent, setProfitPercent] = useState(undefined);
   const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
   const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
   const [requestId, setRequestId] = useState(null);
@@ -68,14 +68,14 @@ function ProfitLoss() {
   };
 
   useEffect(() => {
-    if (inputCoin && outputCoin && amount !== 0) {
+    if (inputCoin && outputCoin && investPrice && amount !== 0) {
       const reqId = `${inputCoin.id}-${outputCoin.id}-${amount}`;
       if (requestId !== reqId) {
         setRequestId(reqId);
         priceConversion(inputCoin.id, outputCoin.id, amount);
       }
     }
-  }, [requestId, inputCoin, outputCoin, amount]);
+  }, [requestId, inputCoin, outputCoin, investPrice, amount]);
 
   useEffect(() => {
     if (!initPrice || isNaN(initPrice)) {

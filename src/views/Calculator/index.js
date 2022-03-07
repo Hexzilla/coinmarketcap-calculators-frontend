@@ -12,7 +12,7 @@ const { Content } = Layout;
 function Calculator() {
   const [loading, setLoading] = useState(false);
   const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(undefined);
   const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
   const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
   const [requestId, setRequestId] = useState(null);

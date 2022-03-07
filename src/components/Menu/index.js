@@ -2,27 +2,28 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Layout, Menu, Dropdown } from "antd";
 import { DownOutlined } from '@ant-design/icons';
+import FooterPage from 'components/Footer'
 import "./index.css";
 
-const { Header, Content, Sider } = Layout;
+const { Header, Content, Sider, Footer } = Layout;
 
 const MainLayout = ({ children }) => {
-  const [current, setCurrent] = useState("analytics");
+  const [current, setCurrent] = useState("cryptocurrency");
 
   const menu = (
     <Menu
       onClick={(e) => setCurrent(e.key)}
       selectedKeys={[current]}
     >
-      <Menu.Item key="cryptocurrencycalculator">
-        <NavLink to="/cryptocurrencycalculator">
+      <Menu.Item key="cryptocurrency">
+        <NavLink to="/cryptocurrency">
           <div className="menuItem submenu">
             Cryptocurrency Conversion Calculator
           </div>
         </NavLink>
       </Menu.Item>
       <Menu.Item key="profitloss">
-        <NavLink to="/profitlosscalculator">
+        <NavLink to="/profitloss">
           <div className="menuItem submenu">
             Profit Loss Calculator
           </div>
@@ -36,8 +37,8 @@ const MainLayout = ({ children }) => {
       <Header>
         <NavLink to="/" className="logo">
           <img
-            src="/images/Elafaki Cryptocurrency Analytics.png"
-            alt="logo"
+            src="/images/main-logo.png"
+            alt="Elafaki Cryptocurrency Analytics"
             width={180}
             style={{ marginLeft: "-30px" }}
           />
@@ -61,6 +62,9 @@ const MainLayout = ({ children }) => {
         </Sider>
         <Content>{children}</Content>
       </Layout>
+      <Footer>
+        <FooterPage />
+      </Footer>
     </Layout>
   );
 };
