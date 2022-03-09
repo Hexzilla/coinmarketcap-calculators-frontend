@@ -64,4 +64,8 @@ a {
   #elafaki-logo {
     display: none;
   }
+
+  .ant-layout-footer {
+    padding: 14px;
+  }
 }

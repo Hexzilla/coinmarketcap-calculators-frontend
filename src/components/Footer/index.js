@@ -128,7 +128,7 @@ const Footer = () => {
           <img
             src="/images/kryptos-black.png"
             alt="Elafaki"
-            width={90}
+            width={160}
             className="elafki"
           />
         </Col>
