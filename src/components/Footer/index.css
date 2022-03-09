@@ -19,7 +19,12 @@ a {
 }
 
 .features-link {
-  color: #979797;
+  color: #A1A1A1;
+  margin: 4px 0;
+}
+
+.features-link:hover {
+  color: #fff;
 }
 
 @media only screen and (max-width: 768px) {
