@@ -2,6 +2,7 @@
   color: #191816;
   font-family: "MySegoeUI";
   font-size: medium;
+  padding: 4px;
 }
 
 .ant-layout-header {
@@ -18,42 +19,21 @@
   border-right: 0;
 }
 
-.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
-  background-color: inherit;
-  border-bottom: 2px solid #FBD23A;
-}
-
-.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
-  background-color: #f7f8f8;
-}
-
 .ant-dropdown-menu {
   margin-top: -4px;
   /* padding: 10px; */
 }
 
-.ant-dropdown-menu-item {
-  padding: 12px;
-}
-
-.ant-dropdown-menu-item-active {
-  /* background-color: #E3D3EF!important; */
-  background-color: #f7f8f8!important;
-  /* border-radius: 8px; */
-}
-
 .ant-dropdown-menu-item-selected, .ant-dropdown-menu-submenu-title-selected {
   color: black!important;
   background-color: white;
-  /* background-color: #f7f8f8; */
 }
 
 .ant-dropdown-link {
-  /* font-weight: 600; */
   padding: 0 14px;
 }
 
-.ant-dropdown-open,
+.menuItem.ant-dropdown-open,
 .ant-dropdown-link:hover {
   color: #7a569e;
   background-color: #f7f8f8;
