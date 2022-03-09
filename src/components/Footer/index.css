@@ -27,7 +27,36 @@ a {
   color: #fff;
 }
 
+.social-icon:hover {
+  -webkit-filter: brightness(120%);
+   filter: brightness(120%);
+}
+
+.privacy-menu {
+  display: inline-flex;
+}
+
+.privacy-mobile {
+  display: none;
+}
+
+.copyright {
+  margin-top: -12px;
+}
+
 @media only screen and (max-width: 768px) {
+  .privacy-menu {
+    display: none;
+  }
+  
+  .privacy-mobile {
+    display: inline-flex;
+  }
+
+  .copyright {
+    margin-top: 0;
+  }
+
   #features {
     display: none;
   }

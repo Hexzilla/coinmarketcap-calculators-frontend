@@ -30,14 +30,20 @@ const Footer = () => {
           align="left"
         >
           <Space direction="vertical" size={12}>
-            <Space direction="horizontal" size={30}>
+            <Space className="privacy-menu" direction="horizontal" size={30}>
               <a href="/privacy">Privacy, Terms and Conditions</a>
               <a href="/cookies">Cookies</a>
               <a href="/contact">Contact Us</a>
             </Space>
 
-            <div>
-              2022 Phlanx Pty Ltd. All rights reserved
+            <Space className="privacy-mobile" direction="vertical" size={12}>
+              <a href="/privacy">Privacy, Terms and Conditions</a>
+              <a href="/cookies">Cookies</a>
+              <a href="/contact">Contact Us</a>
+            </Space>
+
+            <div className="copyright">
+              © 2022 Phlanx Pty Ltd. All rights reserved
             </div>
             
             <Row style={{marginBottom: '-6px'}}>
@@ -67,21 +73,30 @@ const Footer = () => {
             </Row>
             
             <Space direction="horizontal" size={10} className="mt-2">
-              <img
-                src="/images/discord.svg"
-                alt="Amazon"
-                width={40}
-              />
-              <img
-                src="/images/instagram.svg"
-                alt="Amazon"
-                width={40}
-              />
-              <img
-                src="/images/twitter.svg"
-                alt="Amazon"
-                width={40}
-              />
+              <a href="https://discord.com/">
+                <img
+                  className="social-icon"
+                  src="/images/discord.svg"
+                  alt="Amazon"
+                  width={40}
+                />
+              </a>
+              <a href="https://www.instagram.com/">
+                <img
+                  className="social-icon"
+                  src="/images/instagram.svg"
+                  alt="Amazon"
+                  width={40}
+                />
+              </a>
+              <a href="https://twitter.com/">
+                <img
+                  className="social-icon"
+                  src="/images/twitter.svg"
+                  alt="Amazon"
+                  width={40}
+                />
+              </a>
             </Space>
           </Space>
         </Col>
@@ -111,9 +126,9 @@ const Footer = () => {
           align="right"
         >
           <img
-            src="/images/kryptos.svg"
+            src="/images/kryptos-black.png"
             alt="Elafaki"
-            width={70}
+            width={90}
             className="elafki"
           />
         </Col>

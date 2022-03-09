@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Layout, Menu, Dropdown } from "antd";
-import { DownOutlined } from '@ant-design/icons';
+import { MenuOutlined, DownOutlined } from '@ant-design/icons';
 import FooterPage from 'components/Footer'
 import "./index.css";
 
@@ -43,6 +43,13 @@ const MainLayout = ({ children }) => {
             style={{ marginLeft: "-30px" }}
           />
         </NavLink>
+        <div className="mobile-menu">
+          <Dropdown overlay={menu}>
+            <div className="ant-dropdown-link cursor-pointer menuItem" onClick={e => e.preventDefault()}>
+              <MenuOutlined />
+            </div>
+          </Dropdown>
+        </div>
         <div className="main-menu">
           <Dropdown overlay={menu}>
             <div className="ant-dropdown-link cursor-pointer menuItem" onClick={e => e.preventDefault()}>
