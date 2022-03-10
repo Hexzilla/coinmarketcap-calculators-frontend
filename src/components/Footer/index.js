@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Row, Col, Space, Dropdown } from "antd";
-import { DownOutlined } from '@ant-design/icons';
+import { Row, Col, Space } from "antd";
 import "./index.css";
 
 const Footer = () => {
