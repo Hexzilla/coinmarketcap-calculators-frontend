@@ -120,7 +120,7 @@ function CryptoSelect({ onSelect, currentCoin }) {
     return <Menu.Item key={x.id}>{x.symbol}</Menu.Item>;
   });
 
-  const menu = <Menu onClick={onMenuClick}>{menus}</Menu>;
+  const menu = <Menu className="crypto-menu" onClick={onMenuClick}>{menus}</Menu>;
 
   return (
     <div>
