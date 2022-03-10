@@ -1,6 +1,6 @@
 import React from "react";
 import { Space, Dropdown, Menu } from "antd";
-import "./cryptoSelect.css";
+import "./index.css";
 
 export const fiatCurrencies = [
   { id: 2781, name: 'United States Dollars "$"', symbol: "USD" },
