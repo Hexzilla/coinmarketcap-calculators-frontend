@@ -1,0 +1,77 @@
+.mainLayout{
+  min-height: 100%;
+}
+
+.content {
+  background-color: #afa2cf;
+}
+
+.rotate {
+  background-color: transparent;
+  transform: rotate(90deg);
+}
+
+.background-wrapper {
+  background-color: #8053a1;
+  padding: 20px;
+  background-image: linear-gradient(to bottom, #8053a1 50%, White 50%);
+  background-position: left;
+  background-size: 8px 50px;
+  background-repeat: repeat-y;
+}
+
+.inputNum{
+  width: 100%;
+}
+
+.ant-input:focus,
+.ant-input-number-focused,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused {
+  border-color: #78067a!important;
+  box-shadow: 0 0 0 2px rgba(148, 63, 165, 0.2)!important;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: #78067a!important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #E3D3EF!important;;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+  color: #666;
+  font-weight: bold;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item {
+  padding-left: 16px;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+  text-align: center;
+  cursor: default;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu {
+  max-height: 300px;
+}
+
+.content-row {
+  padding-left: 10%;
+  padding-right: 10%;
+} 
+
+@media only screen and (min-width: 1920px) {
+  .content-row {
+    padding-left: 14%;
+    padding-right: 14%;
+  }  
+}
