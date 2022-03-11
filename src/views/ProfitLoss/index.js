@@ -170,6 +170,7 @@ function ProfitLoss() {
             </Space>
           </Col>
         </Row>
+
         <Row>
           <Col
             xxl={{ span: 15, offset: 4 }}
@@ -185,6 +186,7 @@ function ProfitLoss() {
             </Space>
           </Col>
         </Row>
+        
         <div
           className="background-wrapper"
           id="background-wrapper"

@@ -17,21 +17,21 @@ const MainLayout = ({ children }) => {
       className="menu-wapper"
     >
       <Menu.Item className="submenu-item" key="cryptocurrency">
-        <NavLink to="/cryptocurrency">
+        <NavLink to="/cryptocurrencyconversioncalculator">
           <div className="submenu-text">
             Cryptocurrency Conversion Calculator
           </div>
         </NavLink>
       </Menu.Item>
-      <Menu.Item className="submenu-item" key="profit-loss-calculator">
-        <NavLink to="/profit-loss-calculator">
+      <Menu.Item className="submenu-item" key="profitlosscalculator">
+        <NavLink to="/profitlosscalculator">
           <div className="submenu-text">
             Profit Loss Calculator
           </div>
         </NavLink>
       </Menu.Item>
-      <Menu.Item className="submenu-item" key="crypto-profit-calculator">
-        <NavLink to="/crypto-profit-calculator">
+      <Menu.Item className="submenu-item" key="cryptoprofitcalculator">
+        <NavLink to="/cryptoprofitcalculator">
           <div className="submenu-text">
             Crypto Profit Calculator
           </div>

@@ -14,54 +14,46 @@
     background-repeat: repeat-y;
   }
 
-  .inputNum{
+  .ant-space {
     width: 100%;
   }
+  
+  .main-wrapper {
+    padding: 2%;
+    margin-top: 10px;
 
-  .ant-input:focus,
-  .ant-input-number-focused,
-  .ant-input-affix-wrapper-focused,
-  .ant-select-focused {
-    border-color: #78067a!important;
-    box-shadow: 0 0 0 2px rgba(148, 63, 165, 0.2)!important;
+    .row-item {
+      width: 100%;
+      text-align: left;
+      padding: 0 2% 24px 2%;
+    }
+
+    .content-row {
+      padding-left: 10%;
+      padding-right: 10%;
+    }
   }
 
-  .ant-input:hover,
-  .ant-input-number:hover,
-  .ant-input-affix-wrapper:hover {
-    border-color: #78067a!important;
+  .calc-button {
+    background-color: #440645;
+    border: 0;
+    margin-top: 14px;
   }
 
-  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-    background-color: #E3D3EF!important;;
-  }
+  .bitcoin {
+    display: flex;
+    justify-content: right;
 
-  .certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
-    color: #666;
-    font-weight: bold;
-  }
-
-  .certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
-    border-bottom: 1px solid #f6f6f6;
-  }
-
-  .certain-category-search-dropdown .ant-select-dropdown-menu-item {
-    padding-left: 16px;
-  }
-
-  .certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
-    text-align: center;
-    cursor: default;
-  }
-
-  .certain-category-search-dropdown .ant-select-dropdown-menu {
-    max-height: 300px;
-  }
-
-  .content-row {
-    padding-left: 10%;
-    padding-right: 10%;
+    .imgage {
+      margin-right: 40px;
+    }
   } 
+
+  .item-title {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
 
   @media only screen and (min-width: 1920px) {
     .content-row {

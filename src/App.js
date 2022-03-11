@@ -20,13 +20,13 @@ function App() {
           <Route path="/" exact>
             <Calculator />
           </Route>
-          <Route path="/cryptocurrency">
+          <Route path="/cryptocurrencyconversioncalculator">
             <Calculator />
           </Route>
-          <Route path="/profit-loss-calculator">
+          <Route path="/profitlosscalculator">
             <ProfitLoss />
           </Route>
-          <Route path="/crypto-profit-calculator">
+          <Route path="/cryptoprofitcalculator">
             <ProfitCalculator />
           </Route>
           <Route path="/login">

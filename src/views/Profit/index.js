@@ -1,126 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
+import { Layout, Row, Col, InputNumber, Space, Button, Select } from "antd";
 import "./index.scss";
-import CryptoSelect, {
-  fiatCurrencies,
-  defaultCryptoCurrencies,
-} from "./CryptoSelect/index.js";
+import SelectDate from "./SelectDate";
 
 const { Content } = Layout;
+const { Option } = Select;
 
-function ProfitCalculator() {
-  const [loading, setLoading] = useState(false);
-  //const [cryptoCurrencies, setCryptoCurrencies] = useState(null);
-  const [investPrice, setInvestPrice] = useState(undefined);
-  const [initPrice, setInitPrice] = useState(undefined);
-  const [sellPrice, setSellPrice] = useState(undefined);
-  const [investFee, setInvestFee] = useState(undefined);
-  const [exitFee, setExitFee] = useState(undefined);
-  const [amount, setAmount] = useState(undefined);
-  const [totalInvestFee, setTotalInvestFee] = useState(undefined);
-  const [totalExitFee, setTotalExitFee] = useState(undefined);
-  const [total, setTotal] = useState(undefined);
-  const [profitPrice, setProfitPrice] = useState(undefined);
-  const [profitPercent, setProfitPercent] = useState(undefined);
-  const [inputCoin, setInputCoin] = useState(defaultCryptoCurrencies[0]);
-  const [outputCoin, setOutputCoin] = useState(fiatCurrencies[0]);
-  const [requestId, setRequestId] = useState(null);
+const cryptoList = [
+  "BTC",
+  "ETH",
+  "DOGE",
+  "BNB",
+  "LTC",
+  "ADA",
+  "XRP",
+  "DOT",
+  "BCH",
+  "BUSD",
+  "DAI",
+  "ETC",
+  "ICP",
+  "USDC",
+  "DOT",
+  "LINK",
+  "TRX",
+  "UNI",
+  "USDT",
+  "XLM",
+]
 
-  useEffect(() => {
-    if (!loading) {
-      setLoading(true);
-    }
-    setAmount(1)
-    setOutputCoin(fiatCurrencies[0])
-  }, [loading, setAmount]);
+const ProfitCalculator = () => {
+  const [date, setDate] = useState({ year: 2022, month: 'March', day: 11 });
+  const [coinName, setCoinName] = useState("BTC");
 
-  const priceConversion = (id, convertId, amount) => {
-    fetch(
-      `https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=${amount}&convert_id=${convertId}&id=${id}`
-    )
-      .then((response) => response.json())
-      .then(({ data }) => {
-        const quotes = data?.quote;
-        if (quotes && quotes.length > 0) {
-          const quote = quotes[0];
-          const price = quote.price;
-
-          if (price >= 1.0) {
-            setInitPrice(price.toFixed(2));
-            setSellPrice(price.toFixed(2));
-          } else {
-            setInitPrice(price.toFixed(8));
-            setSellPrice(price.toFixed(8));
-          }
-        }
-      });
-  };
-
-  useEffect(() => {
-    if (inputCoin && outputCoin && investPrice && amount !== 0) {
-      const reqId = `${inputCoin.id}-${outputCoin.id}-${amount}`;
-      if (requestId !== reqId) {
-        setRequestId(reqId);
-        priceConversion(inputCoin.id, outputCoin.id, amount);
-      }
-    }
-  }, [requestId, inputCoin, outputCoin, investPrice, amount]);
-
-  useEffect(() => {
-    if (!initPrice || isNaN(initPrice)) {
-      setTotalInvestFee('-');
-      setTotalExitFee('-');
-      setTotal('-');
-      setProfitPrice('-');
-      setProfitPercent('-');
-      return;
-    }
-
-    const investFeePrice = ((investPrice * investFee) / 100).toFixed(2);
-    if (isNaN(investFeePrice)) {
-      setTotalInvestFee('-');  
-    } else {
-      setTotalInvestFee("$" + investFeePrice);
-    }
-
-    const curTotal = (((investPrice - investFeePrice) * sellPrice) / initPrice).toFixed(2);
-
-    const exitFeePrice = ((curTotal * exitFee) / 100).toFixed(2);
-    if (isNaN(exitFeePrice)) {
-      setTotalExitFee('-')  
-    } else {
-      setTotalExitFee("$" + exitFeePrice);
-    }
-
-    const total = curTotal - exitFeePrice;
-    if (isNaN(total)) {
-      setTotal('-');
-    } else {
-      setTotal("$" + total.toFixed(2));
-    }
-
-    const profit = (total - investPrice).toFixed(2);
-    const percent = ((profit / investPrice) * 100).toFixed(2);
-
-    if (isNaN(profit)) {
-      setProfitPrice('-');
-    } else {
-      setProfitPrice(profit > 0 ? "+$" + profit : "-$" + Math.abs(profit));
-    }
-
-    if (isNaN(profit) || isNaN(percent)) {
-      setProfitPercent('-');
-    } else {
-      setProfitPercent(profit > 0 ? "+" + percent + "%" : "-" + Math.abs(percent) + "%");
-    }
-    
-  }, [investPrice, initPrice, sellPrice, investFee, exitFee, inputCoin]);
-
-  const onRefresh = () => {
-    if (inputCoin && outputCoin && amount !== 0) {
-      priceConversion(inputCoin.id, outputCoin.id, amount);
-    }
-  };
+  const handleDateChange = (key, value) => {
+    setDate({
+      ...date,
+      [key]: value
+    });
+  }
 
   return (
     <Layout className="profit-page">
@@ -143,75 +61,57 @@ function ProfitCalculator() {
           </Col>
         </Row>
 
-        <Row style={{ padding: "2%", marginTop: "10px" }}>
+        <Row className="main-wrapper">
           <Col
             xl={{ span: 14, offset: 5 }}
             flex="auto"
             align="middle"
             className="purple-bg"
           >
-            <Space direction="vertical" size={42}>
-              <Space direction="horizontal">
-                <img src="/images/dollar.svg" alt="dollar" width="30px" />
-                <InputNumber
-                  className="inputNum"
-                  placeholder="Investment"
-                  size="large"
-                  value={investPrice}
-                  onChange={(value) => setInvestPrice(value)}
-                />
-              </Space>
-              <Space direction="horizontal">
-                <img src="/images/dollar.svg" alt="dollar" width="30px" />
-                <InputNumber
-                  className="inputNum"
-                  placeholder="Initial Coin Price"
-                  size="large"
-                  value={initPrice}
-                  onChange={(value) => setInitPrice(value)}
-                />
-              </Space>
-              <Space direction="horizontal">
-                <img src="/images/dollar.svg" alt="dollar" width="30px" />
-                <InputNumber
-                  className="inputNum"
-                  placeholder="Selling Coin Price"
-                  size="large"
-                  value={sellPrice}
-                  onChange={(value) => setSellPrice(value)}
-                />
-              </Space>
-              <Space direction="horizontal">
-                <img src="/images/percent.svg" alt="dollar" width="30px" />
-                <InputNumber
-                  className="inputNum"
-                  placeholder="Investment Fee"
-                  size="large"
-                  value={investFee}
-                  onChange={(value) => setInvestFee(value)}
-                />
-              </Space>
-              <Space direction="horizontal">
-                <img src="/images/percent.svg" alt="dollar" width="30px" />
-                <InputNumber
-                  className="inputNum"
-                  placeholder="Exit Fee"
-                  size="large"
-                  value={exitFee}
-                  onChange={(value) => setExitFee(value)}
-                />
-              </Space>
-            </Space>
+            <div className="row-item">
+              <div className="item-title">Date</div>
+              <SelectDate
+                date={date}
+                setDate={handleDateChange}
+              />
+            </div>
+
+            <div className="row-item">
+              <div className="item-title">Amount invested</div>
+              <InputNumber
+                min={1}
+                placeholder="Enter Amount to Convert"
+                style={{ width: "50%" }}
+                size="large"
+              />
+            </div>
+
+            <div className="row-item">
+              <div className="item-title">Crypto</div>
+              <Select
+                defaultValue={coinName}
+                size="large"
+                style={{ width: '50%' }}
+                onChange={setCoinName}
+              >
+                { cryptoList.map((coinName, index) => (
+                  <Option key={index} value={coinName}>{coinName}</Option>
+                ))}
+              </Select>
+            </div>
+
+            <div className="row-item">
+              <Button type="primary" size="large" block className="calc-button">Calculate</Button>
+            </div>
           </Col>
         </Row>
 
-        <div>
+        <div className="bitcoin">
           <img
             src="/images/bitcoin.svg"
-            className="image-button"
             alt="refresh"
             width="240px"
-            onClick={() => onRefresh()}
+            className="imgage"
           />
         </div>
       </Content>
