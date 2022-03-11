@@ -1,0 +1,73 @@
+.footer {
+  a {
+    color: white;
+  }
+
+  .yellow {
+    color: yellow;
+  }
+
+  .elafki {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .features-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .features-link {
+    color: #A1A1A1;
+    margin: 4px 0;
+  }
+
+  .features-link:hover {
+    color: #fff;
+  }
+
+  .social-icon:hover {
+    -webkit-filter: brightness(120%);
+    filter: brightness(120%);
+  }
+
+  .privacy-menu {
+    display: inline-flex;
+  }
+
+  .privacy-mobile {
+    display: none;
+  }
+
+  .copyright {
+    margin-top: -12px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .privacy-menu {
+      display: none;
+    }
+    
+    .privacy-mobile {
+      display: inline-flex;
+    }
+
+    .copyright {
+      margin-top: 0;
+    }
+
+    #features {
+      display: none;
+    }
+
+    #elafaki-logo {
+      display: none;
+    }
+
+    .ant-layout-footer {
+      padding: 14px;
+    }
+  }
+}

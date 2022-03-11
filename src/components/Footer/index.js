@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Row, Col, Space } from "antd";
-import "./index.css";
+import "./index.scss";
 
 const Footer = () => {
 
   return (
-    <>
+    <div className="footer">
       <Row className="mb-1">
         <Col
           span={12}
@@ -132,7 +132,7 @@ const Footer = () => {
           />
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
