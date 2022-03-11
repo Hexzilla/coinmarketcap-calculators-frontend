@@ -134,10 +134,10 @@ function ProfitCalculator() {
             align="middle"
           >
             <Space direction="vertical" style={{width: '100%'}}>
-              <div className="headerTitle">
+              <div className="header-title">
                 Crypto Profit Calculator
               </div>
-              <p className="subTitle">
+              <p className="sub-title">
                 Calculate your crypto profit using our calculator below.
               </p>
             </Space>

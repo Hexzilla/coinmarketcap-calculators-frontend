@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import domtoimage from "dom-to-image";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./index.css";
+import "./index.scss";
 import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
@@ -92,7 +92,7 @@ function Calculator() {
 
   const onDownload = () => {
     var filename = `${inputCoin.symbol}-${outputCoin.symbol}.JPG`;
-    var wrapper = document.getElementById("background-wrapper");
+    var wrapper = document.getElementById("grid-bg");
     domtoimage
       .toJpeg(wrapper, { height: 500, bgcolor: "#FFFFFF" })
       .then(function (dataUrl) {
@@ -104,7 +104,7 @@ function Calculator() {
   };
 
   return (
-    <Layout className="mainLayout">
+    <Layout className="crypto-page">
       <Content className="content">
         <Row className="px-3">
           <Col
@@ -115,12 +115,12 @@ function Calculator() {
             align="middle"
           >
             <Space direction="vertical">
-              <div className="headerTitle">
+              <div className="header-title">
                 Convert{" "}
                 <span style={titleBold}>{inputCoin?.symbol || "BTC"}</span> to{" "}
                 <span style={titleBold}>{outputCoin?.symbol || "USD"}</span>
               </div>
-              <p className="subTitle">
+              <p className="sub-title">
                 Convert any cryptocurrency or token price into your preferred
                 fiat currency, such as BCH to USD. The live BCH to USD price
                 will be shown.
@@ -129,8 +129,8 @@ function Calculator() {
           </Col>
         </Row>
         <div
-          className="background-wrapper"
-          id="background-wrapper"
+          id="grid-bg"
+          className="grid-bg"
           style={{ backgroundImage: `url(/images/background.png)` }}
         >
           <Row className="px-1 py-2 content-row">
@@ -181,9 +181,9 @@ function Calculator() {
               </Space>
               <Space direction="vertical" size="small">
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? amount : "-"}</div>
+                  <div className="price-title">{amount ? amount : "-"}</div>
                   {inputCoin ? (
-                    <div className="coinName">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
+                    <div className="coin-name">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
                   ) : (
                     <></>
                   )}
@@ -192,9 +192,9 @@ function Calculator() {
                 <img src="/images/equal.svg" alt="equal" width="50px" />
 
                 <div flex="auto" align="middle">
-                  <div className="priceTitle">{amount ? converted : "-"}</div>
+                  <div className="price-title">{amount ? converted : "-"}</div>
                   {outputCoin ? (
-                    <div className="coinName">{`${outputCoin.name} (${outputCoin.symbol})`}</div>
+                    <div className="coin-name">{`${outputCoin.name} (${outputCoin.symbol})`}</div>
                   ) : (
                     <></>
                   )}

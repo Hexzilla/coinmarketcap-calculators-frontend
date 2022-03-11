@@ -170,10 +170,10 @@ function ProfitLoss() {
             align="middle"
           >
             <Space direction="vertical">
-              <div className="headerTitle">
+              <div className="header-title">
                 Crypto <span style={titleBold}>Profit Loss</span> Calculator
               </div>
-              <p className="subTitle">
+              <p className="sub-title">
                 Calculate your crypto profit and loss using our calculator
                 below.
               </p>
