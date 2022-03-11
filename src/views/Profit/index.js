@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import domtoimage from "dom-to-image";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./index.css";
+import "./index.scss";
 import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
@@ -124,8 +123,8 @@ function ProfitCalculator() {
   };
 
   return (
-    <Layout className="mainLayout">
-      <Content className="profit-content">
+    <Layout className="profit-page">
+      <Content className="content">
         <Row className="px-3">
           <Col
             xl={{ span: 14, offset: 5 }}
@@ -149,7 +148,7 @@ function ProfitCalculator() {
             xl={{ span: 14, offset: 5 }}
             flex="auto"
             align="middle"
-            className="profit-background"
+            className="purple-bg"
           >
             <Space direction="vertical" size={42}>
               <Space direction="horizontal">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Input, AutoComplete } from 'antd';
-import './currencySelect.css';
+import './index.scss';
 import { DownOutlined } from '@ant-design/icons';
 
 export const fiatCurrencies = [
@@ -221,7 +221,7 @@ function CurrencySelect({ cryptoCurrencies, onSelect, currentCoin }) {
   };
 
   return (
-    <div>
+    <div className="currency-select">
       <AutoComplete
         dropdownClassName="certain-category-search-dropdown"
         style={{ width: '100%' }}

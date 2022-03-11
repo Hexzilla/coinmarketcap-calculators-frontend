@@ -19,3 +19,12 @@
 .certain-category-search-dropdown .ant-select-dropdown-menu {
   max-height: 300px;
 }
+
+.ant-select-focused {
+  border-color: #78067a!important;
+  box-shadow: 0 0 0 2px rgba(148, 63, 165, 0.2)!important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #E3D3EF!important;;
+}

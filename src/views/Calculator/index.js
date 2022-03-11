@@ -128,6 +128,7 @@ function Calculator() {
             </Space>
           </Col>
         </Row>
+
         <div
           id="grid-bg"
           className="grid-bg"
@@ -179,6 +180,7 @@ function Calculator() {
                   currentCoin={outputCoin}
                 ></CurrencySelect>
               </Space>
+
               <Space direction="vertical" size="small">
                 <div flex="auto" align="middle">
                   <div className="price-title">{amount ? amount : "-"}</div>
@@ -203,6 +205,7 @@ function Calculator() {
             </Col>
           </Row>
         </div>
+        
         <Row className="my-2 pt-2">
           <Col
             flex="auto"
