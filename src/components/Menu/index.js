@@ -16,21 +16,21 @@ const MainLayout = ({ children }) => {
       selectedKeys={[current]}
       className="menu-wapper"
     >
-      <Menu.Item key="cryptocurrency" className="submenu-text-2">
+      <Menu.Item className="submenu-item" key="cryptocurrency">
         <NavLink to="/cryptocurrency">
           <div className="submenu-text">
             Cryptocurrency Conversion Calculator
           </div>
         </NavLink>
       </Menu.Item>
-      <Menu.Item key="profit-loss-calculator">
+      <Menu.Item className="submenu-item" key="profit-loss-calculator">
         <NavLink to="/profit-loss-calculator">
           <div className="submenu-text">
             Profit Loss Calculator
           </div>
         </NavLink>
       </Menu.Item>
-      <Menu.Item key="crypto-profit-calculator">
+      <Menu.Item className="submenu-item" key="crypto-profit-calculator">
         <NavLink to="/crypto-profit-calculator">
           <div className="submenu-text">
             Crypto Profit Calculator

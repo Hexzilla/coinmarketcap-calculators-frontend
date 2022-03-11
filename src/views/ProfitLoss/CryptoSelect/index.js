@@ -1,6 +1,6 @@
 import React from "react";
 import { Space, Dropdown, Menu } from "antd";
-import "./index.css";
+import "./index.scss";
 
 export const fiatCurrencies = [
   { id: 2781, name: 'United States Dollars "$"', symbol: "USD" },
@@ -123,7 +123,7 @@ function CryptoSelect({ onSelect, currentCoin }) {
   const menu = <Menu className="crypto-menu" onClick={onMenuClick}>{menus}</Menu>;
 
   return (
-    <div>
+    <div className="crypto-select-wrapper">
       <Dropdown overlay={menu}>
         <div>
           <Space direction="vertical" style={{ position: "relative" }}>

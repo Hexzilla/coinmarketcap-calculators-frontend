@@ -16,7 +16,7 @@
     padding: 0 14px!important;
   }
 
-  .ant-dropdown-open,
+  .ant-dropdown-link.ant-dropdown-open,
   .ant-dropdown-link:hover {
     color: #7a569e;
     background-color: #f7f8f8;
@@ -87,9 +87,9 @@
     padding: 4px;
   }
 
-  .ant-dropdown-menu-item-selected, .ant-dropdown-menu-submenu-title-selected {
-    color: black!important;
-    background-color: white;
+  .ant-dropdown-menu-item-selected.submenu-item {
+    color: #7a569e!important;
+    background-color: #f7f8f8;
   }
 }
 

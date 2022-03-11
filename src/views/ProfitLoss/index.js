@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import domtoimage from "dom-to-image";
 import { Layout, Row, Col, InputNumber, Space, Tooltip } from "antd";
-import "./index.css";
+import "./index.scss";
 import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
@@ -30,16 +30,6 @@ function ProfitLoss() {
   useEffect(() => {
     if (!loading) {
       setLoading(true);
-      // fetch(
-      //   "https://api.coinmarketcap.com/data-api/v3/map/all?cryptoAux=is_active,status&exchangeAux=is_active,status&limit=10000&listing_status=active,untracked&start=1"
-      // )
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     const currencies = data.data.cryptoCurrencyMap.filter(
-      //       (i) => i.is_active === 1
-      //     );
-      //     //setCryptoCurrencies(currencies);
-      //   });
     }
     setAmount(1)
     setOutputCoin(fiatCurrencies[0])
@@ -157,7 +147,7 @@ function ProfitLoss() {
   };
 
   return (
-    <Layout className="mainLayout">
+    <Layout className="profitloss-page">
       <Content
         className="content"
         style={{ backgroundImage: `url(/images/Peach_Background.jpg)` }}
