@@ -2,16 +2,11 @@
   min-height: 100%;
 }
 
-.content {
+.profit-content {
   background-color: #afa2cf;
 }
 
-.rotate {
-  background-color: transparent;
-  transform: rotate(90deg);
-}
-
-.background-wrapper {
+.profit-background {
   background-color: #8053a1;
   padding: 20px;
   background-image: linear-gradient(to bottom, #8053a1 50%, White 50%);

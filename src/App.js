@@ -23,10 +23,10 @@ function App() {
           <Route path="/cryptocurrency">
             <Calculator />
           </Route>
-          <Route path="/profitloss">
+          <Route path="/profit-loss-calculator">
             <ProfitLoss />
           </Route>
-          <Route path="/profit">
+          <Route path="/crypto-profit-calculator">
             <ProfitCalculator />
           </Route>
           <Route path="/login">

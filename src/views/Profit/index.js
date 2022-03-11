@@ -117,38 +117,15 @@ function ProfitCalculator() {
     
   }, [investPrice, initPrice, sellPrice, investFee, exitFee, inputCoin]);
 
-  const titleBold = {
-    color: "#440645",
-  };
-
-  //const onSelectCoin = () => {};
-
-  const onSelectInputCoin = (currency) => {
-    setInputCoin(currency);
-  };
-
   const onRefresh = () => {
     if (inputCoin && outputCoin && amount !== 0) {
       priceConversion(inputCoin.id, outputCoin.id, amount);
     }
   };
 
-  const onDownload = () => {
-    var filename = `${inputCoin.symbol}-${outputCoin.symbol}.JPG`;
-    var wrapper = document.getElementById("background-wrapper");
-    domtoimage
-      .toJpeg(wrapper, { height: 500, bgcolor: "#FFFFFF" })
-      .then(function (dataUrl) {
-        var link = document.createElement("a");
-        link.download = filename;
-        link.href = dataUrl;
-        link.click();
-      });
-  };
-
   return (
     <Layout className="mainLayout">
-      <Content className="content">
+      <Content className="profit-content">
         <Row className="px-3">
           <Col
             xl={{ span: 14, offset: 5 }}
@@ -172,7 +149,7 @@ function ProfitCalculator() {
             xl={{ span: 14, offset: 5 }}
             flex="auto"
             align="middle"
-            className="background-wrapper"
+            className="profit-background"
           >
             <Space direction="vertical" size={42}>
               <Space direction="horizontal">

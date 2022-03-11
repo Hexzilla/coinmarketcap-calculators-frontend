@@ -23,9 +23,16 @@ const MainLayout = ({ children }) => {
         </NavLink>
       </Menu.Item>
       <Menu.Item key="profitloss">
-        <NavLink to="/profitloss">
+        <NavLink to="/profit-loss-calculator">
           <div className="menuItem submenu">
             Profit Loss Calculator
+          </div>
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item key="profitloss">
+        <NavLink to="/crypto-profit-calculator">
+          <div className="menuItem submenu">
+            Crypto Profit Calculator
           </div>
         </NavLink>
       </Menu.Item>

@@ -6,11 +6,6 @@
   background-size: 100% 100%;
 }
 
-.rotate {
-  background-color: transparent;
-  transform: rotate(90deg);
-}
-
 .background-wrapper {
   background-position: center;
   background-repeat: no-repeat;
