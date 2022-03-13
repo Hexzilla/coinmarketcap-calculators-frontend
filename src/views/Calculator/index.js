@@ -21,9 +21,7 @@ function Calculator() {
   useEffect(() => {
     if (!loading) {
       setLoading(true);
-      fetch(
-        "https://api.coinmarketcap.com/data-api/v3/map/all?cryptoAux=is_active,status&exchangeAux=is_active,status&limit=10000&listing_status=active,untracked&start=1"
-      )
+      fetch("https://api.coinmarketcap.com/data-api/v3/map/all?cryptoAux=is_active,status&exchangeAux=is_active,status&limit=10000&listing_status=active,untracked&start=1")
         .then((response) => response.json())
         .then((data) => {
           const currencies = data.data.cryptoCurrencyMap.filter(
@@ -37,9 +35,7 @@ function Calculator() {
   }, [loading]);
 
   const priceConversion = (id, convertId, amount) => {
-    fetch(
-      `https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=${amount}&convert_id=${convertId}&id=${id}`
-    )
+    fetch(`https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=${amount}&convert_id=${convertId}&id=${id}`)
       .then((response) => response.json())
       .then(({ data }) => {
         const quotes = data?.quote;

@@ -1,14 +1,13 @@
 import React from "react";
 import { Select, Space } from "antd";
+import moment from 'moment';
 import "./index.scss";
 
 const { Option } = Select;
 
-const currentYear = () => new Date().getFullYear();
-
 const getYears = () => {
   const result = []
-  for (let i = currentYear(); i >= 2010; i--) {
+  for (let i = moment().year(); i >= 2010; i--) {
     result.push(i);
   }
   return result;
@@ -22,9 +21,25 @@ const monthNames = [
 const SelectDate = ({ date, setDate }) => {
   const dayList = () => {
     const result = []
-    const max = 31;
-    for (let i = 1; i <= max; i++) {
+    let maxDate = moment(date.moment).endOf('month').date();
+    if (moment().diff(date.moment, 'days') === 0) {
+      maxDate = moment().date();
+    }
+    for (let i = 1; i <= maxDate; i++) {
       result.push(i);
+    }
+    return result;
+  }
+
+  const monthList = () => {
+    const result = []
+    let months = monthNames.length;
+    if (moment().diff(date.moment, 'years') === 0) {
+      months = moment().month();
+    }
+    console.log("months~~~~~~~~~", months)
+    for (let i = 0; i <= months; i++) {
+      result.push(monthNames[i]);
     }
     return result;
   }
@@ -47,15 +62,15 @@ const SelectDate = ({ date, setDate }) => {
         style={{ width: '100%' }}
         onChange={value => setDate('month', value)}
       >
-        { monthNames.map((month, index) => (
-          <Option key={index} value={month}>{month}</Option>
+        { monthList().map((name, index) => (
+          <Option key={index} value={index}>{name}</Option>
         ))}
       </Select>
       <Select
         defaultValue={date.day}
         size="large"
         style={{ width: '100%' }}
-        onChange={value => setDate('dayf', value)}
+        onChange={value => setDate('day', value)}
       >
         { dayList().map((day, index) => (
           <Option key={index} value={day}>{day}</Option>
