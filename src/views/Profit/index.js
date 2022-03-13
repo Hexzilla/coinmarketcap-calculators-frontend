@@ -76,29 +76,42 @@ const ProfitCalculator = () => {
               />
             </div>
 
-            <div className="row-item">
-              <div className="item-title">Amount invested</div>
-              <InputNumber
-                min={1}
-                placeholder="Enter Amount to Convert"
-                style={{ width: "50%" }}
-                size="large"
-              />
-            </div>
+            <Row>
+              <Col span="12">
+                <div className="row-item">
+                  <div className="item-title">Amount invested</div>
+                  <InputNumber
+                    min={1}
+                    placeholder="Enter Amount to Convert"
+                    className="w-100"
+                    size="large"
+                  />
+                </div>
 
-            <div className="row-item">
-              <div className="item-title">Crypto</div>
-              <Select
-                defaultValue={coinName}
-                size="large"
-                style={{ width: '50%' }}
-                onChange={setCoinName}
-              >
-                { cryptoList.map((coinName, index) => (
-                  <Option key={index} value={coinName}>{coinName}</Option>
-                ))}
-              </Select>
-            </div>
+                <div className="row-item">
+                  <div className="item-title">Crypto</div>
+                  <Select
+                    defaultValue={coinName}
+                    size="large"
+                    className="w-100"
+                    onChange={setCoinName}
+                  >
+                    { cryptoList.map((coinName, index) => (
+                      <Option key={index} value={coinName}>{coinName}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </Col>
+              <Col span="12">
+                <div className="result-container">
+                  <div className="total-profit">
+                    Total Profit
+                    <br/>
+                    <span className="profit-value">$950.0</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
 
             <div className="row-item">
               <Button type="primary" size="large" block className="calc-button">Calculate</Button>
