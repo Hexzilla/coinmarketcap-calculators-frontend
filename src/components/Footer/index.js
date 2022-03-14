@@ -107,13 +107,13 @@ const Footer = () => {
           align="left"
         >
           <div className="features-title">Features of Elafaki.com</div>
-          <NavLink to="/cryptocurrency">
+          <NavLink to="/cryptocurrencyconversioncalculator">
             <div className="features-link">Cryptocurrency Conversion Calculator</div>
           </NavLink>
-          <NavLink to="/profitloss">
+          <NavLink to="/profitlosscalculator">
             <div className="features-link">Crypto Profit and Loss Calculator</div>
           </NavLink>
-          <NavLink to="/nftprofit">
+          <NavLink to="/cryptoprofitcalculator">
             <div className="features-link">NFT Profit Calculator</div>
           </NavLink>
         </Col>
