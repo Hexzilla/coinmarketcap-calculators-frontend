@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Layout, Row, Col, InputNumber, Space, Button, Select } from "antd";
 import moment from 'moment'
 import "./index.scss";
@@ -13,96 +13,115 @@ export const cryptoList = [
     "id": 1,
     "name": "Bitcoin",
     "symbol": "BTC",
+    "key": "1_btc",
   },
   {
-      "id": 1027,
-      "name": "Ethereum",
-      "symbol": "ETH",
+    "id": 1027,
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "key": "2_eth",
   },
   {
     "id": 74,
     "name": "Dogecoin",
     "symbol": "DOGE",
+    "key": "3_doge",
   },
   {
     "id": 1839,
     "name": "BNB",
     "symbol": "BNB",
+    "key": "4_bnb",
   },
   {
     "id": 2,
     "name": "Litecoin",
     "symbol": "LTC",
+    "key": "5_ltc",
   },
   {
     "id": 2010,
     "name": "Cardano",
     "symbol": "ADA",
+    "key": "6_ada",
   },
   {
     "id": 52,
     "name": "XRP",
     "symbol": "XRP",
+    "key": "7_xrp",
   },
   {
     "id": 6636,
     "name": "Polkadot",
     "symbol": "DOT",
+    "key": "8_dot",
   },
   {
     "id": 1831,
     "name": "Bitcoin Cash",
     "symbol": "BCH",
+    "key": "9_bch",
   },
   {
     "id": 4687,
     "name": "Binance USD",
     "symbol": "BUSD",
+    "key": "10_busd",
   },
   {
     "id": 4943,
     "name": "Dai",
     "symbol": "DAI",
+    "key": "11_dai",
   },
   {
     "id": 1321,
     "name": "Ethereum Classic",
     "symbol": "ETC",
+    "key": "12_etc",
   },
   {
     "id": 8916,
     "name": "Internet Computer",
     "symbol": "ICP",
+    "key": "13_icp",
   },
   {
     "id": 3408,
     "name": "USD Coin",
     "symbol": "USDC",
+    "key": "14_usdc",
   },
   {
     "id": 1975,
     "name": "Chainlink",
     "symbol": "LINK",
+    "key": "16_link",
   },
   {
     "id": 1958,
     "name": "TRON",
     "symbol": "TRX",
+    "key": "17_trx",
   },
   {
     "id": 7083,
     "name": "Uniswap",
     "symbol": "UNI",
+    "key": "18_uni",
   },
   {
     "id": 825,
     "name": "Tether",
     "symbol": "USDT",
+    "key": "19_usdt",
   },
   {
     "id": 512,
     "name": "Stellar",
     "symbol": "XLM",
+    "key": "20_xlm",
   },
 ]
 
@@ -123,14 +142,15 @@ const padNum = (value) => {
 }
 
 const ProfitCalculator = () => {
+  const [loading, setLoading] = useState(false);
   const [date, setDate] = useState(currentDate());
   const [amount, setAmount] = useState(undefined);
-  const [coinName, setCoinName] = useState(1);
+  const [coinId, setCoinId] = useState(1);
   const [profit, setProfit] = useState(undefined);
-
+  const [priceList, setPriceList] = useState([]);
 
   const getCurrentPrice = useCallback(() => {
-    return fetch(`https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=1&convert_id=2781&id=${coinName}`)
+    return fetch(`https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=1&convert_id=2781&id=${coinId}`)
       .then((response) => response.json())
       .then(({ data }) => {
         const quotes = data?.quote;
@@ -139,22 +159,60 @@ const ProfitCalculator = () => {
           return quote.price;
         }
       })
-  }, [coinName])
+  }, [coinId])
+
+  const getPriceList = (coinId) => {
+    const coin = cryptoList.find(c => c.id === coinId);
+    console.log("coin", coin.key, coin)
+    if (coin) {
+      return fetch(`https://elafaki.com/api/prices?id=${coin.key}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'success') {
+            return data.data;
+          }
+        })
+    }
+  }
+
+  useEffect(() => {
+    console.log("getPriceList");
+    setLoading(true)
+    getPriceList(coinId)
+      .then(items => setPriceList(items))
+      .finally(() => setLoading(false))
+  }, [coinId, setLoading])
 
   const getInitPrice = useCallback(() => {
-    const timeStart = date.moment.unix();
-    const timeEnd = moment(date.moment).add(2, 'days').unix();
+    const startTime = date.moment.unix();
+    console.log("startTime", startTime)
+    if (priceList && priceList.length > 0) {
+      const prices = priceList;
+      console.log("prices", prices.length)
+      if (prices.length <= 0) {
+        return 0;
+      }
 
-    return fetch(`https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=${coinName}&convertId=2781&timeStart=${timeStart}&timeEnd=${timeEnd}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const quotes = data.data.quotes;
-        if (quotes && quotes.length > 0) {
-          const quote = quotes[0].quote;
-          return (quote.high + quote.low) / 2;
+      for (let i in prices) {
+        const [timestamp, price] = prices[i];
+        if (startTime === timestamp) {
+          console.log("found1", timestamp, price)
+          return price;
         }
-      })
-  }, [date, coinName]);
+        if (startTime < timestamp) {
+          if (i === 0) {
+            console.log("found2", timestamp, price)
+            return price;
+          }
+          console.log("found3", timestamp, price)
+          return price;
+        }
+      }
+
+      console.log("found4");
+      return prices[prices.length - 1][1];
+    }
+  }, [date, priceList]);
 
   const handleCalculate = () => {
     if (amount) {
@@ -163,9 +221,7 @@ const ProfitCalculator = () => {
         .then(price => {
           console.log("price", price)
           currentPrice = price;
-          return getInitPrice()
-        })
-        .then(initPrice => {
+          const initPrice = getInitPrice();
           console.log("initPrice", initPrice, currentPrice);
           if (initPrice && currentPrice) {
             const profit = (amount / initPrice) * currentPrice;
@@ -186,6 +242,11 @@ const ProfitCalculator = () => {
       ...updated,
       moment: moment(investDate)
     });
+  }
+
+  const handleChangeCoin = (value) => {
+    setCoinId(value);
+    setProfit(undefined);
   }
 
   return (
@@ -241,10 +302,10 @@ const ProfitCalculator = () => {
                 <div className="row-item">
                   <div className="item-title">Crypto</div>
                   <Select
-                    defaultValue={coinName}
+                    defaultValue={coinId}
                     size="large"
                     className="w-100"
-                    onChange={setCoinName}
+                    onChange={handleChangeCoin}
                   >
                     { cryptoList.map((item, index) => (
                       <Option key={index} value={item.id}>{item.symbol}</Option>
@@ -264,7 +325,7 @@ const ProfitCalculator = () => {
             </Row>
 
             <div className="row-item">
-              <Button type="primary" size="large" block className="calc-button" onClick={handleCalculate}>Calculate</Button>
+              <Button type="primary" size="large" block className="calc-button" disabled={loading} onClick={handleCalculate}>Calculate</Button>
             </div>
           </Col>
         </Row>

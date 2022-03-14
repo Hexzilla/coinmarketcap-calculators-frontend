@@ -37,8 +37,7 @@ const SelectDate = ({ date, setDate }) => {
     if (moment().diff(date.moment, 'years') === 0) {
       months = moment().month();
     }
-    console.log("months~~~~~~~~~", months)
-    for (let i = 0; i <= months; i++) {
+    for (let i = 0; i < months; i++) {
       result.push(monthNames[i]);
     }
     return result;
