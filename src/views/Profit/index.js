@@ -141,6 +141,28 @@ const padNum = (value) => {
   return '' + value;
 }
 
+const formatComma = (value) => {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+const formatNumber = (value) => {
+  const convert = (value) => {
+    if (value >= 1000000000) {
+      return formatComma((value / 1000000000).toFixed(1)) + 'B';
+    }
+    if (value >= 1000000) {
+      return formatComma((value / 1000000).toFixed(1)) + 'M';
+    }
+    return formatComma(value.toFixed(2));
+  }
+
+  const result = convert(value);
+  if (result.length >= 12) {
+    return '> $10B';
+  }
+  return '$' + result;
+}
+
 const ProfitCalculator = () => {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState(currentDate());
@@ -225,7 +247,7 @@ const ProfitCalculator = () => {
           console.log("initPrice", initPrice, currentPrice);
           if (initPrice && currentPrice) {
             const profit = (amount / initPrice) * currentPrice;
-            setProfit(profit.toFixed(2));
+            setProfit(formatNumber(profit));
           }
           else {
             setProfit(undefined);
@@ -318,14 +340,14 @@ const ProfitCalculator = () => {
                   <div className="total-profit">
                     Total Profit
                     <br/>
-                    <span className="profit-value">{profit ? `$${profit}` : '-'}</span>
+                    <span className="profit-value">{profit ? `${profit}` : '-'}</span>
                   </div>
                 </div>
               </Col>
             </Row>
 
             <div className="row-item">
-              <Button type="primary" size="large" block className="calc-button" disabled={loading} onClick={handleCalculate}>Calculate</Button>
+              <Button type="button" size="large" block className="calc-button" onClick={handleCalculate}>Calculate</Button>
             </div>
           </Col>
         </Row>
