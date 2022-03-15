@@ -6,6 +6,7 @@ import CryptoSelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CryptoSelect/index.js";
+import { formatNumber } from "utils";
 
 const { Content } = Layout;
 
@@ -69,50 +70,53 @@ function ProfitLoss() {
 
   useEffect(() => {
     if (!initPrice || isNaN(initPrice)) {
-      setTotalInvestFee('-');
-      setTotalExitFee('-');
-      setTotal('-');
-      setProfitPrice('-');
-      setProfitPercent('-');
+      setTotalInvestFee(undefined);
+      setTotalExitFee(undefined);
+      setTotal(undefined);
+      setProfitPrice(undefined);
+      setProfitPercent(undefined);
       return;
     }
 
-    const investFeePrice = ((investPrice * investFee) / 100).toFixed(2);
+    const investFeePrice = ((investPrice * investFee) / 100);
     if (isNaN(investFeePrice)) {
-      setTotalInvestFee('-');  
+      setTotalInvestFee(undefined);  
     } else {
-      setTotalInvestFee("$" + investFeePrice);
+      console.log("investFeePrice", investFeePrice)
+      setTotalInvestFee(investFeePrice);
     }
 
-    const curTotal = (((investPrice - investFeePrice) * sellPrice) / initPrice).toFixed(2);
+    const curTotal = (((investPrice - investFeePrice) * sellPrice) / initPrice);
 
-    const exitFeePrice = ((curTotal * exitFee) / 100).toFixed(2);
+    const exitFeePrice = ((curTotal * exitFee) / 100);
     if (isNaN(exitFeePrice)) {
-      setTotalExitFee('-')  
+      setTotalExitFee(undefined)  
     } else {
-      setTotalExitFee("$" + exitFeePrice);
+      setTotalExitFee(exitFeePrice);
     }
 
     const total = curTotal - exitFeePrice;
     if (isNaN(total)) {
-      setTotal('-');
+      setTotal(undefined);
     } else {
-      setTotal("$" + total.toFixed(2));
+      setTotal(total);
     }
 
-    const profit = (total - investPrice).toFixed(2);
-    const percent = ((profit / investPrice) * 100).toFixed(2);
+    const profit = (total - investPrice);
+    const percent = ((profit / investPrice) * 100);
 
     if (isNaN(profit)) {
-      setProfitPrice('-');
+      setProfitPrice(undefined);
     } else {
-      setProfitPrice(profit > 0 ? "+$" + profit : "-$" + Math.abs(profit));
+      const profitValue = formatNumber(Math.abs(percent), profit > 0 ? '+$' : '-$');
+      setProfitPrice(profitValue);
     }
 
     if (isNaN(profit) || isNaN(percent)) {
-      setProfitPercent('-');
+      setProfitPercent(undefined);
     } else {
-      setProfitPercent(profit > 0 ? "+" + percent + "%" : "-" + Math.abs(percent) + "%");
+      const percentValue = formatNumber(Math.abs(percent), profit > 0 ? '+' : '-');
+      setProfitPercent(percentValue + '%');
     }
     
   }, [investPrice, initPrice, sellPrice, investFee, exitFee, inputCoin]);
@@ -276,15 +280,15 @@ function ProfitLoss() {
                   </div>
                   <div style={{ lineHeight: `normal` }}>
                     <div className="descStr">Total Investment Fee</div>
-                    <div className="feeValue">{totalInvestFee}</div>
+                    <div className="feeValue">{totalInvestFee ? formatNumber(totalInvestFee) : '-'}</div>
                   </div>
                   <div style={{ lineHeight: `normal` }}>
                     <div className="descStr">Total Exit Fee</div>
-                    <div className="feeValue">{totalExitFee}</div>
+                    <div className="feeValue">{totalExitFee ? formatNumber(totalExitFee) : '-'}</div>
                   </div>
                   <div style={{ marginBottom: `50px`, lineHeight: `normal` }}>
                     <div className="descStr">Total</div>
-                    <div className="feeValue">{total}</div>
+                    <div className="feeValue">{total ? formatNumber(total) : '-'}</div>
                   </div>
                 </Space>
               </div>

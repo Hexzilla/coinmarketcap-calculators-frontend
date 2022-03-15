@@ -3,11 +3,12 @@ const formatComma = (value) => {
 }
 
 export const formatNumber = (value, dollar = '$') => {
+  console.log("formatNumber", value)
   const convert = (value) => {
-    if (value >= 1000000000) {
+    if (Math.abs(value) >= 1000000000) {
       return formatComma((value / 1000000000).toFixed(2)) + 'B';
     }
-    if (value >= 1000000) {
+    if (Math.abs(value) >= 1000000) {
       return formatComma((value / 1000000).toFixed(2)) + 'M';
     }
 
