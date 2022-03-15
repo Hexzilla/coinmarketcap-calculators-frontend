@@ -6,6 +6,7 @@ import CurrencySelect, {
   fiatCurrencies,
   defaultCryptoCurrencies,
 } from "./CurrencySelect/index.js";
+import { formatNumber } from "utils"
 
 const { Content } = Layout;
 
@@ -43,9 +44,9 @@ function Calculator() {
           const quote = quotes[0];
           const price = quote.price;
           if (price >= 1.0) {
-            setConverted(price.toFixed(2));
+            setConverted(formatNumber(price));
           } else {
-            setConverted(price.toFixed(8));
+            setConverted(formatNumber(price));
           }
         }
       });
@@ -179,7 +180,7 @@ function Calculator() {
 
               <Space direction="vertical" size="small">
                 <div flex="auto" align="middle">
-                  <div className="price-title">{amount ? amount : "-"}</div>
+                  <div className="price-title">{amount ? formatNumber(amount) : "-"}</div>
                   {inputCoin ? (
                     <div className="coin-name">{`${inputCoin.name} (${inputCoin.symbol})`}</div>
                   ) : (

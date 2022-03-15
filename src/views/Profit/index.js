@@ -3,6 +3,7 @@ import { Layout, Row, Col, InputNumber, Space, Button, Select } from "antd";
 import moment from 'moment'
 import "./index.scss";
 import SelectDate from "./SelectDate";
+import { formatNumber } from "utils"
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -139,28 +140,6 @@ const padNum = (value) => {
     return `0${value}`;
   }
   return '' + value;
-}
-
-const formatComma = (value) => {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-const formatNumber = (value) => {
-  const convert = (value) => {
-    if (value >= 1000000000) {
-      return formatComma((value / 1000000000).toFixed(1)) + 'B';
-    }
-    if (value >= 1000000) {
-      return formatComma((value / 1000000).toFixed(1)) + 'M';
-    }
-    return formatComma(value.toFixed(2));
-  }
-
-  const result = convert(value);
-  if (result.length >= 12) {
-    return '> $10B';
-  }
-  return '$' + result;
 }
 
 const ProfitCalculator = () => {
