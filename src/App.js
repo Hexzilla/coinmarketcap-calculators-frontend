@@ -7,6 +7,7 @@ import Menu from './components/Menu'
 import Calculator from "./views/Calculator"
 import Login from "./views/Login"
 import Signup from "./views/Signup"
+import Subscription from 'views/Subscription'
 
 //const Home = lazy(() => import('./views/Home'))
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Signup />
+          </Route>
+          <Route path="/subscription">
+            <Subscription/>
           </Route>
         </Switch>
       </Menu>
