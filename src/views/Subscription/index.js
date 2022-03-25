@@ -1,8 +1,11 @@
 import React from 'react';
 import { Col, Layout, Radio, Row, Slider } from 'antd';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { PAYPAL } from 'utils/constants'
 import { Content } from 'antd/lib/layout/layout';
+import PlanCard from './PlanCard';
+import { Payment } from './Payment';
 import './index.scss';
-import SubscriptionCard from './Card/card';
 
 const pairs = [
   { user: "1 user", slider: 1},
@@ -45,10 +48,8 @@ const Subscription = () => {
     <Layout className='subscription-page'>
       <Content className='content'>
         <Row className="px-3 card-content" style={{width: 1180}}>
-          <Col flex="auto"
-              align="middle"
-          >
-            <Row className='subscription'>
+          <Col flex="auto" align="middle">          
+            <Row className='subscription'>              
               <div className='select'>
                 <Row className='billed'>
                   <Radio.Group onChange={methodChange} value={method}>
@@ -66,11 +67,13 @@ const Subscription = () => {
                     <div className='before'></div>
                     <div className='after'></div>
                   </Slider>
-                  <SubscriptionCard user={user} method={method}/>
+                  <PlanCard user={user} method={method}/>
                 </Row>
               </div>
+              <PayPalScriptProvider  options= {{ 'client-id': PAYPAL.CLIENT_ID }}>
+                <Payment />
+              </PayPalScriptProvider>
             </Row>
-
           </Col>
         </Row>
       </Content>

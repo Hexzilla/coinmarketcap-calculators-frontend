@@ -1,8 +1,6 @@
 //import React, { lazy } from 'react'
 import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import { PAYPAL_CLIENT_ID } from './utils/constants'
 import './App.scss'
 import history from './routerHistory'
 import Menu from './components/Menu'
@@ -17,35 +15,33 @@ import Signup from "./views/Signup"
 
 function App() {
   return (
-    <PayPalScriptProvider  options= {{ 'client-id': PAYPAL_CLIENT_ID.clientId }}>
-      <Router history={history}>
-        <Menu>
-          <Switch>
-            <Route path="/" exact>
-              <Calculator />
-            </Route>
-            <Route path="/cryptocurrencyconversioncalculator">
-              <Calculator />
-            </Route>
-            <Route path="/profitlosscalculator">
-              <ProfitLoss />
-            </Route>
-            <Route path="/cryptoprofitcalculator">
-              <ProfitCalculator />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Signup />
-            </Route>
-            <Route path="/subscription">
-              <Subscription/>
-            </Route>
-          </Switch>
-        </Menu>
-      </Router>
-    </PayPalScriptProvider>
+    <Router history={history}>
+      <Menu>
+        <Switch>
+          <Route path="/" exact>
+            <Calculator />
+          </Route>
+          <Route path="/cryptocurrencyconversioncalculator">
+            <Calculator />
+          </Route>
+          <Route path="/profitlosscalculator">
+            <ProfitLoss />
+          </Route>
+          <Route path="/cryptoprofitcalculator">
+            <ProfitCalculator />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Signup />
+          </Route>
+          <Route path="/subscription">
+            <Subscription/>
+          </Route>
+        </Switch>
+      </Menu>
+    </Router>
   );
 }
 

@@ -12,7 +12,7 @@ export const prices = [
 ]
 
 
-const SubscriptionCard = ({ user, method }) => {
+const PlanCard = ({ user, method }) => {
   const [type, setType] = React.useState();
   const [price, setPrice] = React.useState();
   const [classes, setClasses] = React.useState();
@@ -106,4 +106,4 @@ const SubscriptionCard = ({ user, method }) => {
   )
 }
 
-export default SubscriptionCard;
+export default PlanCard;
