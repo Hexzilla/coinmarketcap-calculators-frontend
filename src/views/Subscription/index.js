@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Layout, Radio, Row, Slider } from 'antd';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import { PAYPAL } from 'utils/constants'
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
-import { Payment } from './Payment';
+import { Paypal } from './Paypal';
+import { Stripe } from './Paypal';
 import './index.scss';
 
 const pairs = [
@@ -50,29 +50,8 @@ const Subscription = () => {
         <Row className="px-3 card-content" style={{width: 1180}}>
           <Col flex="auto" align="middle">          
             <Row className='subscription'>              
-              <div className='select'>
-                <Row className='billed'>
-                  <Radio.Group onChange={methodChange} value={method}>
-                    <Radio value="annually">Billed annually - Save 35%</Radio>
-                    <Radio value="monthly">Billed monthly</Radio>
-                  </Radio.Group>
-                </Row>
-                <Row className='userbtn'>
-                  <Radio.Group onChange={usersChange} value={user}>
-                    <Radio value="1 user">1 user</Radio>
-                    <Radio value="3 users">3 users</Radio>
-                    <Radio value="10 users">10 users</Radio>
-                  </Radio.Group>
-                  <Slider onChange={sliderChange} value={slider} min={1} max={3} className='slider' tooltipVisible={false}>
-                    <div className='before'></div>
-                    <div className='after'></div>
-                  </Slider>
-                  <PlanCard user={user} method={method}/>
-                </Row>
-              </div>
-              <PayPalScriptProvider  options= {{ 'client-id': PAYPAL.CLIENT_ID }}>
-                <Payment />
-              </PayPalScriptProvider>
+              <Paypal />
+              <Stripe />
             </Row>
           </Col>
         </Row>
