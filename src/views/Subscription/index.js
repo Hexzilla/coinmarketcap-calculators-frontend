@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Layout, Radio, Row, Slider } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
-import './index.css';
+import './index.scss';
 import SubscriptionCard from './Card/card';
 
 const pairs = [
@@ -9,7 +9,6 @@ const pairs = [
   { user: "3 users", slider: 2},
   { user: "10 users", slider: 3},
 ]
-
 
 const findSlider = (user) => {
   let pair = pairs.find(i => i.user === user);
@@ -27,8 +26,6 @@ const Subscription = () => {
   const [method, setMethod] = React.useState("annually");
   const [user, setUser] = React.useState("1 user");
   const [slider, setSlider] = React.useState("1");
-
-
 
   const methodChange = e => {
     setMethod(e.target.value);

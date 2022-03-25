@@ -1,6 +1,6 @@
 import { Card } from 'antd';
 import React, { useEffect } from 'react';
-import './card.css';
+import './card.scss';
 
 export const prices = [
   {user: "1 user", method: 'monthly', price: 55, type: 'Standard'},
