@@ -13,7 +13,7 @@ import Signup from "./views/Signup"
 
 //const Home = lazy(() => import('./views/Home'))
 
-function App() {
+/*function App() {
   return (
     <Router history={history}>
       <Menu>
@@ -29,6 +29,32 @@ function App() {
           </Route>
           <Route path="/cryptoprofitcalculator">
             <ProfitCalculator />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Signup />
+          </Route>
+          <Route path="/subscription">
+            <Subscription/>
+          </Route>
+        </Switch>
+      </Menu>
+    </Router>
+  );
+}*/
+
+function App() {
+  return (
+    <Router history={history}>
+      <Menu>
+        <Switch>
+          <Route path="/" exact>
+            <Subscription />
+          </Route>
+          <Route path="/cryptocurrencyconversioncalculator">
+            <Calculator />
           </Route>
           <Route path="/login">
             <Login />
