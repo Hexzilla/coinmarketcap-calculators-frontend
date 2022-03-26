@@ -76,13 +76,15 @@ export const Billing = () => {
     });
   };
 
-  const onSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values) => {
+    console.log("onSubmit");
+
     setError('');
     const isStripeLoading = !stripe || !elements;
 
     if (isStripeLoading) {
       // Make sure to disable form submission until Stripe has loaded
-      setSubmitting(false);
+      //setSubmitting(false);
       return;
     }
 
@@ -94,7 +96,7 @@ export const Billing = () => {
           id: product.id,
           quantity: product.quantity
         })),
-        email: values.email
+        email: 'eric@gmail.com'
       });
 
       const { data: { client_secret: clientSecret } } = response;
@@ -115,76 +117,82 @@ export const Billing = () => {
     } catch (err) {
       setError(err.message);
     } finally {
-      setSubmitting(false);
+      //setSubmitting(false);
     }
   };
 
   return (
-    <Formik
-      initialValues={checkoutInitialValues}
-      validate={(values) => validate(checkoutRules, values)}
-      onSubmit={onSubmit}
-    >
-      {({ isSubmitting, errors, touched }) => (
-        // isSubmitting Returns true if submission is in progress
-        // stripe.confirmCardPayment may take several seconds to complete. During that time, this disables the form from being resubmitted and shows a "Submitting..." message
-        // https://jaredpalmer.com/formik/docs/api/formik#issubmitting-boolean
-        <Form>
-          <div className={style.wrapBillingAndCardSection}>
-            <div>
-              <Input
-                label="Name"
-                name="name"
-                placeholder="John Doe"
-                errors={errors}
-                touched={touched}
-              />
-              <Input
-                label="Phone Number"
-                name="phone"
-                type="tel"
-                pattern="[0-9]*"
-                placeholder="0734234234"
-                errors={errors}
-                touched={touched}
-              />
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                placeholder="john.doe@placeholder.com"
-                errors={errors}
-                touched={touched}
-              />
-              <Input
-                label="Address"
-                name="address"
-                type="text"
-                placeholder="206 Fake St."
-                errors={errors}
-                touched={touched}
-              />
+    <>
+      <button onClick={onSubmit}>Submit</button>
+    </>
+  )
 
-              <Input
-                label="Zip"
-                name="zip"
-                type="text"
-                placeholder="162782"
-                errors={errors}
-                touched={touched}
-              />
-            </div>
-            <div>
-              <CardSection
-                stripe={stripe}
-                isSubmitting={isSubmitting}
-                error={error}
-                handleChange={handleCardElementsChange}
-              />
-            </div>
-          </div>
-        </Form>
-      )}
-    </Formik>
-  );
+  // return (
+  //   <Formik
+  //     initialValues={checkoutInitialValues}
+  //     validate={(values) => validate(checkoutRules, values)}
+  //     onSubmit={onSubmit}
+  //   >
+  //     {({ isSubmitting, errors, touched }) => (
+  //       // isSubmitting Returns true if submission is in progress
+  //       // stripe.confirmCardPayment may take several seconds to complete. During that time, this disables the form from being resubmitted and shows a "Submitting..." message
+  //       // https://jaredpalmer.com/formik/docs/api/formik#issubmitting-boolean
+  //       <Form>
+  //         <div className={style.wrapBillingAndCardSection}>
+  //           <div>
+  //             <Input
+  //               label="Name"
+  //               name="name"
+  //               placeholder="John Doe"
+  //               errors={errors}
+  //               touched={touched}
+  //             />
+  //             <Input
+  //               label="Phone Number"
+  //               name="phone"
+  //               type="tel"
+  //               pattern="[0-9]*"
+  //               placeholder="0734234234"
+  //               errors={errors}
+  //               touched={touched}
+  //             />
+  //             <Input
+  //               label="Email"
+  //               name="email"
+  //               type="email"
+  //               placeholder="john.doe@placeholder.com"
+  //               errors={errors}
+  //               touched={touched}
+  //             />
+  //             <Input
+  //               label="Address"
+  //               name="address"
+  //               type="text"
+  //               placeholder="206 Fake St."
+  //               errors={errors}
+  //               touched={touched}
+  //             />
+
+  //             <Input
+  //               label="Zip"
+  //               name="zip"
+  //               type="text"
+  //               placeholder="162782"
+  //               errors={errors}
+  //               touched={touched}
+  //             />
+  //           </div>
+  //           <div>
+  //             <CardSection
+  //               stripe={stripe}
+  //               isSubmitting={isSubmitting}
+  //               error={error}
+  //               handleChange={handleCardElementsChange}
+  //             />
+  //           </div>
+  //         </div>
+  //       </Form>
+  //     )}
+  //   </Formik>
+  // );
 };
