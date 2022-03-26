@@ -1,4 +1,4 @@
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import toast from "react-hot-toast";
 import { PAYPAL } from 'utils/constants'
 
