@@ -17,7 +17,7 @@ export const CheckoutForm = () => {
 
 export function Stripe() {
   const [clientSecret, setClientSecret] = useState('');
-  const [options, setOptions] = useState('');
+  const [options, setOptions] = useState(undefined);
 
   useEffect(() => {
     console.log("useEffect")
@@ -42,8 +42,12 @@ export function Stripe() {
   }, [setClientSecret, setOptions])
 
   return (
-    <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm />
-    </Elements>
-  );
+    <>
+      {options && (
+        <Elements stripe={stripePromise} options={options}>
+          <CheckoutForm />
+        </Elements>
+      )}
+    </>
+  )
 }
