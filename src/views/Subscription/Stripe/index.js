@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {PaymentElement} from '@stripe/react-stripe-js';
@@ -17,23 +17,29 @@ export const CheckoutForm = () => {
 
 export function Stripe() {
   const [clientSecret, setClientSecret] = useState('');
+  const [options, setOptions] = useState('');
 
-  useCallback(() => {
-    fetch("https://elafaki.com/", {
+  useEffect(() => {
+    console.log("useEffect")
+    fetch("https://elafaki.com/api/stripe/secret", {
+      method: 'GET',
       headers: new Headers({
-        'Authorization': '2|0hoiWwdd7bnitHwGXOHdomWrRev2gGSEKrhXHmjU'
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer 2|0hoiWwdd7bnitHwGXOHdomWrRev2gGSEKrhXHmjU'
       })
     })
     .then((response) => response.json())
     .then((data) => {
+      const {intent} = data;
       console.log("data", data);
+      const secret = `${intent.id}_secret_${intent.client_secret}`;
+      setClientSecret(secret);
+      setOptions({ 
+        clientSecret: secret,
+      });
+      console.log("clientSecret", secret)
     });
-  }, [setClientSecret])
-
-  /*const options = {
-    // passing the client secret obtained from the server
-    clientSecret: '1_secret_sk_test_51KhAunKqKcgR6dqiCd3sbrBzP3nw4qFafKTc8T2amK8MndKh6XEl4nm2FXP8oD3vYzwKY7UyaYihl87CwvhHEa4l00U1w4E418',
-  };*/
+  }, [setClientSecret, setOptions])
 
   return (
     <Elements stripe={stripePromise} options={options}>
