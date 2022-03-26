@@ -11,9 +11,7 @@ import Subscription from 'views/Subscription'
 import Login from "./views/Login"
 import Signup from "./views/Signup"
 
-//const Home = lazy(() => import('./views/Home'))
-
-/*function App() {
+function App() {
   return (
     <Router history={history}>
       <Menu>
@@ -43,9 +41,9 @@ import Signup from "./views/Signup"
       </Menu>
     </Router>
   );
-}*/
+}
 
-function App() {
+/*function App() {
   return (
     <Router history={history}>
       <Menu>
@@ -69,6 +67,6 @@ function App() {
       </Menu>
     </Router>
   );
-}
+}*/
 
 export default App;

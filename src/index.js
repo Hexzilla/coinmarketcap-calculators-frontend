@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 import "antd/dist/antd.css";
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Load Stripe
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Elements stripe={stripePromise}>
+      <App />
+    </Elements>
   </React.StrictMode>,
   document.getElementById('root')
 );
