@@ -91,17 +91,19 @@ export const Billing = () => {
     }
 
     try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+
       // Create a payment intent and get a client secret from the server
       // Always decide how much to charge on the server side, a trusted environment, as opposed to the client. This prevents malicious customers from being able to choose their own prices.
       const response = await Axios.post('api/stripe/secret', {
         email: 'eric@gmail.com'
-      });
+      }, config);
+
+      console.log('response', response)
 
       const { data: { client_secret: clientSecret } } = response;
-
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      }
 
       // Use stripe.confirmCardPayment when the customer submits your payment form. When called, it will confirm the PaymentIntent with data you provide and carry out 3DS or other next actions if they are required.
       const cardPayment = await stripe.confirmCardPayment(clientSecret, {
@@ -109,7 +111,7 @@ export const Billing = () => {
           card: elements.getElement(CardNumberElement),
           billing_details: getBillingDetails(values)
         }
-      }, config);
+      });
 
       if (cardPayment.error) {
         setError(cardPayment.error.message);
