@@ -4,7 +4,7 @@ import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
 import { Paypal } from './Paypal';
-import { Stripe } from './Stripe';
+import { Billing } from './Billing';
 import './index.scss';
 
 const pairs = [
@@ -51,7 +51,7 @@ const Subscription = () => {
           <Col flex="auto" align="middle">          
             <Row className='subscription'>              
               <Paypal />
-              <Stripe />
+              <Billing />
             </Row>
           </Col>
         </Row>
