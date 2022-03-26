@@ -91,7 +91,7 @@ export const Billing = () => {
     try {
       // Create a payment intent and get a client secret from the server
       // Always decide how much to charge on the server side, a trusted environment, as opposed to the client. This prevents malicious customers from being able to choose their own prices.
-      const response = await Axios.post('payment/stripe', {
+      const response = await Axios.post('api/payment/stripe', {
         products: cart.products.map((product) => ({
           id: product.id,
           quantity: product.quantity
