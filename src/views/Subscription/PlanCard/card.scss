@@ -1,9 +1,9 @@
 .priceCard {
-  left: 50%;
-  transform: translateX(-50%);
+  // left: 50%;
+  // transform: translateX(-50%);
   margin-top: 50px;
+  width: 100%;
   display: flex;
-  width: 30%;
   margin-right: 15px;
   margin-left: 15px;
   -webkit-box-orient: vertical;
@@ -39,7 +39,7 @@
     letter-spacing: .8px;
     font-weight: 900;
     line-height: 48px;
-  }
+    }
 
   .permonth {
     font-size: 20px;
@@ -58,7 +58,7 @@
     display: flex;
     width: 100%;
     min-height: 52px;
-    margin-top: 32px;
+    //margin-top: 32px;
     margin-bottom: 16px;
     padding-left: 6%;
     -webkit-box-align: center;
@@ -81,21 +81,21 @@
     color: #fff;
   }
 
-  .standard .card-title,
-  .standard .card-price {
+  .premium .card-title,
+  .premium .card-price {
     color: #32009b;
   }
 
-  .standard .button-wide {
+  .premium .button-wide {
     background-color: #32009b;
   }
 
-  .lite .card-title ,
-  .lite .card-price {
+  .standard .card-title ,
+  .standard .card-price {
     color: #6f63f4;
   }
 
-  .lite .button-wide {
+  .standard .button-wide {
     background-color: #6f63f4;
   }
 
@@ -142,11 +142,11 @@
     display: none;
   }
 
-  .standard .standard-features {
+  .premium .premium-features {
     display: block;
   }
 
-  .lite .lite-features {
+  .standard .standard-features {
     display: block;
   }
 
@@ -161,4 +161,18 @@
   .annually .show-annually {
     display: block;
   }
+
 }
+
+@media screen and (max-width: 1000px) {
+  .priceCard {
+    width: 100%;
+  }
+}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+// @media only screen and (min-width: 1200px) {
+//   .priceCard {
+//     flex-direction: column;
+//     width: 30%;
+//   }
+// }

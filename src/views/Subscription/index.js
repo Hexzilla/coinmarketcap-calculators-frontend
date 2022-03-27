@@ -1,11 +1,15 @@
 import React from 'react';
-import { Col, Layout, Radio, Row, Slider } from 'antd';
+import { Col, Layout, Radio, Row, Space, Select, Slider, Menu, Dropdown} from 'antd';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { PAYPAL } from 'utils/constants'
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
-import { Paypal } from './Paypal';
-import { Billing } from './Billing';
+import { Payment } from './Payment';
 import './index.scss';
+import { MenuOutlined, DownOutlined } from '@ant-design/icons';
+import { NavLink } from "react-router-dom";
+
+const { Option } = Select;
 
 const pairs = [
   { user: "1 user", slider: 1},
@@ -29,6 +33,7 @@ const Subscription = () => {
   const [method, setMethod] = React.useState("annually");
   const [user, setUser] = React.useState("1 user");
   const [slider, setSlider] = React.useState("1");
+  const [current, setCurrent] = React.useState("annually");
 
   const methodChange = e => {
     setMethod(e.target.value);
@@ -43,16 +48,58 @@ const Subscription = () => {
     setSlider(e);
     setUser(findUser(e));
   }
+  const menu = (
+    <Menu
+      onClick={(e) => setCurrent(e.key)}
+      selectedKeys={[current]}
+      className="menu-wapper"
+    >
+      <Radio.Group onChange={methodChange} value={method}>
+        <Radio value="annually">Billed annually - Save 35%</Radio>
+        <Radio value="monthly">Billed monthly</Radio>
+      </Radio.Group>
+    </Menu>
+  )
 
   return (
     <Layout className='subscription-page'>
       <Content className='content'>
-        <Row className="px-3 card-content" style={{width: 1180, paddingTop: '20%'}}>
-          <Col flex="auto" align="middle">          
-            <Row className='subscription'>              
-              <Paypal />
-              <Billing />
-            </Row>
+        <Row className="billed">
+          <Radio.Group onChange={methodChange} value={method}>
+            <Radio className="billed-item" value="annually">Billed annually - Save 35%</Radio>
+            <Radio className="billed-item" value="monthly">Billed monthly</Radio>
+          </Radio.Group>
+        </Row>
+        <Row className='userbtn'>
+          <Radio.Group onChange={usersChange} value={user}>
+            <Radio value="1 user">1 user</Radio>
+            <Radio value="3 users">3 users</Radio>
+            <Radio value="10 users">10 users</Radio>
+          </Radio.Group>
+          <Slider onChange={sliderChange} value={slider} min={1} max={3} className='slider' tooltipVisible={false}>
+            <div className='before'></div>
+            <div className='after'></div>
+          </Slider>
+        </Row> 
+        <Row className='userbtn-mobile'>
+          <Select defaultValue="lucy" style={{ width: 120 }}>
+            <Option value="jack">Jack</Option>
+            <Option value="lucy">Lucy</Option>
+            <Option value="disabled" disabled>
+              Disabled
+            </Option>
+            <Option value="Yiminghe">yiminghe</Option>
+          </Select>
+        </Row> 
+        <Row className="px-3 card-content" >
+          <Col sm={{ span: 24 }} lg={{ span: 6, offset: 0 }}>
+            <PlanCard user={user} method={method} type={"Standard"}/>
+          </Col>
+          <Col sm={{ span: 24 }} lg={{ span: 6, offset: 2 }}>
+              <PlanCard user={user} method={method} type={"Premium"}/>
+          </Col>
+          <Col sm={{ span: 24 }} lg={{ span: 6, offset: 2 }}>
+            <PlanCard user={user} method={method} type={"Enterprise"}/>
           </Col>
         </Row>
       </Content>
