@@ -8,6 +8,7 @@ import Calculator from "./views/Calculator"
 import ProfitLoss from "./views/ProfitLoss"
 import ProfitCalculator from 'views/Profit'
 import Subscription from 'views/Subscription'
+import Billing from 'views/Billing/Billing'
 import Login from "./views/Login"
 import Signup from "./views/Signup"
 
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/subscription">
             <Subscription/>
+          </Route>
+          <Route path="/billing">
+            <Billing/>
           </Route>
         </Switch>
       </Menu>
