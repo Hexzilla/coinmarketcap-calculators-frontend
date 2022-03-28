@@ -1,5 +1,6 @@
 import { Card } from 'antd';
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './card.scss';
 
 export const subscriptions = [
@@ -70,6 +71,13 @@ const PlanCard = ({ user, method, type}) => {
     return classes;
   }
 
+  const data = {
+    type: type,
+    method: method,
+    price: findPrice()
+  };
+
+  console.log("data",data)  
   return (
     <Card className='priceCard'>
       <div className='card-inner'>
@@ -81,8 +89,7 @@ const PlanCard = ({ user, method, type}) => {
             <div className='permonth'> /month</div>
           </div>
           <div className='show-annually'>Billed annually</div>          
-          <a href="#" className='button-wide'>Purchage</a>
-          <div className='card-text'>No credit card required</div>
+          <Link to={{pathname: '/billing', state: data}} className='button-wide'>Start Free Trial</Link>
         </div>
         <div className='card-features'>
           <div className='features standard-features'>

@@ -37,10 +37,18 @@ const Subscription = () => {
     setMethod(e.target.value);
   };
 
+  const methodChange1 = e => {
+    setMethod(e);
+  }
+
   const usersChange = e => {
     setUser(e.target.value);
     setSlider(findSlider(e.target.value));
   };
+
+  const usersChange1 = e => {
+    setUser(e);
+  }
 
   const sliderChange = e => {
     setSlider(e);
@@ -78,25 +86,28 @@ const Subscription = () => {
             <div className='before'></div>
             <div className='after'></div>
           </Slider>
-        </Row> 
+        </Row>
+        <Row className='billed-mobile'>
+          <Select defaultValue="annually" onChange={methodChange1} value={method}>
+            <Option value="annually">Billed annually - Save 35%</Option>
+            <Option value="monthly">Billed monthly</Option>
+          </Select>
+        </Row>
         <Row className='userbtn-mobile'>
-          <Select defaultValue="lucy" style={{ width: 120 }}>
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="disabled" disabled>
-              Disabled
-            </Option>
-            <Option value="Yiminghe">yiminghe</Option>
+          <Select defaultValue="1 user" onChange={usersChange1} value={user}>
+            <Option value="1 user">1 user</Option>
+            <Option value="3 users">3 users</Option>
+            <Option value="10 users">10 users</Option>
           </Select>
         </Row> 
-        <Row className="px-3 card-content" >
-          <Col sm={{ span: 24 }} lg={{ span: 6, offset: 0 }}>
+        <Row className="px-3 mt-5 card-content" >
+          <Col sm={{ span: 24 }} lg={{ span: 7, offset: 0 }}>
             <PlanCard user={user} method={method} type={"Standard"}/>
           </Col>
-          <Col sm={{ span: 24 }} lg={{ span: 6, offset: 2 }}>
+          <Col sm={{ span: 24 }} lg={{ span: 7, offset: 1 }}>
               <PlanCard user={user} method={method} type={"Premium"}/>
           </Col>
-          <Col sm={{ span: 24 }} lg={{ span: 6, offset: 2 }}>
+          <Col sm={{ span: 24 }} lg={{ span: 7, offset: 1 }}>
             <PlanCard user={user} method={method} type={"Enterprise"}/>
           </Col>
         </Row>
