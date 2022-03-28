@@ -228,10 +228,8 @@ const ProfitCalculator = () => {
     }
 
     const startTime = date.moment.unix();
-    console.log("startTime", startTime)
     if (priceList && priceList.length > 0) {
       const prices = priceList;
-      console.log("prices", prices.length)
       if (prices.length <= 0) {
         return 0;
       }
@@ -239,20 +237,16 @@ const ProfitCalculator = () => {
       for (let i in prices) {
         const [timestamp, price] = prices[i];
         if (startTime === timestamp) {
-          console.log("found1", timestamp, price)
           return price;
         }
         if (startTime < timestamp) {
           if (i === 0) {
-            console.log("found2", timestamp, price)
             return price;
           }
-          console.log("found3", timestamp, price)
           return price;
         }
       }
 
-      console.log("found4");
       return prices[prices.length - 1][1];
     }
   }, [loading, date, priceList]);
@@ -262,7 +256,6 @@ const ProfitCalculator = () => {
       let currentPrice = 0;
       getCurrentPrice()
         .then(price => {
-          console.log("price", price)
           currentPrice = price;
           const initPrice = getInitPrice();
           console.log("initPrice", initPrice, currentPrice);
