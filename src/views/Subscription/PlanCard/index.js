@@ -1,35 +1,9 @@
 import { Card } from 'antd';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './card.scss';
 
 export const subscriptions = [
-//   {
-//     name: 'Standard',
-//     users: 1,
-//     price: 55,
-//     priceYearly: 35,
-//   },
-//   {
-//     name: 'Premium',
-//     users: 1,
-//     price: 55,
-//     priceYearly: 35,
-//   },
-//   {
-//     name: 'Enterprise',
-//     users: 1,
-//     price: 55,
-//     priceYearly: 35,
-//   },
-
-  // {user: "1 user", method: 'monthly', price: 55, type: 'Standard'},
-  // {user: "1 user", method: 'annually', price: 35, type: "Standard"},
-  // {user: "3 users", method: 'monthly', price: 69, type: 'Premium'},
-  // {user: "3 users", method: 'annually', price: 45, type: 'Premium'},
-  // {user: "10 users", method: 'monthly', price: 99, type: "Enterprise"},
-  // {user: "10 users", method: 'annually', price: 65, type: "Enterprise"},
-
   {user: "1 user", method: 'monthly', price: 55, type: 'Standard'},
   {user: "1 user", method: 'monthly', price: 69, type: "Premium"},
   {user: "1 user", method: 'monthly', price: 99, type: "Enterprise"},
@@ -66,7 +40,7 @@ const PlanCard = ({ user, method, type}) => {
   // }
   
   const findClass = () => {
-    let item = subscriptions.find(it => (it.user === user && it.method === method));
+    //let item = subscriptions.find(it => (it.user === user && it.method === method));
     let classes = method + " " + type.toLowerCase();
     return classes;
   }

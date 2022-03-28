@@ -223,6 +223,10 @@ const ProfitCalculator = () => {
   }, [coinId, setLoading])
 
   const getInitPrice = useCallback(() => {
+    if (loading) { //TODO
+      return 0;
+    }
+
     const startTime = date.moment.unix();
     console.log("startTime", startTime)
     if (priceList && priceList.length > 0) {
@@ -251,7 +255,7 @@ const ProfitCalculator = () => {
       console.log("found4");
       return prices[prices.length - 1][1];
     }
-  }, [date, priceList]);
+  }, [loading, date, priceList]);
 
   const handleCalculate = () => {
     if (amount) {
