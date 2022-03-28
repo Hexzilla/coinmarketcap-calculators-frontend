@@ -13,6 +13,8 @@ import "./Billing.scss";
 
 const { TabPane } = Tabs;
 
+const token ='eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NWU4YjFjOC0xNjAwLTQ4YjMtOTlkYi0yNWViYmFjYzVjNzUiLCJqdGkiOiIyZWRjMTM1ZDNhYjE4NGZlN2Y4MjM0ZmRmZTc5NWFiMGU3NmJiZDI0M2ZjYzI5YTRhMTc4YTY2MzAyNDIxYWNmODVlYTBlMjM5ZmI3NmZiNiIsImlhdCI6MTY0ODI3MDc3OS4xNzAzNTQsIm5iZiI6MTY0ODI3MDc3OS4xNzAzNTksImV4cCI6MTY3OTgwNjc3OS4xMzc4NjEsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.iutA87AGo-0fg1H37VHn7pF9sL-AGJNlD1FlDxmlubQ3KqG93qYhLgIllUAC-9oykT7nJ_5I1Kasj7_nAsfxbUIj7qGUgotOJ7HBVZS9A_AWEry0oiSyOXONv1cGs1wOJsOiUkvtQLuBpE6ihpZkKDepU-2WOCBKVlCJAlQrF4mLYrZXUc3UZEkeunuTUp7FnArbDMJrSu9B8iUeLYE9D2MaR6YNdAo4Up5XLLNJEkjdYFvNJeJR84tolE7cZBNIBp_0sXOJTOu7DJxGC1IzHianO_7eReRe6OkJDPuUNPxy4BAo0OLBeIuy13kYWZUv7FS2LTEGjuZzm-AqT6n4YFJplN2hhFvcTchcJglIZbvBTm9x23TBGTyRgiFA4frmjaTO3Ii8vJzxeHfjyOPXDJgUWqSeyzQxQg-YvDvJybDJGBDSbKY_n5eX609jmOJdBJTFyN_MpPextrSI70FGBNwM6jQ4AMJd0gsNpm-vFK_uTDFXUDtlN63TQV7VtSjutb_CFwi-kgCMbE-kMD0WPc1TZkmHuzlo4OGY4wENpzmkfuMP_gD4F4sO5IxKGVhktzAMDcYKVrGdU-nApeUVkKgbTuhcMvyrMGCjBBlQbMOxEhd6dsbdc2iZiQizvGd0S6X6KvNrvKkKdcwEUi3FBoRfiyYODoEDC_Ie1-rnqUY';
+
 const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
@@ -36,7 +38,7 @@ const Billing = (props) => {
 
   const location = useLocation();
   const state = location.state;
-  console.log("state", state);
+  //console.log("state", state);
 
   const cart = { products: [] }; //useSelector((state) => state.cart);
   const [error, setError] = useState("");
@@ -46,9 +48,9 @@ const Billing = (props) => {
   const getBillingDetails = (values) => {
     return {
       address: {
-        city: "",
-        country: "",
-        state: "",
+        city: "Singapore",
+        country: "SG",
+        state: "Singapore",
         line1: values.address,
         line2: null,
         postal_code: values.zip,
@@ -75,13 +77,13 @@ const Billing = (props) => {
     });
   };
 
-  const onSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values) => {
     console.log("onSubmit", values);
     setError("");
     const isStripeLoading = !stripe || !elements;
 
     if (isStripeLoading) {
-      setSubmitting(false);
+      //setSubmitting(false);
       return;
     }
 
@@ -92,16 +94,15 @@ const Billing = (props) => {
       const paymentMethod = await stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
-        billing_details: {
-          name: values.name,
-          email: values.email,
-          address: values.address,
-          phone: values.phone,
-        }
+        billing_details: getBillingDetails(values)
       })
 
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+
       const response = await Axios.post('api/stripe/secret', {
-        amount: 100,
+        amount: state.price,
         paymentMethodId: paymentMethod.id,
       }, config);
 
@@ -132,7 +133,7 @@ const Billing = (props) => {
     } catch (err) {
       setError(err.message);
     } finally {
-      setSubmitting(false);
+      //setSubmitting(false);
     }
   };
 
@@ -155,12 +156,14 @@ const Billing = (props) => {
       <div className="type">{state.type}</div>
       <div className="method">{state.method}</div>
       <div className="price">$ {state.price}</div>
+
       <Radio.Group defaultValue="stripe">
         <Radio.Button value="stripe">Stripe</Radio.Button>
         <Radio.Button value="paypal">Paypal</Radio.Button>
       </Radio.Group>
+      
       <div className="stripe">
-        <Form onSubmit={onSubmit} {...layout} size={"large"}>
+        <Form onFinish={onSubmit} {...layout} size={"large"}>
           <Form.Item label="Name" name="name">
             <Input placeholder="Username" />
           </Form.Item>
