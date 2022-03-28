@@ -107,29 +107,6 @@ const Billing = (props) => {
       }, config);
 
       console.log('response', response)
-
-      const {
-        data: { client_secret: clientSecret },
-      } = await Axios.post("payment/secret", {
-        products: cart.products.map((product) => ({
-          id: product.id,
-          quantity: product.quantity,
-        })),
-        email: values.email,
-      });
-
-      // const cardPayment = await stripe.confirmCardPayment(clientSecret, {
-      //   payment_method: {
-      //     card: elements.getElement(CardNumberElement),
-      //     billing_details: getBillingDetails(values)
-      //   }
-      // });
-
-      // if (cardPayment.error) {
-      //   setError(cardPayment.error.message);
-      // } else if (cardPayment.paymentIntent.status === 'succeeded') {
-      //   afterPaymentSuccess(cardPayment.paymentIntent);
-      // }
     } catch (err) {
       setError(err.message);
     } finally {
