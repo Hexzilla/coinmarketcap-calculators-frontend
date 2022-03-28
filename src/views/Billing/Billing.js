@@ -3,9 +3,7 @@ import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useS
 import { Button, Col, Form, Input, Row } from "antd"
 import { Axios } from "axios";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { clearCart } from "store/actions/cartAction";
 import "./Billing.scss";
 
 const CARD_ELEMENT_OPTIONS = {
@@ -31,7 +29,7 @@ const Billing = () => {
   // const stripe = useStripe();
   // const elements = useElements();
 
-  const cart = useSelector((state) => state.cart);
+  const cart = { products: [] }; //useSelector((state) => state.cart);
   const [error, setError] = useState('');
   const history = useHistory();
   // const dispatch = useDispatch();

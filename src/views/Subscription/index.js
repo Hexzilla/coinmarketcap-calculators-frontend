@@ -1,10 +1,8 @@
 import React from 'react';
 import { Col, Layout, Radio, Row, Space, Select, Slider, Menu, Dropdown} from 'antd';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { PAYPAL } from 'utils/constants'
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
-import { Payment } from './Payment';
 import './index.scss';
 import { MenuOutlined, DownOutlined } from '@ant-design/icons';
 import { NavLink } from "react-router-dom";
