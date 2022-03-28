@@ -6,9 +6,10 @@ import "antd/dist/antd.css";
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { STRIPE_PUBLISHABLE_KEY } from './constants/constants';
 
 // Load Stripe
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 ReactDOM.render(
   <React.StrictMode>
