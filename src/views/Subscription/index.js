@@ -1,11 +1,8 @@
 import React from 'react';
-import { Col, Layout, Radio, Row, Space, Select, Slider, Menu, Dropdown} from 'antd';
-import { PAYPAL } from 'utils/constants'
+import { Col, Layout, Radio, Row, Select, Slider, Menu} from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
 import './index.scss';
-import { MenuOutlined, DownOutlined } from '@ant-design/icons';
-import { NavLink } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -54,7 +51,8 @@ const Subscription = () => {
     setSlider(e);
     setUser(findUser(e));
   }
-  const menu = (
+  
+  /*const menu = (
     <Menu
       onClick={(e) => setCurrent(e.key)}
       selectedKeys={[current]}
@@ -65,7 +63,7 @@ const Subscription = () => {
         <Radio value="monthly">Billed monthly</Radio>
       </Radio.Group>
     </Menu>
-  )
+  )*/
 
   return (
     <Layout className='subscription-page'>
