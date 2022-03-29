@@ -37,6 +37,13 @@ const MainLayout = ({ children }) => {
           </div>
         </NavLink>
       </Menu.Item>
+      <Menu.Item className="submenu-item" key="pricing">
+        <NavLink to="/pricing">
+          <div className="submenu-text">
+            Pricing
+          </div>
+        </NavLink>
+      </Menu.Item>
     </Menu>
   )
 
