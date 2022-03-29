@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Layout, Radio, Row, Select, Slider, Menu} from 'antd';
+import { Col, Layout, Radio, Row, Select, Slider} from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
 import './index.scss';
@@ -28,7 +28,7 @@ const Subscription = () => {
   const [method, setMethod] = React.useState("annually");
   const [user, setUser] = React.useState("1 user");
   const [slider, setSlider] = React.useState("1");
-  const [current, setCurrent] = React.useState("annually");
+  //const [current, setCurrent] = React.useState("annually");
 
   const methodChange = e => {
     setMethod(e.target.value);
