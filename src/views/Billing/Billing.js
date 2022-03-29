@@ -7,6 +7,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import toast, { Toaster } from 'react-hot-toast';
 import { Button, Col, Form, Input, Radio, Row } from "antd";
 import { Axios } from "axios";
 import "./Billing.scss";
@@ -105,6 +106,7 @@ const Billing = (props) => {
       }, config);
 
       console.log('response', response)
+      toast('Your payment was successfully processed');
     } catch (err) {
       setError(err.message, error); //TODO
     } finally {
@@ -187,6 +189,10 @@ const Billing = (props) => {
         </Form>
       </div>
       <div className="paypal"></div>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </div>
   );
 };
