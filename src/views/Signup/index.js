@@ -1,15 +1,41 @@
-import React from "react";
-import { Card, Form, Input, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Card, Form, Input, Button, Layout } from "antd";
 import "./signup.css";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "_actions";
 
 const Signup = (props) => {
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  });
+
+  const registering = useSelector(state => state.registration.registering);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.logout());
+  }, []);
   const onFinish = (values) => {
-    console.log("Success:", values);
+    setUser({
+      name: values.username,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.password_confirmation
+    });
+
+    console.log(user);
+    if (user.name && user.email && user.password && user.password_confirmation) {
+      dispatch(userActions.register(user));
+    }
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const layout = {
+    wrapperCol: {span: 24}
+  }
 
   return (
     <Card style={{ width: 500, margin: "10% auto"}}>
@@ -20,15 +46,31 @@ const Signup = (props) => {
       </p>
       <br></br>
       <Form
-        name="basic"
-        layout="vertical"
+
+        name="register"
+        {...layout}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item label="Email">
-          <Input placeholder="e.g john.smith@organization.com" />
+        <Form.Item name="username"  rules={[{required: true,  message: 'Please input your Username!'}]}>
+          <Input placeholder="Username" prefix={<UserOutlined className="site-form-item-icon"/>}/>
+        </Form.Item>
+        <Form.Item name="email" rules={[{type:'email', message: 'The input is not valid Email!'}, {required: true, message: 'Please input your Email!'}]}>
+          <Input placeholder="e.g john.smith@organization.com" prefix={<UserOutlined className="site-form-item-icon"/>} />
+        </Form.Item>
+        <Form.Item name="password" rules={[{required: true, message: 'Please input your password!'}]} hasFeedback>
+          <Input.Password placeholder="Password" prefix={<LockOutlined className="site-form-item-icon"/>}/>
+        </Form.Item>
+        <Form.Item name="password_confirmation" dependencies={['password']} hasFeedback rules={[{required: true, message: 'Please confirm your password!'}, ({ getFieldValue }) => ({
+          validator(_, value) {
+            if (!value || getFieldValue('password') === value) {
+              return Promise.resolve();
+            }
+            return Promise.reject(new Error('The two passwords that you entered do not match!'));
+          },
+        }),]}>
+          <Input.Password placeholder="Password" prefix={<LockOutlined className="site-form-item-icon"/>}/>
         </Form.Item>
         <Form.Item>
           <a className="signup-form-signin" href="/login">
