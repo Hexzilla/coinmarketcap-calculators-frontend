@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Elements} from '@stripe/react-stripe-js';
+import { store } from '_helpers';
 import {loadStripe} from '@stripe/stripe-js';
 import "antd/dist/antd.css";
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { STRIPE_PUBLISHABLE_KEY } from './constants/constants';
+import { Provider } from 'react-redux';
 
 // Load Stripe
 const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Elements stripe={stripePromise}>
       <App />
     </Elements>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
