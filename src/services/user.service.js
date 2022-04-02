@@ -10,7 +10,7 @@ export const userService = {
   delete: _delete,
 };
 
-const BASE_URL = 'https://elafaki.com'; //'http://localhost:8000'
+const BASE_URL = process.env.REACT_APP_SERVER_API;
 
 function login(email, password) {
   const requestOptions = {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Input, Button } from "antd";
-import "./signup.css";
+import "./signup.less";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { userActions } from "actions";
@@ -39,13 +39,18 @@ const Signup = (props) => {
   }
 
   return (
-    <Card style={{ width: 500, margin: "10% auto"}}>
-      <h1>Create Your Account</h1>
-      <br></br>
-      <p>
-        Sign up for a free 14 day trial using your professional email address.
-      </p>
-      <br></br>
+    <Card className="signup">
+      <h1 style={{margin: "0"}}>14 Day Free Trial</h1>
+      <div style={{fontSize: "16px", margin: "0"}}>
+        You can cancel your trial anytime before it ends and no charges will apply.
+      </div>
+      <br/><br/>
+      <div>
+      <Button className="facebook-btn" type="primary" size="large" block> SIGN UP WITH FACEBOOK</Button>
+      </div>
+      <br/>
+      <div style={{fontSize: '16px'}}>via email</div>
+      <br/>
       <Form
 
         name="register"
@@ -53,12 +58,13 @@ const Signup = (props) => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
+        size="large"
       >
         <Form.Item name="username"  rules={[{required: true,  message: 'Please input your Username!'}]}>
           <Input placeholder="Username" prefix={<UserOutlined className="site-form-item-icon"/>}/>
         </Form.Item>
         <Form.Item name="email" rules={[{type:'email', message: 'The input is not valid Email!'}, {required: true, message: 'Please input your Email!'}]}>
-          <Input placeholder="e.g john.smith@organization.com" prefix={<UserOutlined className="site-form-item-icon"/>} />
+          <Input placeholder="Email" prefix={<UserOutlined className="site-form-item-icon"/>} />
         </Form.Item>
         <Form.Item name="password" rules={[{required: true, message: 'Please input your password!'}]} hasFeedback>
           <Input.Password placeholder="Password" prefix={<LockOutlined className="site-form-item-icon"/>}/>
@@ -74,15 +80,9 @@ const Signup = (props) => {
           <Input.Password placeholder="Password" prefix={<LockOutlined className="site-form-item-icon"/>}/>
         </Form.Item>
         <Form.Item>
-          <a className="signup-form-signin" href="/login">
-            Sign In
-          </a>
-          <Form.Item>
-          
-            <Button className="signup-btn" type="primary" htmlType="submit" size='middle' shape="round" >
-              Submit
-            </Button>
-          </Form.Item>
+          <Button className="signup-btn" type="primary" htmlType="submit" block>
+            Sign Up
+          </Button>
         </Form.Item>
       </Form>
     </Card>

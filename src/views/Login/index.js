@@ -1,35 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 //import axios from 'axios';
 import { NavLink } from "react-router-dom";
 import { Card, Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import "./login.css";
+import "./login.less";
+import { useDispatch } from "react-redux";
+import { userActions } from "actions";
+import { useLocation } from "react-router-dom";
 
 const Login = (props) => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
-    // const loginCredentials = {
-    //   email: values.username,
-    //   password: values.password
-    // }
 
-    // axios.post('http://127.0.0.1:8000/api/login', loginCredentials).then((response) => {
-    //     console.log('Logged successfully!')
-    // })
+  const dispatch = useDispatch();
+  const location = useLocation();
 
-    // axios.defaults.withCredentials = true;
-    // const response = axios.get(apiUrl('sanctum/csrf-cookie','backend-non-api-route')).then(response => {
-    //     return axios.post(apiUrl('user/login','backend-non-api-route'),loginCredentials,{ 
-    //         xsrfHeaderName: "X-XSRF-TOKEN", // change the name of the header to "X-XSRF-TOKEN" and it should works
-    //         withCredentials: true
-    //       });
-    // })
+  useEffect(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
 
-    //return response;
+  const onFinish = (values) => {
+    const email = values.email;
+    const password = values.password;
+    
+    if (email && password) {
+      const { from } = location.state || {from: {pathname: '/'}};
+      dispatch(userActions.login(email, password, from));
+    }
   };
 
   return (
-    <Card style={{ width: 500, height: 400, margin: "10% auto" }}>
+    <Card className="login-page">
       <h1>Sign In</h1>
       <br></br>
       <p>
@@ -42,14 +41,15 @@ const Login = (props) => {
         className="login-form"
         initialValues={{ remember: true }}
         onFinish={onFinish}
+        size="large"
       >
         <Form.Item
-          name="username"
+          name="email"
           rules={[{ required: true, message: "Please input your Username!" }]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder="Email"
           />
         </Form.Item>
         <Form.Item
@@ -77,7 +77,6 @@ const Login = (props) => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            size = 'large'
             block
           >
             LOGIN

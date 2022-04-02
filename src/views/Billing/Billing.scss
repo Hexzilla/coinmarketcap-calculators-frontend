@@ -1,6 +1,6 @@
 .Billing {
   position: absolute;
-  margin-top: 200px;
+  margin-top: 100px;
   left: 50%;
   transform: translateX(-50%);
   padding: 30px;
@@ -8,61 +8,115 @@
   border-radius: 7px;
   border: 1px solid #e6e6e9;
 
-  .submit-button {
-    width: 100%;
+  * {
+    box-sizing: border-box;
+  }
+
+  .stripeElements {
+    min-height: 40px;
+    padding: 12px 11px;
+    border: 1px solid #d9d9d9;
+  }
+
+  .ant-row .ant-col-12:first-of-type {
+    padding-right: 5px;
+  }
+  .ant-row .ant-col-12:last-of-type {
+    padding-left: 5px;
+  }
+
+  .type, .price, .method {
+    font-size: 36px;
+    color: #440645;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .method {
+    font-size: 24px;
+    margin-top: -16px;
+    color: #440645;
+  }
+  
+  .price {
+    font-size: 40px;
+    margin-bottom: 40px
+  }
+  
+  .stripe-button {
+    margin: 10px;
+  }
+  
+  .paypal-button {
+    margin: 10px;
+  }
+  
+  .btn-group {
+    justify-content: center;
+    text-align: center;
+  }
+
+  
+  .paypal-button, .stripe-button {
+    margin: 0;
+    cursor: pointer;
+    height: 60px;
+    width: 50%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    border: 1px solid #d9d9d9;
+    margin-bottom: 30px;
+  }
+
+  .paypal-button {
+    background-image: url("../../../public/images/paypal.png");
+  }
+  
+  .stripe-button {
+    background-image: url("../../../public/images/stripe.png");
+  }
+  
+  .stripe-payment {
+    .stripe {
+      display: block;
+    }
+  
+    .paypal {
+      display: none;
+    }
+
+    .stripe-button {
+      border-bottom: 3px solid #78067a;
+    }
+
+    .submit-button {
+      font-weight: 600;
+      letter-spacing: .8px;
+    }
+  }
+
+  .ant-btn-lg {
+    height: 50px;
+  }
+  
+  .paypal-payment {
+    .stripe {
+      display: none;
+    }
+  
+    .paypal {
+      display: block;
+    }
+
+    .paypal-button {
+      border-bottom: 3px solid #78067a;
+    }
   }
 }
 
-.type, .price, .method {
-  font-size: 36px;
-  color: #440645;
-  font-weight: bold;
-  text-align: center;
-}
 
-.method {
-  font-size: 24px;
-  margin-top: -16px;
-  color: #440645;
-}
-
-.price {
-  font-size: 40px;
-  margin-bottom: 40px
-}
-
-.stripe-button {
-  margin: 10px;
-}
-
-.paypal-button {
-  margin: 10px;
-}
-
-.btn-group {
-  justify-content: center;
-  text-align: center;
-}
-
-.stripe-payment {
-  .stripe {
-    display: block;
-  }
-
-  .paypal {
-    display: none;
-  }
-}
-
-.paypal-payment {
-  .stripe {
-    display: none;
-  }
-
-  .paypal {
-    display: block;
-  }
-}
 
 @media screen and (max-width: 600px) {
   .Billing {
@@ -70,20 +124,8 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 600px) {
   .Billing {
-    width: 75%;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .Billing {
-    width: 60%;
-  }
-}
-
-@media screen and (min-width: 1001px) {
-  .Billing {
-    width: 50%;
+    width: 600px;
   }
 }

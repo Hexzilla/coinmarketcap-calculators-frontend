@@ -156,75 +156,70 @@ const Billing = (props) => {
       <div className="type">{state.type}</div>
       <div className="method">{state.method}</div>
       <div className="price">$ {state.price}</div>
-
-      <div className="btn-group">
-        <Button
-          className="stripe-button"
-          type="primary"
-          size="large"
-          onClick={changeStyle1}
-        >
-          Stripe
-        </Button>
-        <Button
-          className="paypal-button"
-          type="primary"
-          size="large"
-          onClick={changeStyle2}
-        >
-          Paypal
-        </Button>
-      </div>
+      <p>Select a payment method from the following options.</p>
       <div className={style}>
+        <div className="btn-group">
+          <a className="paypal-button" onClick={changeStyle2}></a>
+          <a className="stripe-button" onClick={changeStyle1}></a>
+        </div>
         <div className="stripe">
-          <Form onFinish={onSubmit} {...layout} size={"large"}>
-            <Form.Item label="Name" name="name">
+          <Form onFinish={onSubmit} {...layout3} size={"large"}>
+          <Form.Item name="name">
               <Input placeholder="Username" />
             </Form.Item>
-            <Form.Item label="Email" type="email" name="email">
-              <Input placeholder="example@gmail.com" />
+            <Form.Item type="email" name="email">
+              <Input placeholder="E-mail" />
             </Form.Item>
-            <Form.Item label="Address" type="text" name="address">
-              <Input />
+            <Form.Item type="text" name="address">
+              <Input placeholder="Address" />
             </Form.Item>
             <Row>
               <Col span={12}>
-                <Form.Item label="Phone" type="tel" name="phone" {...layout2}>
-                  <Input />
+                <Form.Item type="tel" name="phone">
+                  <Input placeholder="Phone number"/>
                 </Form.Item>
               </Col>
-              <Col span={1}></Col>
-              <Col span={11}>
-                <Form.Item label="Zip" name="zip" {...layout2}>
-                  <Input placeholder="000000" />
+              <Col span={12}>
+                <Form.Item name="zip">
+                  <Input placeholder="Zip" />
                 </Form.Item>
               </Col>
             </Row>
-            <Form.Item label="Card number">
+            <Form.Item>
               <CardNumberElement
+                className="stripeElements"
                 options={CARD_ELEMENT_OPTIONS}
                 onChange={handleCardElementsChange}
               />
             </Form.Item>
-            <Form.Item label="Expiration date">
-              <CardExpiryElement
-                options={CARD_ELEMENT_OPTIONS}
-                onChange={handleCardElementsChange}
-              />
-            </Form.Item>
-            <Form.Item label="CVC">
-              <CardCvcElement
-                options={CARD_ELEMENT_OPTIONS}
-                onChange={handleCardElementsChange}
-              />
-            </Form.Item>
+            <Row>
+              <Col span={12}>
+                <Form.Item>
+                <CardExpiryElement
+                  className="stripeElements"
+                  options={CARD_ELEMENT_OPTIONS}
+                  onChange={handleCardElementsChange}
+                />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item>
+                <CardCvcElement
+                  className="stripeElements"
+                  options={CARD_ELEMENT_OPTIONS}
+                  onChange={handleCardElementsChange}
+                />
+                </Form.Item>
+              </Col>
+            </Row>
             <Form.Item {...layout3}>
               <Button
                 type="primary"
                 className="submit-button"
                 htmlType="submit"
+                block
               >
-                Submit
+                Start Free Trial
               </Button>
             </Form.Item>
           </Form>
