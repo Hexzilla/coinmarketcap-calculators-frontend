@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { Router, Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { alertActions } from 'actions'
-import './App.scss'
+import './App.less'
 import history from './routerHistory'
 import Menu from './components/Menu'
 import Calculator from "./views/Calculator"
@@ -18,7 +18,7 @@ function RequireAuth({ children }) {
   const user = useSelector(state => state.authentication.user);
 
   if (!user?.access_token) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Redirect to="/login" />;
   }
 
   return children;

@@ -3,40 +3,20 @@ import { NavLink } from "react-router-dom";
 import { Layout, Menu, Dropdown } from "antd";
 import { MenuOutlined, DownOutlined } from '@ant-design/icons';
 import FooterPage from 'components/Footer'
-import "./index.scss";
+import "./menu.less";
 
+const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;
 
-const MainLayout = ({ children }) => {
+const MenuComponenet = () => {
   const [current, setCurrent] = useState("cryptocurrency");
 
-  const menu = (
+  return (
     <Menu
       onClick={(e) => setCurrent(e.key)}
       selectedKeys={[current]}
-      className="menu-wapper"
+      mode="horizontal"
     >
-      <Menu.Item className="submenu-item" key="cryptocurrency">
-        <NavLink to="/cryptocurrencyconversioncalculator">
-          <div className="submenu-text">
-            Cryptocurrency Conversion Calculator
-          </div>
-        </NavLink>
-      </Menu.Item>
-      <Menu.Item className="submenu-item" key="profitlosscalculator">
-        <NavLink to="/profitlosscalculator">
-          <div className="submenu-text">
-            Profit Loss Calculator
-          </div>
-        </NavLink>
-      </Menu.Item>
-      <Menu.Item className="submenu-item" key="cryptoprofitcalculator">
-        <NavLink to="/cryptoprofitcalculator">
-          <div className="submenu-text">
-            Crypto Profit Calculator
-          </div>
-        </NavLink>
-      </Menu.Item>
       <Menu.Item className="submenu-item" key="pricing">
         <NavLink to="/pricing">
           <div className="submenu-text">
@@ -44,9 +24,34 @@ const MainLayout = ({ children }) => {
           </div>
         </NavLink>
       </Menu.Item>
+      <SubMenu key="SubMenu" title="Cryptocurrency Calculators">
+        <Menu.Item className="submenu-item" key="cryptocurrency">
+          <NavLink to="/cryptocurrencyconversioncalculator">
+            <div className="submenu-text">
+              Cryptocurrency Conversion Calculator
+            </div>
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item className="submenu-item" key="profitlosscalculator">
+          <NavLink to="/profitlosscalculator">
+            <div className="submenu-text">
+              Profit Loss Calculator
+            </div>
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item className="submenu-item" key="cryptoprofitcalculator">
+          <NavLink to="/cryptoprofitcalculator">
+            <div className="submenu-text">
+              Crypto Profit Calculator
+            </div>
+          </NavLink>
+        </Menu.Item>
+      </SubMenu>
     </Menu>
   )
+}
 
+const MainLayout = ({ children }) => {
   return (
     <Layout className="menu-layout">
       <Header>
@@ -59,18 +64,14 @@ const MainLayout = ({ children }) => {
           />
         </NavLink>
         <div className="mobile-menu">
-          <Dropdown overlay={menu}>
+          {/* <Dropdown overlay={menu}>
             <div className="ant-dropdown-link cursor-pointer" onClick={e => e.preventDefault()}>
               <MenuOutlined />
             </div>
-          </Dropdown>
+          </Dropdown> */}
         </div>
         <div className="desktop-menu">
-          <Dropdown overlay={menu}>
-            <div className="ant-dropdown-link cursor-pointer" onClick={e => e.preventDefault()}>
-              Cryptocurrency Calculators <DownOutlined />
-            </div>
-          </Dropdown>
+          <MenuComponenet />
         </div>
       </Header>
       <Layout>

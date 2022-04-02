@@ -40,9 +40,8 @@
   }
   
   .desktop-menu {
+    position: relative;
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
     margin-top: 4px;
     margin-right: 20px;
     background: #FFF!important;
@@ -60,6 +59,13 @@
   .ant-layout-footer {
     background-color: #1b1c1a;
     color: white;
+  }
+
+  .ant-menu-horizontal {
+    position: absolute;
+    right: 0;
+    border-bottom: 0px;
+    font-size: 15px;
   }
 
   @media only screen and (max-width: 640px) {
@@ -91,6 +97,10 @@
     color: #7a569e!important;
     background-color: #f7f8f8;
   }
+}
+
+.ant-menu-item-selected > a {
+  color: #7a569e!important;
 }
 
 .menu-wapper.ant-dropdown-menu {

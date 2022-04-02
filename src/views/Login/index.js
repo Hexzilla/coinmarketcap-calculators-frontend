@@ -34,7 +34,7 @@ const Login = (props) => {
       <br></br>
       <p>
         Sign in with your email and password, or 
-        <NavLink to="/register">Sign Up.</NavLink>
+        <NavLink to="/register"> Sign Up.</NavLink>
       </p>
       <br></br>
       <Form
