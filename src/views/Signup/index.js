@@ -3,7 +3,7 @@ import { Card, Form, Input, Button, Layout } from "antd";
 import "./signup.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "_actions";
+import { userActions } from "actions";
 
 const Signup = (props) => {
   const [user, setUser] = useState({

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Elements} from '@stripe/react-stripe-js';
-import { store } from '_helpers';
+import { store } from 'helpers';
 import {loadStripe} from '@stripe/stripe-js';
 import "antd/dist/antd.css";
 import './index.scss';
