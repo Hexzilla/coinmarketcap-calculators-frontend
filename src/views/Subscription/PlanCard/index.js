@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './card.scss';
+import './card.less';
 
 export const subscriptions = [
   {user: "1 user", method: 'monthly', price: 55, type: 'Standard'},

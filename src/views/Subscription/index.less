@@ -1,6 +1,5 @@
 .subscription-page {
   margin-top: 60px;
-  // margin-bottom: 70px;
   .subscription {
     padding: 32px 40px 64px;
     border-radius: 32px;
@@ -20,12 +19,9 @@
 
   .ant-radio-inner {
     border-width: 2px;
-    border-color: #440645;
   }
 
   .ant-radio-wrapper {
-    border-color: #440645;
-    color: #440645;
     padding-left: 20px;
     font-size: 16px;
     line-height: 20px;
@@ -34,20 +30,10 @@
     margin-left: 30px;
   }
 
-  .ant-radio-checked,
-  .ant-radio-checked .ant-radio-inner,
+  // .ant-radio-checked,
+  // .ant-radio-checked .ant-radio-inner,
   .ant-radio-wrapper-checked {
-    border-color: #6f63f4!important;
-    color: #6f63f4!important;
-  }
-
-  .ant-radio-checked::after {
-    border: #6f63f4;
-  }
-
-  .ant-radio-checked .ant-radio-inner::after {
-    background-color: #6f63f4;
-    border-color: #6f63f4;
+    color: @primary-color!important;
   }
 
   .content {
@@ -90,7 +76,6 @@
 
   .ant-tabs-tab-active {
     background-color: #efeff6;
-    color: #6f63f4;
     border-radius: 4px 4px 0 0;
     position: relative;
   }
@@ -171,11 +156,6 @@
 
   .ant-slider-track {
     height: 4px;
-    background-color: #6f63f4;
-  }
-
-  .ant-slider:hover .ant-slider-track {
-    background-color: #6f63f4;
   }
 
   .ant-slider-handle.ant-tooltip-open {
@@ -197,7 +177,7 @@
     margin-left: -50px;
     width: 51px;
     height: 4px;
-    background-color: #6f63f4;
+    background-color: @primary-color;
   }
 
   .slider .after {

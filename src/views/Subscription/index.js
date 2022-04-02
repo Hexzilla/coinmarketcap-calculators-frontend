@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Layout, Radio, Row, Select, Slider} from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import PlanCard from './PlanCard';
-import './index.scss';
+import './index.less';
 
 const { Option } = Select;
 
