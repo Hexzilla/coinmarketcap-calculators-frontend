@@ -1,55 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { Layout, Menu, Dropdown } from "antd";
-import { MenuOutlined, DownOutlined } from '@ant-design/icons';
-import FooterPage from 'components/Footer'
+import { Layout } from "antd";
+import FooterPage from "components/Footer";
+import MenuItems from "./MenuItems";
 import "./menu.less";
 
-const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;
-
-const MenuComponenet = () => {
-  const [current, setCurrent] = useState("cryptocurrency");
-
-  return (
-    <Menu
-      onClick={(e) => setCurrent(e.key)}
-      selectedKeys={[current]}
-      mode="horizontal"
-    >
-      <Menu.Item className="submenu-item" key="pricing">
-        <NavLink to="/pricing">
-          <div className="submenu-text">
-            Pricing
-          </div>
-        </NavLink>
-      </Menu.Item>
-      <SubMenu key="SubMenu" title="Cryptocurrency Calculators">
-        <Menu.Item className="submenu-item" key="cryptocurrency">
-          <NavLink to="/cryptocurrencyconversioncalculator">
-            <div className="submenu-text">
-              Cryptocurrency Conversion Calculator
-            </div>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item className="submenu-item" key="profitlosscalculator">
-          <NavLink to="/profitlosscalculator">
-            <div className="submenu-text">
-              Profit Loss Calculator
-            </div>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item className="submenu-item" key="cryptoprofitcalculator">
-          <NavLink to="/cryptoprofitcalculator">
-            <div className="submenu-text">
-              Crypto Profit Calculator
-            </div>
-          </NavLink>
-        </Menu.Item>
-      </SubMenu>
-    </Menu>
-  )
-}
 
 const MainLayout = ({ children }) => {
   return (
@@ -71,7 +27,7 @@ const MainLayout = ({ children }) => {
           </Dropdown> */}
         </div>
         <div className="desktop-menu">
-          <MenuComponenet />
+          <MenuItems />
         </div>
       </Header>
       <Layout>

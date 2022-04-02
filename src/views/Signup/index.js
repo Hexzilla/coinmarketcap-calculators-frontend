@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Input, Button, Layout } from "antd";
+import { Card, Form, Input, Button } from "antd";
 import "./signup.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "actions";
 
 const Signup = (props) => {
@@ -13,12 +13,13 @@ const Signup = (props) => {
     password_confirmation: ''
   });
 
-  const registering = useSelector(state => state.registration.registering);
+ // const registering = useSelector(state => state.registration.registering);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(userActions.logout());
-  }, []);
+  });
+
   const onFinish = (values) => {
     setUser({
       name: values.username,

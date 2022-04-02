@@ -1,8 +1,6 @@
-//import React, { lazy } from 'react'
-import React, { useEffect } from 'react'
-import { Router, Route, Switch, Redirect, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { alertActions } from 'actions'
+import React from 'react'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import {  useSelector } from 'react-redux'
 import './App.less'
 import history from './routerHistory'
 import Menu from './components/Menu'
@@ -26,15 +24,13 @@ function RequireAuth({ children }) {
 
 
 function App() {
-  const alert = useSelector(state => state.alert);
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.authentication.user);
+  /*const dispatch = useDispatch();
 
   useEffect(() => {
     history.listen((location, action) => {
       dispatch(alertActions.clear());
     });
-  }, []);
+  }, []);*/
 
   return (
     <Router history={history}>
@@ -77,31 +73,5 @@ function App() {
     </Router>
   );
 }
-
-/*function App() {
-  return (
-    <Router history={history}>
-      <Menu>
-        <Switch>
-          <Route path="/" exact>
-            <Subscription />
-          </Route>
-          <Route path="/cryptocurrencyconversioncalculator">
-            <Calculator />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Signup />
-          </Route>
-          <Route path="/subscription">
-            <Subscription/>
-          </Route>
-        </Switch>
-      </Menu>
-    </Router>
-  );
-}*/
 
 export default App;
