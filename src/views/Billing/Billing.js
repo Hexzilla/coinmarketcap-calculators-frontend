@@ -137,16 +137,6 @@ const Billing = (props) => {
     return <Redirect to="/login" />;
   }
 
-  const layout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 20 },
-  };
-
-  const layout2 = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
-
   const layout3 = {
     wrapperCol: { span: 24 },
   };
@@ -159,12 +149,12 @@ const Billing = (props) => {
       <p>Select a payment method from the following options.</p>
       <div className={style}>
         <div className="btn-group">
-          <a className="paypal-button" onClick={changeStyle2}></a>
-          <a className="stripe-button" onClick={changeStyle1}></a>
+          <div className="paypal-button" onClick={changeStyle2}></div>
+          <div className="stripe-button" onClick={changeStyle1}></div>
         </div>
         <div className="stripe">
           <Form onFinish={onSubmit} {...layout3} size={"large"}>
-          <Form.Item name="name">
+            <Form.Item name="name">
               <Input placeholder="Username" />
             </Form.Item>
             <Form.Item type="email" name="email">
@@ -176,7 +166,7 @@ const Billing = (props) => {
             <Row>
               <Col span={12}>
                 <Form.Item type="tel" name="phone">
-                  <Input placeholder="Phone number"/>
+                  <Input placeholder="Phone number" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -195,20 +185,20 @@ const Billing = (props) => {
             <Row>
               <Col span={12}>
                 <Form.Item>
-                <CardExpiryElement
-                  className="stripeElements"
-                  options={CARD_ELEMENT_OPTIONS}
-                  onChange={handleCardElementsChange}
-                />
+                  <CardExpiryElement
+                    className="stripeElements"
+                    options={CARD_ELEMENT_OPTIONS}
+                    onChange={handleCardElementsChange}
+                  />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item>
-                <CardCvcElement
-                  className="stripeElements"
-                  options={CARD_ELEMENT_OPTIONS}
-                  onChange={handleCardElementsChange}
-                />
+                  <CardCvcElement
+                    className="stripeElements"
+                    options={CARD_ELEMENT_OPTIONS}
+                    onChange={handleCardElementsChange}
+                  />
                 </Form.Item>
               </Col>
             </Row>
