@@ -25,8 +25,8 @@ const PlanCard = ({ user, method, type}) => {
     }
     else if(method === "annually"){
       if(user === "1 user") price = parseInt(item.price * 0.65);
-      else if(user === "3 users") price = parseInt(item.price * 0.65 * 3);
-      else if(user === "10 users") price = parseInt(item.price * 0.65 * 10);
+      else if(user === "3 users") price = parseInt(item.price * 0.65) * 3;
+      else if(user === "10 users") price = parseInt(item.price * 0.65) * 10;
     }
     console.log("item", item);
     //let price = item.price;
