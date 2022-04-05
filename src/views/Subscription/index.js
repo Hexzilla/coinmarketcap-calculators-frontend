@@ -28,7 +28,6 @@ const Subscription = () => {
   const [method, setMethod] = React.useState("annually");
   const [user, setUser] = React.useState("1 user");
   const [slider, setSlider] = React.useState("1");
-  //const [current, setCurrent] = React.useState("annually");
 
   const methodChange = e => {
     setMethod(e.target.value);
@@ -51,19 +50,6 @@ const Subscription = () => {
     setSlider(e);
     setUser(findUser(e));
   }
-  
-  /*const menu = (
-    <Menu
-      onClick={(e) => setCurrent(e.key)}
-      selectedKeys={[current]}
-      className="menu-wapper"
-    >
-      <Radio.Group onChange={methodChange} value={method}>
-        <Radio value="annually">Billed annually - Save 35%</Radio>
-        <Radio value="monthly">Billed monthly</Radio>
-      </Radio.Group>
-    </Menu>
-  )*/
 
   return (
     <Layout className='subscription-page'>

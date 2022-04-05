@@ -1,15 +1,50 @@
 .signup {
-    width: 500px;
+    width: 400px;
     text-align: center;
-    margin: 10% auto;
+    margin: auto;
+    margin-top: 100px;
+
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
     h1 {
         color: rgb(0, 0, 0);
-        font-size: 30px;
+        font-size: 28px;
+        font-weight: 400;
+        text-transform: capitalize;
+        margin: 0 0 15px 0;
+        text-align: center;
     }
-    
-    .signup-form-signin{
-        float: left;
+
+    h4 {
+        text-transform: none;
+        margin: 0 auto 20px auto;
+        font-weight: 400;
+        text-align: center;
+        font-size: 1.1em;
+        width: 310px;
+    }
+
+    .fb-signup {
+        text-align: center;
+        margin: 40px auto 10px auto;
+        max-width: 330px;
+    }
+
+    .or {
+        text-align: center;
+        padding: 25px 14px 10px 14px;
+        margin-bottom: -6px;
+        position: relative;
+        z-index: 999;
+    }
+
+    .signup-form {
+        margin: auto;
+        max-width: 400px;
+        padding: 10px;
+        position: relative;
     }
 
     .ant-btn-lg {
@@ -17,10 +52,8 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     .signup {
-        margin: 0;
-        margin-top: 50px;
         width: 100%;
     }
 }

@@ -30,12 +30,14 @@ const Login = (props) => {
   return (
     <Card className="login-page">
       <h1>Sign In</h1>
-      <br></br>
       <p>
         Sign in with your email and password, or 
         <NavLink to="/register"> Sign Up.</NavLink>
       </p>
-      <br></br>
+      <div className="fb-login">
+        <Button className="facebook-btn" type="primary" size="large" block> LOG IN WITH FACEBOOK</Button>
+      </div>
+      <div className="or">OR</div>
       <Form
         name="normal_login"
         className="login-form"

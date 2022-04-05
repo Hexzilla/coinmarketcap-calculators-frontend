@@ -32,15 +32,8 @@ const PlanCard = ({ user, method, type}) => {
     //let price = item.price;
     return price;
   }
-
-  // const findType = () => {
-  //   let item = prices.find(it => (it.user === user && it.method === method && it.type === type));
-  //   let type = item.type;
-  //   return type;
-  // }
   
   const findClass = () => {
-    //let item = subscriptions.find(it => (it.user === user && it.method === method));
     let classes = method + " " + type.toLowerCase();
     return classes;
   }
@@ -67,6 +60,9 @@ const PlanCard = ({ user, method, type}) => {
         </div>
         <div className='card-features'>
           <div className='features standard-features'>
+            <p className='card-feature'>Unlimmited access to Profit Loss Calculator</p>
+            <p className='card-feature card-feature-cross'>Unlimitd access to Crypto Profit Calculator</p>
+            <p className='card-feature card-feature-cross'>Unlimitd access to Cryptocurrency Conversion Calculatore</p>
             <p className='card-feature'>5 collections</p>
             <p className='card-feature'>Unlimited boards</p>
             <p className='card-feature'>Unlimited backlogs</p>
@@ -77,6 +73,9 @@ const PlanCard = ({ user, method, type}) => {
             <p className='card-feature card-feature-cross'>Manage collections</p>
           </div>
           <div className='features premium-features'>
+            <p className='card-feature'>Unlimmited access to Profit Loss Calculator</p>
+            <p className='card-feature'>Unlimitd access to Crypto Profit Calculator</p>
+            <p className='card-feature card-feature-cross'>Unlimitd access to Cryptocurrency Conversion Calculatore</p>
             <p className='card-feature'>Unlimited apps and integrations</p>
             <p className='card-feature'>Unlimited storages</p>
             <p className='card-feature'>Reports</p>
@@ -87,6 +86,9 @@ const PlanCard = ({ user, method, type}) => {
             <p className='card-feature card-feature-cross'>SAML based single sign-on(SSO)</p>
           </div>
           <div className='features enterprise-features'>
+            <p className='card-feature'>Unlimmited access to Profit Loss Calculator</p>
+            <p className='card-feature'>Unlimitd access to Crypto Profit Calculator</p>
+            <p className='card-feature'>Unlimitd access to Cryptocurrency Conversion Calculatore</p>
             <p className='card-feature'>Unlimited collections</p>
             <p className='card-feature'>Unlimited private collections</p>
             <p className='card-feature'>Unlimited boards and backlogs</p>

@@ -31,6 +31,8 @@ const Signup = (props) => {
     console.log(user);
     if (user.name && user.email && user.password && user.password_confirmation) {
       dispatch(userActions.register(user));
+      const { from } = {from: {pathname: '/#/billing'}};
+      dispatch(userActions.login(user.email, user.password, from ))
     }
   };
 
@@ -40,19 +42,17 @@ const Signup = (props) => {
 
   return (
     <Card className="signup">
-      <h1 style={{margin: "0"}}>14 Day Free Trial</h1>
-      <div style={{fontSize: "16px", margin: "0"}}>
+      <h1>14 Day Free Trial</h1>
+      <h4>
         You can cancel your trial anytime before it ends and no charges will apply.
+      </h4>
+      <div className="fb-signup">
+       <Button className="facebook-btn" type="primary" size="large" block> SIGN UP WITH FACEBOOK</Button>
       </div>
-      <br/><br/>
-      <div>
-      <Button className="facebook-btn" type="primary" size="large" block> SIGN UP WITH FACEBOOK</Button>
-      </div>
-      <br/>
-      <div style={{fontSize: '16px'}}>via email</div>
+      <div className="or">or via email</div>
       <br/>
       <Form
-
+        className="signup-form"
         name="register"
         {...layout}
         initialValues={{ remember: true }}

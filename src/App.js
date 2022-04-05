@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {  useSelector } from 'react-redux'
 import './App.less'
 import history from './routerHistory'
@@ -22,7 +22,6 @@ function RequireAuth({ children }) {
   return children;
 }
 
-
 function App() {
   /*const dispatch = useDispatch();
 
@@ -33,7 +32,7 @@ function App() {
   }, []);*/
 
   return (
-    <Router history={history}>
+    <HashRouter history={history}>
       <Menu>
         <Switch>
           <Route path="/" exact>
@@ -70,7 +69,7 @@ function App() {
           </Route>
         </Switch>
       </Menu>
-    </Router>
+    </HashRouter>
   );
 }
 
