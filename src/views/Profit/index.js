@@ -254,6 +254,7 @@ const ProfitCalculator = () => {
   }, [date, priceList]);
 
   const handleCalculate = () => {
+    console.log('handleCalculate', loading)
     if (amount) {
       let currentPrice = 0;
       getCurrentPrice()
