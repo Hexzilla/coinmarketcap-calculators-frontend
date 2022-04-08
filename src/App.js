@@ -1,6 +1,6 @@
 //import React, { lazy } from 'react'
 import React from 'react'
-import { Router, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import './App.scss'
 import history from './routerHistory'
 import Menu from './components/Menu'
@@ -14,7 +14,7 @@ import ProfitCalculator from 'views/Profit'
 
 function App() {
   return (
-    <Router history={history}>
+    <HashRouter history={history}>
       <Menu>
         <Switch>
           <Route path="/" exact>
@@ -37,7 +37,7 @@ function App() {
           </Route>
         </Switch>
       </Menu>
-    </Router>
+    </HashRouter>
   );
 }
 
